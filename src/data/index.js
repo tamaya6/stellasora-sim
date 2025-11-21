@@ -2,6 +2,29 @@ import { ELEMENTS } from './constants';
 import fuyuka from './skills/fuyuka';
 import nanoha from './skills/nanoha';
 import freesia from './skills/freesia';
+import minerva from './skills/minerva';
+import misty from './skills/misty';
+import chisia from './skills/chisia';
+import grey from './skills/grey';
+import nazuna from './skills/nazuna';
+import chitose from './skills/chitose';
+import shia from './skills/shia';
+import kohaku from './skills/kohaku';
+import tilia from './skills/tilia';
+import kasimira from './skills/kasimira';
+import ayame from './skills/ayame';
+import seina from './skills/seina';
+import shimiao from './skills/shimiao';
+import ridge from './skills/ridge';
+import jinglin from './skills/jinglin';
+import coronis from './skills/coronis';
+import canace from './skills/canace';
+import cosette from './skills/cosette'; // 追加
+import caramel from './skills/caramel'; // 追加
+import laru from './skills/laru';       // 追加
+import anzu from './skills/anzu';
+import flora from './skills/flora';
+import teresa from './skills/teresa';
 
 // 他のファイルからも使えるよう再エクスポート
 export { ELEMENTS, SKILL_STYLES } from './constants';
@@ -11,7 +34,29 @@ const SPECIFIC_SKILLS = {
     fuyuka,
     nanoha,
     freesia,
-    // 今後キャラを追加する場合はここにimportしたデータを足すだけでOK
+    minerva,
+    misty,
+    chisia, 
+    grey,   
+    nazuna,
+    chitose,
+    shia,
+    kohaku,
+    tilia,
+    kasimira,
+    ayame,
+    seina,
+    shimiao,
+    ridge,
+    jinglin,
+    coronis,
+    canace,
+    cosette, // 追加
+    caramel, // 追加
+    laru,    // 追加
+    anzu,
+    flora,
+    teresa,
 };
 
 // スキル生成ロジック (Factory)
@@ -87,9 +132,6 @@ export const CHARACTERS = [
     { id: 'fuyuka', name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5, imagePath: '/src/assets/char_icon/icon_fuyuka.png' },
     { id: 'shia', name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5, imagePath: '/src/assets/char_icon/icon_shia.png' },
     { id: 'chitose', name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5, imagePath: '/src/assets/char_icon/icon_chitose.png' },
-    { id: 'seina', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4, imagePath: '/src/assets/char_icon/icon_seina.png' },
-    { id: 'kohaku', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4, imagePath: '/src/assets/char_icon/icon_kohaku.png' },
-    { id: 'ayame', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4, imagePath: '/src/assets/char_icon/icon_ayame.png' },
     { id: 'nazuna', name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5, imagePath: '/src/assets/char_icon/icon_nazuna.png' },
     { id: 'grey', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5, imagePath: '/src/assets/char_icon/icon_grey.png' },
     { id: 'chisia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5, imagePath: '/src/assets/char_icon/icon_chisia.png' },
@@ -97,7 +139,11 @@ export const CHARACTERS = [
     { id: 'freesia', name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5, imagePath: '/src/assets/char_icon/icon_freesia.png' },
     { id: 'minerva', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5, imagePath: '/src/assets/char_icon/icon_minerva.png' },
     { id: 'misty', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5, imagePath: '/src/assets/char_icon/icon_misty.png' },
+    { id: 'seina', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4, imagePath: '/src/assets/char_icon/icon_seina.png' },
+    { id: 'kohaku', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4, imagePath: '/src/assets/char_icon/icon_kohaku.png' },
+    { id: 'ayame', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4, imagePath: '/src/assets/char_icon/icon_ayame.png' },
     { id: 'anzu', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4, imagePath: '/src/assets/char_icon/icon_anzu.png' },
+    { id: 'flora', name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4, imagePath: '/src/assets/char_icon/icon_flora.png' },
     { id: 'jinglin', name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4, imagePath: '/src/assets/char_icon/icon_jinglin.png' },
     { id: 'teresa', name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4, imagePath: '/src/assets/char_icon/icon_teresa.png' },
     { id: 'tilia', name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4, imagePath: '/src/assets/char_icon/icon_tilia.png' },
