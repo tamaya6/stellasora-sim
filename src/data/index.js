@@ -32,13 +32,13 @@ export { ELEMENTS, SKILL_STYLES } from './constants';
 // --- 画像読み込みロジック (追加) ---
 // src/assets/char_icon/ フォルダ内の全pngファイルを一括インポートします
 // ※ eager: true にすることで、非同期ではなく即座にパスを取得します
-const iconFiles = import.meta.glob('../../assets/char_icon/*.png', { eager: true });
+const iconFiles = import.meta.glob('../assets/char_icon/*.png', { eager: true });
 
 // キャラクターIDから画像パスを取得する関数
 const getIconImage = (charId) => {
     // このファイル(src/data/index.js)から見た画像の相対パス
     // フォルダ構成が src/assets/char_icon/ であることを前提としています
-    const path = `../../assets/char_icon/icon_${charId}.png`;
+    const path = `../assets/char_icon/icon_${charId}.png`;
     return iconFiles[path]?.default;
 };
 // ----------------------------------
