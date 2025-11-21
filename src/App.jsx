@@ -210,10 +210,8 @@ const CoreSkillCard = ({
     onToggle
 }) => {
     const ElementIcon = element.icon;
-    // SKILL_STYLESを参照
     const designStyle = SKILL_STYLES[skill.bgType] || SKILL_STYLES.core;
     
-    // ツールチップ制御用
     const [showTooltip, setShowTooltip] = useState(false);
     const [tooltipPos, setTooltipPos] = useState({ top: 0, left: 0 });
 
@@ -244,7 +242,6 @@ const CoreSkillCard = ({
                 `}
                 style={isSelected ? designStyle.style : {}}
             >
-                {/* 透過させるコンテンツラッパー */}
                 <div className={`flex flex-col items-center justify-center w-full h-full ${!isSelected ? 'opacity-60' : ''}`}>
                     <div className={`absolute top-1 left-1 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider z-20 border shadow-sm
                         ${isSelected 
@@ -265,7 +262,6 @@ const CoreSkillCard = ({
                     </div>
                     
                     <div className="w-full px-1 text-center relative z-10">
-                        {/* テキストサイズを大きくし、背景色を追加 */}
                         <div className={`text-xs font-bold leading-tight line-clamp-2 py-1 px-1 rounded shadow-sm ${isSelected ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                             {skill.name}
                         </div>
@@ -273,7 +269,6 @@ const CoreSkillCard = ({
                 </div>
             </button>
 
-            {/* Portalで描画するツールチップ */}
             <PortalTooltip 
                 title={skill.name}
                 description={skill.description}
@@ -300,7 +295,6 @@ const SubSkillCard = ({
     const isAcquired = value > 0;
     const designStyle = SKILL_STYLES[skill.bgType] || SKILL_STYLES.normal;
 
-    // ツールチップ制御用
     const [showTooltip, setShowTooltip] = useState(false);
     const [tooltipPos, setTooltipPos] = useState({ top: 0, left: 0 });
 
@@ -314,7 +308,6 @@ const SubSkillCard = ({
     };
 
     const handleMouseEnter = (e) => {
-        // ドラッグ中はツールチップを表示しない
         if (isDragging) return;
         
         const rect = e.currentTarget.getBoundingClientRect();
@@ -349,7 +342,6 @@ const SubSkillCard = ({
                 `}
                 draggable={true}
                 onDragStart={(e) => {
-                    // ドラッグ開始時にツールチップを消す
                     setShowTooltip(false);
                     onDragStart(e);
                 }}
@@ -357,16 +349,13 @@ const SubSkillCard = ({
                 onDrop={onDrop}
                 onDragEnd={onDragEnd}
             >
-                {/* カード上部 (画像エリア) */}
                 <div 
                     className={`flex-1 w-full flex flex-col items-center justify-center relative transition-all duration-300 py-2 rounded-t-lg ${!isAcquired ? 'bg-slate-900' : ''} cursor-grab active:cursor-grabbing`}
                     style={isAcquired ? designStyle.style : {}}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    {/* 透過ラッパー: 画像とテキストを囲む */}
                     <div className={`flex flex-col items-center justify-center w-full h-full ${!isAcquired ? 'opacity-60' : ''}`}>
-                        {/* レアリティ演出 (キラキラ) */}
                         {isAcquired && skill.bgType === 'special' && (
                             <div className="absolute inset-0 z-0 pointer-events-none opacity-50 mix-blend-overlay">
                                 <Sparkles className="absolute top-1 left-1 w-3 h-3 text-white animate-pulse" />
@@ -396,7 +385,6 @@ const SubSkillCard = ({
                     </div>
                 </div>
 
-                {/* カード下部 (操作エリア) */}
                 <div 
                     className={`p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
                     draggable={true}
@@ -424,7 +412,6 @@ const SubSkillCard = ({
                 </div>
             </div>
 
-            {/* Portalで描画するツールチップ - ドラッグ中は表示しない */}
             <PortalTooltip 
                 title={skill.name}
                 description={skill.description}
@@ -455,11 +442,9 @@ const PartySlot = ({
     const isMainSlot = slotIndex === 0;
     const categoryPrefix = isMainSlot ? 'main' : 'support';
     
-    // スキルデータの取得
     const coreSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Core`] : [];
     const subSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Sub`] : [];
 
-    // サブスキルの順序管理 (コアスキルは順序変更なしで固定4つ表示)
     let orderedSubSkills = [];
     if (selectedChar) {
         if (skillOrder && skillOrder.length > 0) {
@@ -472,16 +457,13 @@ const PartySlot = ({
         }
     }
 
-    // コアスキルの選択処理 (Max 2つ)
     const handleCoreToggle = (skillId) => {
         const currentSkill = skillsData[skillId] || { level: 0, priority: 'medium' };
         const isSelected = currentSkill.level > 0;
 
         if (isSelected) {
-            // 解除
             onUpdateSkill(skillId, { level: 0, priority: 'medium' });
         } else {
-            // 追加 (2つ制限チェック)
             const selectedCount = coreSkillPool.filter(s => (skillsData[s.id]?.level || 0) > 0).length;
             if (selectedCount < 2) {
                 onUpdateSkill(skillId, { level: 1, priority: 'medium' });
@@ -522,7 +504,6 @@ const PartySlot = ({
         }
     };
 
-    // SP計算: サブスキルのレベル合計
     const totalSp = Object.entries(skillsData)
         .filter(([key, val]) => subSkillPool.some(s => s.id === key))
         .reduce((acc, [_, val]) => acc + val.level, 0);
@@ -686,17 +667,20 @@ export default function App() {
     ]);
     
     const [isCopied, setIsCopied] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false); // 追加: ロード完了フラグ
 
     useEffect(() => {
         const loaded = loadFromUrl();
         if (loaded && Array.isArray(loaded) && loaded.length === 3) {
             setParty(loaded);
         }
+        setIsLoaded(true); // ロード試行完了
     }, []);
 
     useEffect(() => {
+        if (!isLoaded) return; // ロードが完了するまでは保存（URL上書き）しない
         saveToUrl(party);
-    }, [party]);
+    }, [party, isLoaded]);
 
     const updateSlot = (slotIndex, charId) => {
         const newParty = [...party];
