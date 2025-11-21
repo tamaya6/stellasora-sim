@@ -59,7 +59,7 @@ const SubSkillCard = ({
         <>
             <div 
                 className={`
-                    relative flex flex-col border rounded-lg overflow-visible transition-all duration-200 h-full group
+                    relative flex flex-col border rounded-lg overflow-visible transition-all duration-200 h-40 group
                     ${isAcquired ? 'border-slate-400 shadow-lg' : 'border-slate-700 bg-slate-900/80'} 
                     ${isDragging ? 'opacity-40 ring-2 ring-indigo-500 scale-95' : 'hover:border-slate-400'}
                 `}
@@ -109,7 +109,7 @@ const SubSkillCard = ({
                 </div>
 
                 <div 
-                    className={`p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
+                    className={`p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative h-[4.5rem] z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
                     draggable={true}
                     onDragStart={(e) => { e.preventDefault(); e.stopPropagation(); }}
                 >
