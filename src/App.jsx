@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 
 // データ定義ファイルをインポート
-// ここでキャラクター情報やスキル定義などを読み込みます
 import { ELEMENTS, CHARACTERS, SKILL_STYLES } from './data';
 
 // --- ユーティリティ ---
@@ -51,9 +50,9 @@ const PortalTooltip = ({ title, description, visible, position }) => {
         <div 
             className="fixed z-[9999] w-64 bg-slate-800 text-white text-xs rounded-lg shadow-2xl p-3 border border-slate-600 pointer-events-none"
             style={{ 
-                top: position.top - 8, // 要素の上に少し隙間を空けて表示
+                top: position.top - 8, 
                 left: position.left,
-                transform: 'translate(-50%, -100%)' // 中央揃えかつ上に表示
+                transform: 'translate(-50%, -100%)'
             }}
         >
             <div className="font-bold text-sm mb-1 text-yellow-400">{title}</div>
@@ -211,6 +210,7 @@ const CoreSkillCard = ({
     onToggle
 }) => {
     const ElementIcon = element.icon;
+    // SKILL_STYLESを参照
     const designStyle = SKILL_STYLES[skill.bgType] || SKILL_STYLES.core;
     
     // ツールチップ制御用
@@ -562,9 +562,9 @@ const PartySlot = ({
                                     )}
                                 </div>
 
-                                <div className="min-w-0 flex-1 w-full">
+                                <div className="min-w-0 flex-1 w-full z-10">
                                     {selectedChar ? (
-                                        <>
+                                        <div className="bg-slate-900/60 rounded-lg p-3 backdrop-blur-sm border border-white/10 shadow-lg">
                                             <div className="font-bold text-xl md:text-2xl text-white group-hover:text-yellow-200 transition-colors truncate shadow-black drop-shadow-sm mb-1">
                                                 {selectedChar.name}
                                             </div>
@@ -581,9 +581,9 @@ const PartySlot = ({
                                                     <span className="text-sm text-white/60 font-normal ml-1">/ {orderedSubSkills.length * 6}</span>
                                                 </div>
                                             </div>
-                                        </>
+                                        </div>
                                     ) : (
-                                        <div className="text-white/50 font-bold">キャラクター未選択</div>
+                                        <div className="text-white/50 font-bold p-2">キャラクター未選択</div>
                                     )}
                                 </div>
                             </button>
@@ -595,7 +595,7 @@ const PartySlot = ({
                             </button>
                         )}
                     </div>
-                    {selectedChar && <ElementIcon className="absolute -right-8 -bottom-8 md:-right-12 md:-bottom-12 text-black/10 w-48 h-48 pointer-events-none transform rotate-12" />}
+                    {selectedChar && <ElementIcon className="absolute -right-8 -bottom-8 md:-right-12 md:-bottom-12 text-black/10 w-48 h-48 pointer-events-none transform rotate-12 opacity-80" />}
                 </div>
 
                 {/* 右側: スキルリストエリア */}
