@@ -225,10 +225,10 @@ export default function App() {
                             <Star className="text-yellow-500 w-5 h-5" fill="currentColor" />
                         </div>
                         <h1 className="font-bold text-lg sm:text-xl tracking-wider hidden sm:block">
-                            STELLASORA <span className="text-xs font-normal text-slate-400 ml-1">SIMULATOR</span>
+                            Stella Sora <span className="text-xs font-normal text-slate-400 ml-1">Build Simulator</span>
                         </h1>
                         <h1 className="font-bold text-lg tracking-wider sm:hidden">
-                            STELLASORA
+                            Stella Sora
                         </h1>
                     </div>
                     <div className="flex gap-2">
