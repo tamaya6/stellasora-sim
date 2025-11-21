@@ -19,15 +19,29 @@ import ridge from './skills/ridge';
 import jinglin from './skills/jinglin';
 import coronis from './skills/coronis';
 import canace from './skills/canace';
-import cosette from './skills/cosette'; // 追加
-import caramel from './skills/caramel'; // 追加
-import laru from './skills/laru';       // 追加
+import cosette from './skills/cosette';
+import caramel from './skills/caramel';
+import laru from './skills/laru';
 import anzu from './skills/anzu';
 import flora from './skills/flora';
 import teresa from './skills/teresa';
 
 // 他のファイルからも使えるよう再エクスポート
 export { ELEMENTS, SKILL_STYLES } from './constants';
+
+// --- 画像読み込みロジック (追加) ---
+// src/assets/char_icon/ フォルダ内の全pngファイルを一括インポートします
+// ※ eager: true にすることで、非同期ではなく即座にパスを取得します
+const iconFiles = import.meta.glob('../../assets/char_icon/*.png', { eager: true });
+
+// キャラクターIDから画像パスを取得する関数
+const getIconImage = (charId) => {
+    // このファイル(src/data/index.js)から見た画像の相対パス
+    // フォルダ構成が src/assets/char_icon/ であることを前提としています
+    const path = `../../assets/char_icon/icon_${charId}.png`;
+    return iconFiles[path]?.default;
+};
+// ----------------------------------
 
 // 特定キャラのスキルマップ
 const SPECIFIC_SKILLS = {
@@ -51,9 +65,9 @@ const SPECIFIC_SKILLS = {
     jinglin,
     coronis,
     canace,
-    cosette, // 追加
-    caramel, // 追加
-    laru,    // 追加
+    cosette,
+    caramel,
+    laru,
     anzu,
     flora,
     teresa,
@@ -64,7 +78,6 @@ const generateSkills = (charId, elementLabel) => {
     const specific = SPECIFIC_SKILLS[charId];
 
     if (specific) {
-        // 特定データがある場合はそれをマッピング
         const mapSkills = (list, typePrefix, isCore) => list.map((s, i) => ({
             id: `${charId}_${typePrefix}_${i + 1}`,
             name: s.name,
@@ -82,7 +95,7 @@ const generateSkills = (charId, elementLabel) => {
         };
     }
 
-    // データがないキャラ用のモック生成 (プレースホルダー)
+    // データがないキャラ用のモック生成
     const createCore = (prefix) => 
         Array.from({ length: 4 }, (_, i) => ({
             id: `${charId}_${prefix}_c_${i + 1}`,
@@ -128,34 +141,40 @@ const generateSkills = (charId, elementLabel) => {
 };
 
 // キャラクターリスト定義
-export const CHARACTERS = [
-    { id: 'fuyuka', name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5, imagePath: './char_icon/icon_fuyuka.png' },
-    { id: 'shia', name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5, imagePath: './char_icon/icon_shia.png' },
-    { id: 'chitose', name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5, imagePath: './char_icon/icon_chitose.png' },
-    { id: 'nazuna', name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5, imagePath: './char_icon/icon_nazuna.png' },
-    { id: 'grey', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5, imagePath: './char_icon/icon_grey.png' },
-    { id: 'chisia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5, imagePath: './char_icon/icon_chisia.png' },
-    { id: 'nanoha', name: 'ナノハ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 5, imagePath: './char_icon/icon_nanoha.png' },
-    { id: 'freesia', name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5, imagePath: './char_icon/icon_freesia.png' },
-    { id: 'minerva', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5, imagePath: './char_icon/icon_minerva.png' },
-    { id: 'misty', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5, imagePath: './char_icon/icon_misty.png' },
-    { id: 'seina', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4, imagePath: './char_icon/icon_seina.png' },
-    { id: 'kohaku', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4, imagePath: './char_icon/icon_kohaku.png' },
-    { id: 'ayame', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_ayame.png' },
-    { id: 'anzu', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4, imagePath: './char_icon/icon_anzu.png' },
-    { id: 'flora', name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_flora.png' },
-    { id: 'jinglin', name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_jinglin.png' },
-    { id: 'teresa', name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4, imagePath: './char_icon/icon_teresa.png' },
-    { id: 'tilia', name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4, imagePath: './char_icon/icon_tilia.png' },
-    { id: 'kasimira', name: 'カシミラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_kasimira.png' },
-    { id: 'shimiao', name: 'シーミャオ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 4, imagePath: './char_icon/icon_shimiao.png' },
-    { id: 'ridge', name: 'レイセン', element: ELEMENTS.EARTH, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_ridge.png' },
-    { id: 'coronis', name: 'クルニス', element: ELEMENTS.DARK, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_coronis.png' },
-    { id: 'canace', name: 'カナーチェ', element: ELEMENTS.WIND, role: 'バランサー', rank: 4, imagePath: './char_icon/icon_canace.png' },
-    { id: 'cosette', name: 'コゼット', element: ELEMENTS.DARK, role: 'サポーター', rank: 4, imagePath: './char_icon/icon_cosette.png' },
-    { id: 'caramel', name: 'キャラメル', element: ELEMENTS.DARK, role: 'アタッカー', rank: 4, imagePath: './char_icon/icon_caramel.png' },
-    { id: 'laru', name: 'ラール', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 4, imagePath: './char_icon/icon_laru.png' },
-].map(char => ({
+// imagePathの指定は削除しても構いませんが、残っていても下部のmapで上書きされるので問題ありません
+const RAW_CHARACTERS = [
+    { id: 'fuyuka', name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5 },
+    { id: 'shia', name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5 },
+    { id: 'chitose', name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5 },
+    { id: 'seina', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4 },
+    { id: 'kohaku', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4 },
+    { id: 'ayame', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4 },
+    { id: 'nazuna', name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5 },
+    { id: 'grey', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5 },
+    { id: 'chisia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5 },
+    { id: 'nanoha', name: 'ナノハ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 5 },
+    { id: 'freesia', name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5 },
+    { id: 'minerva', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5 },
+    { id: 'misty', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5 },
+    { id: 'anzu', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4 },
+    { id: 'jinglin', name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4 },
+    { id: 'teresa', name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4 },
+    { id: 'tilia', name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4 },
+    { id: 'kasimira', name: 'カシミラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
+    { id: 'shimiao', name: 'シーミャオ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 4 },
+    { id: 'ridge', name: 'レイセン', element: ELEMENTS.EARTH, role: 'バランサー', rank: 4 },
+    { id: 'coronis', name: 'クルニス', element: ELEMENTS.DARK, role: 'バランサー', rank: 4 },
+    { id: 'canace', name: 'カナーチェ', element: ELEMENTS.WIND, role: 'バランサー', rank: 4 },
+    { id: 'cosette', name: 'コゼット', element: ELEMENTS.DARK, role: 'サポーター', rank: 4 },
+    { id: 'caramel', name: 'キャラメル', element: ELEMENTS.DARK, role: 'アタッカー', rank: 4 },
+    { id: 'laru', name: 'ラール', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 4 },
+    { id: 'flora', name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
+];
+
+// ここで画像を動的に割り当てます
+export const CHARACTERS = RAW_CHARACTERS.map(char => ({
     ...char,
+    // IDに基づいて画像を自動設定 (例: id='fuyuka' -> icon_fuyuka.png)
+    imagePath: getIconImage(char.id),
     skillSets: generateSkills(char.id, char.element.label)
 }));
