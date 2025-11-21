@@ -26,8 +26,7 @@ export default {
         { name: '閃火の心', description: 'フユカの支援スキルの持続中、火属性ダメージが0.5秒ごとに4%増加する。' }
     ],
     supportSub: [
-        { name: '激流に身を任せ', bgType: 'special', description: 'チトセのスキル会心ダメージが42～117%増加する。チトセの支援スキルは連撃を追加で1回繰り出すようになる。' },
-        { name: 'アサルトフレイム', bgType: 'normal', description: '' },
+        { name: 'アサルトフレイム', bgType: 'special', description: '' },
         { name: '熱烈エール', bgType: 'normal', description: '' },
         { name: 'スキルウォーマー', bgType: 'normal', description: '' },
         { name: 'サポートコンボ', bgType: 'special', description: '' },
