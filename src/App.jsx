@@ -228,7 +228,7 @@ export default function App() {
                             Stella Sora <span className="text-xs font-normal text-slate-400 ml-1">Build Simulator</span>
                         </h1>
                         <h1 className="font-bold text-lg tracking-wider sm:hidden">
-                            Stella Sora
+                            Stella Sora - Build Simulator
                         </h1>
                     </div>
                     <div className="flex gap-2">
@@ -288,13 +288,23 @@ export default function App() {
                         onUpdateSkill={(skillId, data) => updateSkill(idx, skillId, data)}
                         onClear={() => clearSlot(idx)}
                         onReorderSkills={(src, dst) => reorderSkills(idx, src, dst)}
-                        onUpdateSkillOrder={(newOrder) => updateSkillOrder(idx, newOrder)} // 追加
+                        onUpdateSkillOrder={(newOrder) => updateSkillOrder(idx, newOrder)}
                     />
                 ))}
             </main>
 
-            <footer className="py-4 text-center text-slate-500 text-xs">
-                Stella Sora is a property of Yostar. All rights reserved.
+            <footer className="py-6 text-center text-slate-500 text-xs flex flex-col gap-2">
+                <div>Stella Sora is a property of Yostar. All rights reserved.</div>
+                <div>
+                    <a 
+                        href="https://github.com/tamaya6/stellasora-sim" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-slate-300 transition-colors underline"
+                    >
+                        GitHub
+                    </a>
+                </div>
             </footer>
             
             {/* 確認モーダル */}
