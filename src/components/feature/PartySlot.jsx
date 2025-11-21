@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertCircle, Trash2, User } from 'lucide-react';
+import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw } from 'lucide-react';
 import { CHARACTERS } from '../../data';
 import CharacterSelectModal from './CharacterSelectModal';
 import CoreSkillCard from './CoreSkillCard';
@@ -16,6 +16,7 @@ const PartySlot = ({
     onUpdateSkill, 
     onClear, 
     onReorderSkills,
+    onUpdateSkillOrder,
     slotTypeLabel 
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +31,7 @@ const PartySlot = ({
     const coreSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Core`] : [];
     const subSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Sub`] : [];
 
+    // 表示順序に基づいてスキルリストを作成
     let orderedSubSkills = [];
     if (selectedChar) {
         if (skillOrder && skillOrder.length > 0) {
@@ -41,6 +43,80 @@ const PartySlot = ({
             orderedSubSkills = subSkillPool;
         }
     }
+
+    // ソート実行関数
+    const handleSort = (mode) => {
+        if (!selectedChar) return;
+
+        // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
+        let currentCoreIds = [];
+        if (skillOrder && skillOrder.length > 0) {
+             currentCoreIds = skillOrder.filter(id => coreSkillPool.some(core => core.id === id));
+             // 万が一足りなければ補充
+             const existingCoreSet = new Set(currentCoreIds);
+             coreSkillPool.forEach(core => {
+                 if (!existingCoreSet.has(core.id)) currentCoreIds.push(core.id);
+             });
+        } else {
+             currentCoreIds = coreSkillPool.map(c => c.id);
+        }
+
+        let sortedSubSkillIds = [];
+
+        if (mode === 'default') {
+            // デフォルト順（定義順）
+            sortedSubSkillIds = subSkillPool.map(s => s.id);
+        } else {
+            // 優先度やレベルでソート
+            const getPriorityValue = (p) => {
+                switch(p) {
+                    case 'high': return 3;
+                    case 'medium': return 2;
+                    case 'low': return 1;
+                    default: return 0;
+                }
+            };
+
+            const sortedList = [...subSkillPool].sort((a, b) => {
+                const aData = skillsData[a.id] || { level: 0, priority: 'medium' };
+                const bData = skillsData[b.id] || { level: 0, priority: 'medium' };
+
+                // 1. 取得済み（Lv > 0）を最優先で前に
+                const aAcquired = aData.level > 0;
+                const bAcquired = bData.level > 0;
+                
+                if (aAcquired !== bAcquired) {
+                    return aAcquired ? -1 : 1;
+                }
+
+                // 両方未取得の場合は、優先度に関係なく順序を維持（0を返す）
+                // これにより「高・未取得」がソートで上がってくるのを防ぐ
+                if (!aAcquired && !bAcquired) {
+                    return 0;
+                }
+
+                // 両方取得済みの場合のみ、以下のルールでソート
+                if (mode === 'priority') {
+                    // 優先度高い順 > レベル高い順
+                    const pDiff = getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
+                    if (pDiff !== 0) return pDiff;
+                    return bData.level - aData.level;
+                }
+                if (mode === 'level') {
+                    // レベル高い順 > 優先度高い順
+                    const lDiff = bData.level - aData.level;
+                    if (lDiff !== 0) return lDiff;
+                    return getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
+                }
+                return 0;
+            });
+            sortedSubSkillIds = sortedList.map(s => s.id);
+        }
+
+        // 新しい順序を結合して更新
+        const newOrder = [...currentCoreIds, ...sortedSubSkillIds];
+        onUpdateSkillOrder(newOrder);
+    };
 
     const handleCoreToggle = (skillId) => {
         const currentSkill = skillsData[skillId] || { level: 0, priority: 'medium' };
@@ -87,8 +163,13 @@ const PartySlot = ({
         }
     };
 
-    const totalSp = Object.entries(skillsData)
-        .filter(([key, val]) => subSkillPool.some(s => s.id === key))
+    // 素質数（ポイント）計算
+    const totalPoints = Object.entries(skillsData)
+        .filter(([key, val]) => {
+            const isCore = coreSkillPool.some(s => s.id === key);
+            const isSub = subSkillPool.some(s => s.id === key);
+            return isCore || isSub;
+        })
         .reduce((acc, [_, val]) => acc + val.level, 0);
 
     return (
@@ -139,10 +220,9 @@ const PartySlot = ({
                                             </div>
                                             
                                             <div className="mt-3 pt-3 border-t border-white/20 hidden md:block">
-                                                <div className="text-xs text-white/80 mb-1">SP使用量</div>
+                                                <div className="text-xs text-white/80 mb-1">素質数</div>
                                                 <div className="text-2xl font-bold text-white font-mono">
-                                                    {totalSp}
-                                                    <span className="text-sm text-white/60 font-normal ml-1">/ {orderedSubSkills.length * 6}</span>
+                                                    {totalPoints}
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +250,7 @@ const PartySlot = ({
                             <div className="mb-4">
                                 <div className="flex items-center gap-2 mb-2 px-1">
                                     <div className="w-1 h-4 bg-pink-500 rounded-full shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
-                                    <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Core Skills <span className="text-slate-500 font-normal ml-2 text-[10px]">Max 2</span></h4>
+                                    <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Core Skills <span className="text-slate-500 font-normal ml-2 text-[10px]">Max 2</span></h4>
                                 </div>
                                 <div className="grid grid-cols-4 gap-3 max-w-2xl">
                                     {coreSkillPool.map(skill => {
@@ -190,10 +270,39 @@ const PartySlot = ({
 
                             {/* サブスキルエリア */}
                             <div>
-                                <div className="flex items-center gap-2 mb-2 px-1">
-                                    <div className="w-1 h-4 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
-                                    <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Sub Skills</h4>
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 px-1 gap-2">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1 h-4 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
+                                        <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Sub Skills</h4>
+                                    </div>
+
+                                    {/* ソートボタン群 */}
+                                    <div className="flex items-center gap-1.5 bg-slate-900/50 p-1 rounded-lg border border-slate-800">
+                                        <button
+                                            onClick={() => handleSort('default')}
+                                            className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+                                            title="デフォルト順"
+                                        >
+                                            <RotateCcw size={10} /> デフォルト
+                                        </button>
+                                        <div className="w-px h-3 bg-slate-700"></div>
+                                        <button
+                                            onClick={() => handleSort('priority')}
+                                            className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+                                            title="優先度が高い順にソート"
+                                        >
+                                            <ArrowDownWideNarrow size={10} /> 優先度
+                                        </button>
+                                        <button
+                                            onClick={() => handleSort('level')}
+                                            className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+                                            title="レベルが高い順にソート"
+                                        >
+                                            <BarChart3 size={10} /> レベル
+                                        </button>
+                                    </div>
                                 </div>
+
                                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3">
                                     {orderedSubSkills.map((skill) => {
                                         const current = skillsData[skill.id] || { level: 0, priority: 'medium' };
@@ -228,11 +337,11 @@ const PartySlot = ({
                         </div>
                     )}
                     
-                    {/* SP合計 (モバイル向けフッター) */}
+                    {/* 素質数表示 (モバイル向けフッター) */}
                     {selectedChar && (
                         <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
-                            <span>SP使用量</span>
-                            <span className="text-white font-bold">{totalSp} / {orderedSubSkills.length * 6}</span>
+                            <span>素質数</span>
+                            <span className="text-white font-bold">{totalPoints}</span>
                         </div>
                     )}
                 </div>
