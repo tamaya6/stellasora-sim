@@ -20,7 +20,8 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
 
     return (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] flex flex-col">
+            {/* 幅を max-w-4xl から max-w-6xl に変更して広くしました */}
+            <div className="bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-6xl overflow-hidden animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] flex flex-col">
                 {/* ヘッダー */}
                 <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-950/50 flex-shrink-0">
                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
@@ -102,28 +103,30 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                 {/* キャラクターリスト */}
                 <div className="p-4 overflow-y-auto bg-slate-950/30 flex-1">
                     {filteredCharacters.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        /* 4列表示に対応: mdで3列、lg以上で4列 */
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                             {filteredCharacters.map(char => {
                                 const ElementIcon = char.element.icon;
                                 return (
                                     <button
                                         key={char.id}
                                         onClick={() => onSelect(char.id)}
-                                        className={`flex items-center gap-3 p-3 rounded-lg border border-slate-700/50 ${char.element.bgColor} hover:bg-slate-800 hover:border-slate-500 transition-all group text-left relative overflow-hidden`}
+                                        /* パディングを p-2 に、gapを gap-2 に縮小 */
+                                        className={`flex items-center gap-2 p-2 rounded-lg border border-slate-700/50 ${char.element.bgColor} hover:bg-slate-800 hover:border-slate-500 transition-all group text-left relative overflow-hidden`}
                                     >
                                         <div className={`absolute -right-4 -bottom-4 opacity-10 text-white group-hover:opacity-20 transition-opacity rotate-12`}>
-                                            <ElementIcon size={80} />
+                                            <ElementIcon size={100} />
                                         </div>
                                         <div className="relative z-10 flex-shrink-0">
-                                            <CharacterIcon char={char} size="md" />
+                                            <CharacterIcon char={char} size="lg" />
                                         </div>
                                         <div className="relative z-10 min-w-0">
-                                            <div className="flex items-center gap-2 mb-0.5">
-                                                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors truncate text-lg">{char.name}</span>
-                                                <RankStars rank={char.rank} size={12} />
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors truncate text-xl">{char.name}</span>
+                                                <RankStars rank={char.rank} size={14} />
                                             </div>
                                             <div className="flex items-center gap-2 text-xs">
-                                                <span className={`px-1.5 py-0.5 rounded bg-black/30 border border-white/10 ${char.element.textColor}`}>
+                                                <span className={`px-2 py-0.5 rounded bg-black/30 border border-white/10 ${char.element.textColor} font-bold`}>
                                                     {char.element.label}
                                                 </span>
                                                 <span className="text-slate-300">{char.role}</span>
