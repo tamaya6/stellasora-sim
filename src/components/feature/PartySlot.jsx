@@ -11,17 +11,19 @@ const PartySlot = ({
     slotIndex, 
     charId, 
     skillsData, 
-    skillOrder, 
+    skillOrder,
+    sortMode = 'default', // propsとして受け取るが、表示には使用しない
+    hideUnacquired = false, 
     onSelectChar, 
     onUpdateSkill, 
     onClear, 
     onReorderSkills,
     onUpdateSkillOrder,
+    onUpdateSettings, 
     slotTypeLabel 
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [draggingId, setDraggingId] = useState(null);
-    const [hideUnacquired, setHideUnacquired] = useState(false); // 未取得非表示フラグ
 
     const selectedChar = CHARACTERS.find(c => c.id === charId);
     const ElementIcon = selectedChar?.element?.icon || AlertCircle;
@@ -55,6 +57,8 @@ const PartySlot = ({
     // ソート実行関数
     const handleSort = (mode) => {
         if (!selectedChar) return;
+        
+        // ソートモードの保存は行わず、ワンショットのアクションとして処理する
 
         // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
         let currentCoreIds = [];
@@ -284,7 +288,7 @@ const PartySlot = ({
                                     <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg border border-slate-800">
                                         {/* 未取得非表示ボタン */}
                                         <button
-                                            onClick={() => setHideUnacquired(!hideUnacquired)}
+                                            onClick={() => onUpdateSettings({ hideUnacquired: !hideUnacquired })}
                                             className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-colors border ${
                                                 hideUnacquired 
                                                 ? 'bg-indigo-600 text-white border-indigo-500' 
@@ -298,7 +302,7 @@ const PartySlot = ({
                                         
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
-                                        {/* ソートボタン群 */}
+                                        {/* ソートボタン群: 全て同じスタイルで統一 */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"

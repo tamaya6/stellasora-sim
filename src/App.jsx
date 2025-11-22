@@ -9,10 +9,11 @@ import SaveSlot from './components/feature/SaveSlot';
 import PartySlot from './components/feature/PartySlot';
 
 export default function App() {
+    // partyステートに sortMode と hideUnacquired を含める
     const [party, setParty] = useState([
-        { charId: null, skills: {}, skillOrder: [] },
-        { charId: null, skills: {}, skillOrder: [] },
-        { charId: null, skills: {}, skillOrder: [] }
+        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
+        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
+        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
     ]);
     
     const [saves, setSaves] = useState(Array(6).fill(null)); 
@@ -27,17 +28,37 @@ export default function App() {
         isDestructive: false
     });
 
+    // データの正規化（古いセーブデータ等の互換性維持）
+    const normalizePartyData = (data) => {
+        if (!Array.isArray(data)) return data;
+        return data.map(slot => ({
+            ...slot,
+            // 未定義の場合はデフォルト値を設定
+            sortMode: slot.sortMode || 'default',
+            hideUnacquired: slot.hideUnacquired ?? false,
+            skillOrder: slot.skillOrder || []
+        }));
+    };
+
     // 初期化時にURLとLocalStorageから復元
     useEffect(() => {
         const loadedFromUrl = loadFromUrl();
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
-            setParty(loadedFromUrl);
+            setParty(normalizePartyData(loadedFromUrl));
+        } else {
+            // URLパラメータがない場合、LocalStorageをチェック
+            // (セーブデータ自体は下の処理で読み込むが、最後に開いた状態の復元等を実装するならここ)
         }
 
         const savedData = localStorage.getItem('stellasora_saves');
         if (savedData) {
             try {
-                setSaves(JSON.parse(savedData));
+                const parsed = JSON.parse(savedData);
+                // セーブデータ内のパーティデータも正規化しておく
+                const normalizedSaves = parsed.map(save => 
+                    save ? { ...save, party: normalizePartyData(save.party) } : null
+                );
+                setSaves(normalizedSaves);
             } catch (e) {
                 console.error("Failed to parse save data", e);
             }
@@ -100,7 +121,13 @@ export default function App() {
         const subSkillPool = selectedChar ? selectedChar.skillSets[`${targetCategory}Sub`] : [];
         const defaultOrder = subSkillPool.map(s => s.id);
         
-        newParty[slotIndex] = { charId, skills: {}, skillOrder: defaultOrder };
+        newParty[slotIndex] = { 
+            charId, 
+            skills: {}, 
+            skillOrder: defaultOrder,
+            sortMode: 'default', // キャラ変更時はデフォルトに戻す
+            hideUnacquired: false 
+        };
         setParty(newParty);
     };
 
@@ -120,11 +147,16 @@ export default function App() {
 
     const clearSlot = (slotIndex) => {
         const newParty = [...party];
-        newParty[slotIndex] = { charId: null, skills: {}, skillOrder: [] };
+        newParty[slotIndex] = { 
+            charId: null, 
+            skills: {}, 
+            skillOrder: [],
+            sortMode: 'default',
+            hideUnacquired: false
+        };
         setParty(newParty);
     };
 
-    // ドラッグ＆ドロップ用
     const reorderSkills = (slotIndex, sourceSkillId, targetSkillId) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
@@ -146,7 +178,6 @@ export default function App() {
         setParty(newParty);
     };
 
-    // 追加: ソート機能などで一括で順序を更新するための関数
     const updateSkillOrder = (slotIndex, newOrder) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
@@ -158,14 +189,26 @@ export default function App() {
         setParty(newParty);
     };
 
+    // スロットの設定（ソートモード、未取得非表示）を更新する関数
+    const updateSlotSettings = (slotIndex, settings) => {
+        const newParty = party.map((slot, i) => {
+            if (i !== slotIndex) return slot;
+            return {
+                ...slot,
+                ...settings
+            };
+        });
+        setParty(newParty);
+    };
+
     const resetAll = () => {
         showConfirm(
             "全ての構成をリセットしますか？",
             () => {
                 setParty([
-                    { charId: null, skills: {}, skillOrder: [] },
-                    { charId: null, skills: {}, skillOrder: [] },
-                    { charId: null, skills: {}, skillOrder: [] }
+                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
+                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
+                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
                 ]);
                 window.history.replaceState(null, '', ' ');
             },
@@ -283,12 +326,15 @@ export default function App() {
                         charId={slot.charId}
                         skillsData={slot.skills}
                         skillOrder={slot.skillOrder} 
+                        sortMode={slot.sortMode} // 追加
+                        hideUnacquired={slot.hideUnacquired} // 追加
                         slotTypeLabel={idx === 0 ? 'Main' : 'Support'}
                         onSelectChar={(id) => updateSlot(idx, id)}
                         onUpdateSkill={(skillId, data) => updateSkill(idx, skillId, data)}
                         onClear={() => clearSlot(idx)}
                         onReorderSkills={(src, dst) => reorderSkills(idx, src, dst)}
                         onUpdateSkillOrder={(newOrder) => updateSkillOrder(idx, newOrder)}
+                        onUpdateSettings={(settings) => updateSlotSettings(idx, settings)} // 追加
                     />
                 ))}
             </main>
