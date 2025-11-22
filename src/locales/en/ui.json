@@ -4,12 +4,16 @@
   "saveData": "Save Data",
   "reset": "Reset",
   "share": "Share URL",
+  "screenshot": "Shot",
   "save": "Save",
   "load": "Load",
   "overwrite": "Overwrite",
   "delete": "Delete",
   "saved": "Saved!",
   "copied": "Copied!",
+  "download": "Download",
+  "copyImage": "Copy Image",
+  "imageCopied": "Copied!",
   "language": "言語",
   "slot": {
     "main": "Main",
@@ -42,7 +46,8 @@
   },
   "modal": {
     "selectCharacter": "Select Character",
-    "noCharacter": "No characters found"
+    "noCharacter": "No characters found",
+    "screenshotPreview": "Screenshot Preview"
   },
   "card": {
     "unacquired": "Not Acquired"
@@ -50,10 +55,16 @@
   "confirm": {
     "title": "Confirmation",
     "cancel": "Cancel",
+    "close": "Close",
     "execute": "Execute",
     "resetAll": "Are you sure you want to reset all configurations?",
     "loadData": "Load Data {{index}}?\nCurrent edits will be lost.",
     "deleteData": "Delete Data {{index}}?\nThis action cannot be undone."
+  },
+  "toast": {
+    "screenshotFailed": "Failed to take screenshot.",
+    "copyFailed": "Failed to copy.",
+    "copySuccess": "Copied to clipboard."
   },
   "footer": {
     "copyright": "Stella Sora is a property of Yostar. All rights reserved."
