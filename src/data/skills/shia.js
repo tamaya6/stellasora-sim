@@ -26,13 +26,12 @@ export default {
         { name: 'アブナイウェイヴ', description: 'シアのサーフィン後、帯電エリアを発生させ、ダメージを与え続けるようになる。' }
     ],
     supportSub: [
-        { name: '激流に身を任せ', bgType: 'special', description: 'チトセのスキル会心ダメージが42～117%増加する。チトセの支援スキルは連撃を追加で1回繰り出すようになる。' },
         { name: 'ウサギパーティー', bgType: 'special', description: 'フィールドに存在するドローンの数に応じて、ドローンのダメージが増加する。' },
         { name: 'わたしと雪兎', bgType: 'normal', description: '雪兎のダメージを与えるたびに、スキルダメージが増加する。' },
         { name: 'わたしと夜兎', bgType: 'normal', description: 'シアが光属性の印を発動させた時、夜兎のスキルダメージが増加する。' },
-        { name: 'ヘヴィーウェイヴ', bgType: 'special', description: '' },
-        { name: 'リバースウェイヴ', bgType: 'normal', description: '' },
-        { name: 'ロングライド', bgType: 'normal', description: '' },
+        { name: 'ヘヴィーウェイヴ', bgType: 'special', description: 'シアのサーフィンのダメージを与えた時、その敵を3秒間スタンさせるようになる。\nサーフィンのスキルダメージが56%~223%増加する' },
+        { name: 'リバースウェイヴ', bgType: 'normal', description: 'シアのサーフィンのダメージを与えた時から30秒間、その敵の、サーフィンの被ダメージを24%~95%増加させる。この効果は5回重複できる。' },
+        { name: 'ロングライド', bgType: 'normal', description: 'シアの支援スキル持続中、1秒ごとに、シアの攻撃力が1.1%~4.6%上昇する。この効果は12回重複できる。' },
         { name: '月の海の兎たち', bgType: 'special', description: '' },
         { name: 'ビックウェイヴ', bgType: 'normal', description: '' },
         { name: 'ハイタイド', bgType: 'normal', description: '' },
