@@ -22,7 +22,13 @@
     "hideUnacquired": "未取得OFF",
     "sortDefault": "デフォルト",
     "sortPriority": "優先度",
-    "sortLevel": "レベル"
+    "sortLevel": "レベル",
+    "tooltipShowAll": "全スキルを表示",
+    "tooltipHideUnacquired": "未取得スキルを非表示",
+    "tooltipSortDefault": "デフォルト順",
+    "tooltipSortPriority": "優先度が高い順にソート",
+    "tooltipSortLevel": "レベルが高い順にソート",
+    "tooltipRemove": "キャラクターを外す"
   },
   "priority": {
     "high": "高",

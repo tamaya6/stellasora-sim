@@ -240,7 +240,11 @@ const PartySlot = ({
                         </div>
                         
                         {selectedChar && (
-                            <button onClick={onClear} className="text-white/60 hover:text-white p-2 hover:bg-black/20 rounded-full transition-colors md:self-start" title="外す">
+                            <button 
+                                onClick={onClear} 
+                                className="text-white/60 hover:text-white p-2 hover:bg-black/20 rounded-full transition-colors md:self-start" 
+                                title={t('slot.tooltipRemove')}
+                            >
                                 <Trash2 size={20} />
                             </button>
                         )}
@@ -292,7 +296,7 @@ const PartySlot = ({
                                                 ? 'bg-indigo-600 text-white border-indigo-500' 
                                                 : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
                                             }`}
-                                            title={hideUnacquired ? "全スキルを表示" : "未取得スキルを非表示"}
+                                            title={hideUnacquired ? t('slot.tooltipShowAll') : t('slot.tooltipHideUnacquired')}
                                         >
                                             {hideUnacquired ? <EyeOff size={12} /> : <Eye size={12} />}
                                             <span className="hidden sm:inline">{t('slot.hideUnacquired')}</span>
@@ -300,25 +304,25 @@ const PartySlot = ({
                                         
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
-                                        {/* ソートボタン群 - ハイライトを廃止して統一スタイルに変更 */}
+                                        {/* ソートボタン群 */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
-                                            title="デフォルト順"
+                                            title={t('slot.tooltipSortDefault')}
                                         >
                                             <RotateCcw size={10} /> {t('slot.sortDefault')}
                                         </button>
                                         <button
                                             onClick={() => handleSort('priority')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
-                                            title="優先度が高い順にソート"
+                                            title={t('slot.tooltipSortPriority')}
                                         >
                                             <ArrowDownWideNarrow size={10} /> {t('slot.sortPriority')}
                                         </button>
                                         <button
                                             onClick={() => handleSort('level')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
-                                            title="レベルが高い順にソート"
+                                            title={t('slot.tooltipSortLevel')}
                                         >
                                             <BarChart3 size={10} /> {t('slot.sortLevel')}
                                         </button>

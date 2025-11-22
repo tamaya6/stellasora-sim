@@ -22,7 +22,13 @@
     "hideUnacquired": "Hide Unowned",
     "sortDefault": "Default",
     "sortPriority": "Priority",
-    "sortLevel": "Level"
+    "sortLevel": "Level",
+    "tooltipShowAll": "Show all skills",
+    "tooltipHideUnacquired": "Hide unacquired skills",
+    "tooltipSortDefault": "Sort by default",
+    "tooltipSortPriority": "Sort by priority",
+    "tooltipSortLevel": "Sort by level",
+    "tooltipRemove": "Remove character"
   },
   "priority": {
     "high": "High",
