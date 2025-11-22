@@ -2,18 +2,18 @@ import { ELEMENTS } from './constants';
 import fuyuka from './skills/fuyuka';
 import nanoha from './skills/nanoha';
 import freesia from './skills/freesia';
-import minerva from './skills/minerva';
-import misty from './skills/misty';
-import chisia from './skills/chisia';
-import grey from './skills/grey';
+import minova from './skills/minova';
+import mistique from './skills/mistique';
+import chixia from './skills/chixia';
+import gerie from './skills/gerie';
 import nazuna from './skills/nazuna';
 import chitose from './skills/chitose';
 import shia from './skills/shia';
-import kohaku from './skills/kohaku';
+import amber from './skills/amber';
 import tilia from './skills/tilia';
 import kasimira from './skills/kasimira';
-import ayame from './skills/ayame';
-import seina from './skills/seina';
+import iris from './skills/iris';
+import noya from './skills/noya';
 import shimiao from './skills/shimiao';
 import ridge from './skills/ridge';
 import jinglin from './skills/jinglin';
@@ -22,7 +22,7 @@ import canace from './skills/canace';
 import cosette from './skills/cosette';
 import caramel from './skills/caramel';
 import laru from './skills/laru';
-import anzu from './skills/anzu';
+import ann from './skills/ann';
 import flora from './skills/flora';
 import teresa from './skills/teresa';
 
@@ -48,18 +48,18 @@ const SPECIFIC_SKILLS = {
     fuyuka,
     nanoha,
     freesia,
-    minerva,
-    misty,
-    chisia, 
-    grey,   
+    minova,
+    mistique,
+    chixia, 
+    gerie,   
     nazuna,
     chitose,
     shia,
-    kohaku,
+    amber,
     tilia,
     kasimira,
-    ayame,
-    seina,
+    iris,
+    noya,
     shimiao,
     ridge,
     jinglin,
@@ -68,7 +68,7 @@ const SPECIFIC_SKILLS = {
     cosette,
     caramel,
     laru,
-    anzu,
+    ann,
     flora,
     teresa,
 };
@@ -146,17 +146,17 @@ const RAW_CHARACTERS = [
     { id: 'fuyuka', name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5 },
     { id: 'shia', name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5 },
     { id: 'chitose', name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5 },
-    { id: 'seina', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4 },
-    { id: 'kohaku', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4 },
-    { id: 'ayame', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4 },
     { id: 'nazuna', name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5 },
-    { id: 'grey', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5 },
-    { id: 'chisia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5 },
+    { id: 'gerie', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5 },
+    { id: 'chixia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5 },
     { id: 'nanoha', name: 'ナノハ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 5 },
     { id: 'freesia', name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5 },
-    { id: 'minerva', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5 },
-    { id: 'misty', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5 },
-    { id: 'anzu', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4 },
+    { id: 'minova', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5 },
+    { id: 'mistique', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5 },
+    { id: 'noya', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4 },
+    { id: 'amber', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4 },
+    { id: 'iris', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4 },
+    { id: 'ann', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4 },
     { id: 'jinglin', name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4 },
     { id: 'teresa', name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4 },
     { id: 'tilia', name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4 },
