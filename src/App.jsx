@@ -309,6 +309,10 @@ export default function App() {
                 },
                 pixelRatio: 1.5, // 高解像度
                 cacheBust: true,
+                // screenshot-hide クラスを持つ要素を除外
+                filter: (node) => {
+                    return !node.classList?.contains('screenshot-hide');
+                }
             });
             
             setScreenshotData(dataUrl);

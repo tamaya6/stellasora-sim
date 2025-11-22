@@ -49,18 +49,24 @@ const PartySlot = ({
         }
     }
 
-    // 未取得非表示フィルタリング
+    // 未取得非表示フィルタリング (サブスキル)
     const displaySubSkills = orderedSubSkills.filter(skill => {
         if (!hideUnacquired) return true;
         const current = skillsData[skill.id] || { level: 0 };
         return current.level > 0;
     });
 
+    // 未取得非表示フィルタリング (コアスキル)
+    const displayCoreSkills = coreSkillPool.filter(skill => {
+        if (!hideUnacquired) return true;
+        const current = skillsData[skill.id] || { level: 0 };
+        return current.level > 0; 
+    });
+
     // ソート実行関数
     const handleSort = (mode) => {
         if (!selectedChar) return;
 
-        // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
         let currentCoreIds = [];
         if (skillOrder && skillOrder.length > 0) {
              currentCoreIds = skillOrder.filter(id => coreSkillPool.some(core => core.id === id));
@@ -75,10 +81,8 @@ const PartySlot = ({
         let sortedSubSkillIds = [];
 
         if (mode === 'default') {
-            // デフォルト順（定義順）
             sortedSubSkillIds = subSkillPool.map(s => s.id);
         } else {
-            // 優先度やレベルでソート
             const getPriorityValue = (p) => {
                 switch(p) {
                     case 'high': return 3;
@@ -92,7 +96,6 @@ const PartySlot = ({
                 const aData = skillsData[a.id] || { level: 0, priority: 'medium' };
                 const bData = skillsData[b.id] || { level: 0, priority: 'medium' };
 
-                // 1. 取得済み（Lv > 0）を最優先で前に
                 const aAcquired = aData.level > 0;
                 const bAcquired = bData.level > 0;
                 
@@ -100,7 +103,6 @@ const PartySlot = ({
                     return aAcquired ? -1 : 1;
                 }
 
-                // 両方未取得の場合は、優先度に関係なく順序を維持
                 if (!aAcquired && !bAcquired) {
                     return 0;
                 }
@@ -169,7 +171,6 @@ const PartySlot = ({
         }
     };
 
-    // 素質数（ポイント）計算
     const totalPoints = Object.entries(skillsData)
         .filter(([key, val]) => {
             const isCore = coreSkillPool.some(s => s.id === key);
@@ -263,7 +264,7 @@ const PartySlot = ({
                                     <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.coreSkills')} <span className="text-slate-500 font-normal ml-2 text-[10px]">{t('slot.max2')}</span></h4>
                                 </div>
                                 <div className="grid grid-cols-4 gap-3 max-w-2xl">
-                                    {coreSkillPool.map(skill => {
+                                    {displayCoreSkills.map(skill => {
                                         const isSelected = (skillsData[skill.id]?.level || 0) > 0;
                                         return (
                                             <CoreSkillCard
@@ -286,8 +287,8 @@ const PartySlot = ({
                                         <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.subSkills')}</h4>
                                     </div>
 
-                                    {/* ツールバー */}
-                                    <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg border border-slate-800">
+                                    {/* ツールバー (screenshot-hide クラスを追加) */}
+                                    <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg border border-slate-800 screenshot-hide">
                                         {/* 未取得非表示ボタン */}
                                         <button
                                             onClick={() => onUpdateSettings({ hideUnacquired: !hideUnacquired })}
