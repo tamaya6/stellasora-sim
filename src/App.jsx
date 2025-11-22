@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Star, RotateCcw, Share2, Save, Globe } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown } from 'lucide-react'; // アイコン追加
 import { useTranslation } from 'react-i18next';
 import { CHARACTERS } from './data';
 import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
@@ -20,8 +20,11 @@ export default function App() {
     
     const [saves, setSaves] = useState(Array(6).fill(null)); 
     const [isCopied, setIsCopied] = useState(false);
-    // isLoaded は不要になったので削除しても良いですが、念のため残しておきます（将来的な拡張のため）
     const [isLoaded, setIsLoaded] = useState(false);
+    
+    // 言語メニュー用ステート
+    const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+    const langMenuRef = useRef(null);
     
     // Confirm Modal State
     const [confirmState, setConfirmState] = useState({
@@ -36,8 +39,6 @@ export default function App() {
         const loadedFromUrl = loadFromUrl();
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
             setParty(loadedFromUrl);
-            
-            // ロード成功後、URLをクリーンにする
             const cleanUrl = window.location.pathname + window.location.search;
             window.history.replaceState(null, '', cleanUrl);
         }
@@ -54,11 +55,18 @@ export default function App() {
         setIsLoaded(true);
     }, []);
 
-    // ★ 削除: saveToUrl を呼び出していた useEffect を削除しました
-    // useEffect(() => {
-    //     if (!isLoaded) return;
-    //     saveToUrl(party);
-    // }, [party, isLoaded]);
+    // 言語メニューの外側クリック検知
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
+                setIsLangMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     // モーダル表示ヘルパー
     const showConfirm = (message, onConfirm, isDestructive = false) => {
@@ -247,9 +255,9 @@ export default function App() {
         }
     };
 
-    const toggleLanguage = () => {
-        const newLang = i18n.language === 'ja' ? 'en' : 'ja';
-        i18n.changeLanguage(newLang);
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        setIsLangMenuOpen(false);
     };
 
     return (
@@ -267,18 +275,41 @@ export default function App() {
                             {t('appTitle')}
                         </h1>
                     </div>
-                    <div className="flex gap-2">
-                        <div className="relative flex items-center">
-                            <Globe size={14} className="absolute left-2.5 text-slate-400 pointer-events-none z-10" />
-                            <select
-                                value={i18n.language}
-                                onChange={(e) => i18n.changeLanguage(e.target.value)}
-                                className="appearance-none pl-8 pr-3 py-1.5 text-xs sm:text-sm text-slate-400 bg-transparent hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700 cursor-pointer focus:outline-none focus:border-slate-600"
+                    <div className="flex gap-2 items-center">
+                        
+                        {/* リッチな言語切り替えドロップダウン */}
+                        <div className="relative" ref={langMenuRef}>
+                            <button 
+                                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                                className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm rounded transition-all border ${isLangMenuOpen ? 'bg-slate-800 text-white border-slate-600' : 'text-slate-400 border-transparent hover:bg-slate-800 hover:border-slate-700'}`}
                             >
-                                <option value="ja" className="bg-slate-900 text-slate-300">日本語</option>
-                                <option value="en" className="bg-slate-900 text-slate-300">English</option>
-                            </select>
+                                <Globe size={14} />
+                                <span className="hidden sm:inline">{i18n.language === 'ja' ? '日本語' : 'English'}</span>
+                                <span className="sm:hidden">{i18n.language === 'ja' ? 'JP' : 'EN'}</span>
+                                <ChevronDown size={12} className={`transition-transform ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {isLangMenuOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <button 
+                                        onClick={() => changeLanguage('ja')}
+                                        className={`w-full text-left px-4 py-2 text-xs sm:text-sm flex items-center justify-between hover:bg-slate-800 transition-colors ${i18n.language === 'ja' ? 'text-yellow-400 font-bold' : 'text-slate-300'}`}
+                                    >
+                                        <span>日本語</span>
+                                        {i18n.language === 'ja' && <Check size={12} />}
+                                    </button>
+                                    <button 
+                                        onClick={() => changeLanguage('en')}
+                                        className={`w-full text-left px-4 py-2 text-xs sm:text-sm flex items-center justify-between hover:bg-slate-800 transition-colors ${i18n.language === 'en' ? 'text-yellow-400 font-bold' : 'text-slate-300'}`}
+                                    >
+                                        <span>English</span>
+                                        {i18n.language === 'en' && <Check size={12} />}
+                                    </button>
+                                </div>
+                            )}
                         </div>
+
+                        <div className="w-px h-6 bg-slate-800 mx-1 hidden sm:block"></div>
 
                         <button 
                             onClick={resetAll}
@@ -301,6 +332,7 @@ export default function App() {
                 </div>
             </nav>
 
+            {/* セーブデータエリア */}
             <div className="w-full max-w-7xl mx-auto px-4 pt-6 pb-2">
                 <div className="bg-slate-900/80 backdrop-blur border border-slate-700 rounded-xl p-4 shadow-lg">
                     <h2 className="text-white font-bold mb-3 flex items-center gap-2 text-sm">
@@ -357,6 +389,7 @@ export default function App() {
                 </div>
             </footer>
             
+            {/* 確認モーダル */}
             <ConfirmModal 
                 isOpen={confirmState.isOpen}
                 onClose={() => setConfirmState(prev => ({ ...prev, isOpen: false }))}
