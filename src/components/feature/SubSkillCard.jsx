@@ -101,7 +101,8 @@ const SubSkillCard = ({
                         </div>
                         
                         <div className="w-full px-1 text-center z-10 mt-auto">
-                            <div className={`text-xs font-bold leading-tight line-clamp-2 h-9 flex items-center justify-center px-1 rounded ${isAcquired ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
+                            {/* パディングを py-0.5 から py-1 に変更 */}
+                            <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-0.5 rounded ${isAcquired ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                                 {skill.name}
                             </div>
                         </div>
@@ -109,16 +110,16 @@ const SubSkillCard = ({
                 </div>
 
                 <div 
-                    className={`p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative h-[4.5rem] z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
+                    className={`h-[4.5rem] p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
                     draggable={true}
                     onDragStart={(e) => { e.preventDefault(); e.stopPropagation(); }}
                 >
-                    <div className="flex items-center justify-between bg-slate-950 rounded px-0.5 border border-slate-800">
-                        <button onClick={() => handleLevelChange(-1)} className="w-6 h-6 flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded text-white text-sm font-bold">-</button>
-                        <span className={`text-lg font-mono font-bold ${value === 6 ? 'text-yellow-400' : 'text-white'}`}>
-                            {value}<span className="text-xs text-slate-500">/6</span>
+                    <div className="flex items-center justify-between bg-slate-950 rounded px-0.5 border border-slate-800 h-6">
+                        <button onClick={() => handleLevelChange(-1)} className="w-6 h-full flex items-center justify-center bg-slate-800 hover:bg-slate-700 rounded text-white text-sm font-bold">-</button>
+                        <span className={`text-lg font-mono font-bold leading-none flex items-baseline ${value === 6 ? 'text-yellow-400' : 'text-white'}`}>
+                            {value}<span className="text-xs text-slate-500 ml-0.5">/6</span>
                         </span>
-                        <button onClick={() => handleLevelChange(1)} className={`w-6 h-6 flex items-center justify-center rounded text-white text-sm font-bold ${value >= 6 ? 'bg-slate-900 text-slate-600' : 'bg-slate-800 hover:bg-slate-700'}`} disabled={value >= 6}>+</button>
+                        <button onClick={() => handleLevelChange(1)} className={`w-6 h-full flex items-center justify-center rounded text-white text-sm font-bold ${value >= 6 ? 'bg-slate-900 text-slate-600' : 'bg-slate-800 hover:bg-slate-700'}`} disabled={value >= 6}>+</button>
                     </div>
 
                     <div className={`grid grid-cols-3 gap-0.5 text-xs transition-opacity duration-200 ${isAcquired ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>

@@ -62,7 +62,8 @@ const CoreSkillCard = ({
                     </div>
                     
                     <div className="w-full px-1 text-center relative z-10">
-                        <div className={`text-xs font-bold leading-tight line-clamp-2 py-1 px-1 rounded shadow-sm ${isSelected ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
+                        {/* テキストサイズを text-xs から text-sm に変更 */}
+                        <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-1 rounded shadow-sm ${isSelected ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                             {skill.name}
                         </div>
                     </div>
