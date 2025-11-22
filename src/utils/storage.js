@@ -13,7 +13,8 @@ const VERSION_PREFIX = 'v1';
 const SKILL_VAL_CHARS = "0123456789abcdefghi"; 
 
 // 0-11 のインデックスを1文字で表すマップ (順序保存用)
-const ORDER_CHARS = "0123456789ab";
+// 12個以上に対応するため文字セットを拡張しておく（念のため）
+const ORDER_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 // --- ヘルパー関数 ---
 
@@ -36,41 +37,8 @@ const decodeSkillVal = (val) => {
 // --- 圧縮ロジック ---
 
 const compressSlot = (slot) => {
-    if (!slot.charId) return ""; // キャラ未選択は空文字
-
-    // 1. キャラクターIDのインデックス化
-    const charIdx = CHARACTERS.findIndex(c => c.id === slot.charId);
-    if (charIdx === -1) return "";
-    // Base36 (0-9, a-z) で短縮
-    const charStr = charIdx.toString(36);
-
-    // キャラのスキル定義を取得
-    const charData = CHARACTERS[charIdx];
-    const isMain = charData.role === 'アタッカー'; // 簡易判定（実際はスロット位置依存だが、復元時に再構築するため問題なし）
-    // ※注意: slotIndex情報はここでは持っていないため、復元時に skillSets の main/support どちらを使うかは slotIndex に委ねられる。
-    // データ上は CHARACTERS の skillSets は main/support 両方持っている。
-    // ここでは単に「保持されているスキルの値」を順番に並べる。
-    // ただし、App.jsxのstate構造上、skillsオブジェクトのキーは `charId_prefix_index` となっている。
-    
-    // スキル定義順に値を抽出
-    // Core(4) + Sub(12) の順で固定と仮定
-    // Main/Supportの区別が必要。slotオブジェクト自体は区別を持っていないが、
-    // App.jsxの構造上、Slot1=Main, Slot2/3=Support と決まっている。
-    // しかし compress 関数は配列を受け取るので、index 0 は Main, 1,2 は Support として処理する。
-    // ここでは compressSlot を呼び出す側でコンテキストを判断するのは複雑になるため、
-    // 「ID文字列」に含まれる "mc"(MainCore) "sc"(SupportCore) などを解析して値を抽出する。
-
-    // より堅牢な方法: CHARACTERS定義からIDを生成し、そのIDの値を look up する
-    let skillValStr = "";
-    
-    // MainかSupportか判定: スキルIDを一つ見て判断
-    const sampleKey = Object.keys(slot.skills)[0];
-    const isMainSlot = sampleKey && sampleKey.includes('_m'); 
-    // もしスキルが一つも習得されていない場合は判断できないが、その場合はLv0埋めで良い。
-    // ただし、空の状態でも Core/Sub の枠組みは決まっている。
-    // ここでは「このスロットがMainかSupportか」を引数で貰う形にするよう `compress` を修正する。
-    
-    return ""; // 個別呼び出しはしない設計に変更
+    // (この関数は使われていませんが、念のため残すなら修正不要)
+    return "";
 };
 
 // 全体圧縮
@@ -96,7 +64,7 @@ const compress = (state) => {
         });
         const coreStr = coreBits.toString(16);
 
-        // 2. サブスキル (12つ, 0-18) -> カスタム文字12文字
+        // 2. サブスキル (可変長, 0-18) -> カスタム文字N文字
         let subStr = "";
         subSkills.forEach(s => {
             const val = encodeSkillVal(slot.skills[s.id]);
@@ -115,14 +83,12 @@ const compress = (state) => {
         // 4. 並び順 (Order)
         // デフォルト順（subSkillsのID順）と異なる場合のみ保存
         const defaultOrder = subSkills.map(s => s.id);
-        const currentOrder = slot.skillOrder; // ここにはCoreも含まれる可能性があるが、Subだけの順序を抽出する
+        const currentOrder = slot.skillOrder; 
         
         // currentOrderからSubスキルのIDだけを抽出
         const currentSubOrder = currentOrder.filter(id => subSkills.some(s => s.id === id));
         
         let orderStr = "";
-        // デフォルトと長さが違い、かつ中身の順序が違う場合
-        // （通常は長さは同じはずだが、全スキルIDが含まれていない場合などを考慮）
         let isDefault = true;
         if (currentSubOrder.length !== defaultOrder.length) {
             isDefault = false;
@@ -136,15 +102,14 @@ const compress = (state) => {
         }
 
         if (!isDefault) {
-            // 並び順をインデックス(0-11)の列に変換
+            // 並び順をインデックス列に変換
             const indices = currentSubOrder.map(id => {
                 return subSkills.findIndex(s => s.id === id);
             });
-            // -1が含まれる（未知のID）場合はオーダー保存を諦める等のガード
-            orderStr = indices.map(i => (i >= 0 && i < 12) ? ORDER_CHARS[i] : "0").join("");
+            orderStr = indices.map(i => (i >= 0 && i < ORDER_CHARS.length) ? ORDER_CHARS[i] : "0").join("");
         }
 
-        // 結合: CharIdx(Base36) + "_" + Core(1) + Sub(12) + Flag(1) + [ "_" + Order(12) ]
+        // 結合: CharIdx(Base36) + "_" + Core(1) + Sub(N) + Flag(1) + [ "_" + Order(N) ]
         const baseData = `${charIdx.toString(36)}_${coreStr}${subStr}${flagStr}`;
         return orderStr ? `${baseData}_${orderStr}` : baseData;
     });
@@ -176,7 +141,7 @@ const decompress = (hash) => {
 
         const parts = str.split('_');
         const charIdxStr = parts[0];
-        const dataStr = parts[1]; // Core(1) + Sub(12) + Flag(1) = 14文字
+        const dataStr = parts[1]; // Core(1) + Sub(N) + Flag(1)
         const orderStr = parts[2]; // Optional
 
         const charIdx = parseInt(charIdxStr, 36);
@@ -197,15 +162,21 @@ const decompress = (hash) => {
             skills[s.id] = { level: isAcquired ? 1 : 0, priority: 'medium' };
         });
 
-        // 2. Sub復元 (2-13文字目)
+        // 2. Sub復元 (2文字目からSub数分)
+        // 修正: 固定12回ではなく、定義されているサブスキル数分ループする
         subSkillsDef.forEach((s, i) => {
             const charCode = dataStr[i + 1];
             const val = SKILL_VAL_CHARS.indexOf(charCode);
             skills[s.id] = decodeSkillVal(val !== -1 ? val : 0);
         });
 
-        // 3. Flag復元 (14文字目)
-        const flagVal = parseInt(dataStr[13], 16);
+        // 3. Flag復元 (Core(1) + Sub(N) の次の文字)
+        // 修正: 固定13番目ではなく、動的に位置を特定
+        const flagIndex = 1 + subSkillsDef.length;
+        const flagChar = dataStr[flagIndex];
+        // 古いURLなどでflagが無い場合のガード
+        const flagVal = flagChar ? parseInt(flagChar, 16) : 0;
+        
         const hideUnacquired = (flagVal & 4) !== 0;
         const sortModeVal = flagVal & 3;
         const sortMode = sortModeVal === 1 ? 'priority' : sortModeVal === 2 ? 'level' : 'default';
@@ -250,11 +221,9 @@ export const loadFromUrl = () => {
         const hash = window.location.hash;
         if (!hash) return null;
         
-        // #build= がついている旧形式か、#v1... の新形式か
         let content = hash.substring(1); // #除去
         if (content.startsWith('build=')) {
             content = content.replace('build=', '');
-            // 旧形式デコーダへ（compress関数内のtry-catchで判定される）
             return decompress(content); 
         } else if (content.startsWith(VERSION_PREFIX)) {
             return decompress(content);
