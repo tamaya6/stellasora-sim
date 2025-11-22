@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { User, X, Layers, AlertCircle, Star } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { ELEMENTS, CHARACTERS } from '../../data';
 import CharacterIcon from '../ui/CharacterIcon';
 import RankStars from '../ui/RankStars';
 
 const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
+    const { t } = useTranslation();
     const [elementFilter, setElementFilter] = useState('ALL');
     const [rankFilter, setRankFilter] = useState('ALL');
 
@@ -22,7 +24,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                 {/* ヘッダー */}
                 <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-950/50 flex-shrink-0">
                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                        <User size={20} /> キャラクターを選択
+                        <User size={20} /> {t('modal.selectCharacter')}
                     </h3>
                     <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors p-1 hover:bg-slate-800 rounded">
                         <X size={20} />
@@ -34,7 +36,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                     
                     {/* 属性フィルター */}
                     <div className="p-3 flex gap-2 overflow-x-auto no-scrollbar items-center border-b border-slate-800/50">
-                        <span className="text-[10px] font-bold text-slate-500 mr-1 uppercase tracking-wider">Element</span>
+                        <span className="text-[10px] font-bold text-slate-500 mr-1 uppercase tracking-wider">{t('filter.element')}</span>
                         <button
                             onClick={() => setElementFilter('ALL')}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-bold transition-all whitespace-nowrap
@@ -43,7 +45,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
                                 }`}
                         >
-                            <Layers size={14} /> ALL
+                            <Layers size={14} /> {t('filter.all')}
                         </button>
                         {Object.values(ELEMENTS).map(el => {
                             const Icon = el.icon;
@@ -66,7 +68,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
 
                     {/* ランクフィルター */}
                     <div className="p-3 flex gap-2 overflow-x-auto no-scrollbar items-center">
-                        <span className="text-[10px] font-bold text-slate-500 mr-1 uppercase tracking-wider">Rank</span>
+                        <span className="text-[10px] font-bold text-slate-500 mr-1 uppercase tracking-wider">{t('filter.rank')}</span>
                         <button
                             onClick={() => setRankFilter('ALL')}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-bold transition-all whitespace-nowrap
@@ -75,7 +77,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200'
                                 }`}
                         >
-                            ALL
+                            {t('filter.all')}
                         </button>
                         {[5, 4].map(rank => {
                             const isSelected = rankFilter === rank;
@@ -134,7 +136,7 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                     ) : (
                         <div className="h-full flex flex-col items-center justify-center text-slate-500 py-10">
                             <AlertCircle size={48} className="mb-2 opacity-20" />
-                            <p>該当するキャラクターがいません</p>
+                            <p>{t('modal.noCharacter')}</p>
                         </div>
                     )}
                 </div>

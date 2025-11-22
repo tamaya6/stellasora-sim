@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Star, RotateCcw, Share2, Save } from 'lucide-react';
+import { Star, RotateCcw, Share2, Save, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CHARACTERS } from './data';
-// utilsからインポートした関数を使用する
 import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
 
 // コンポーネントのインポート
@@ -10,6 +10,8 @@ import SaveSlot from './components/feature/SaveSlot';
 import PartySlot from './components/feature/PartySlot';
 
 export default function App() {
+    const { t, i18n } = useTranslation();
+    
     const [party, setParty] = useState([
         { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
         { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
@@ -18,6 +20,7 @@ export default function App() {
     
     const [saves, setSaves] = useState(Array(6).fill(null)); 
     const [isCopied, setIsCopied] = useState(false);
+    // isLoaded は不要になったので削除しても良いですが、念のため残しておきます（将来的な拡張のため）
     const [isLoaded, setIsLoaded] = useState(false);
     
     // Confirm Modal State
@@ -30,18 +33,15 @@ export default function App() {
 
     // 初期化時にURLとLocalStorageから復元
     useEffect(() => {
-        // 1. URLパラメータ(ハッシュ)があるかチェック
-        // utils/storage.js の loadFromUrl が呼ばれる
         const loadedFromUrl = loadFromUrl();
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
             setParty(loadedFromUrl);
             
-            // ロード成功後、URLからハッシュ(#build=...)を消去してクリーンにする
+            // ロード成功後、URLをクリーンにする
             const cleanUrl = window.location.pathname + window.location.search;
             window.history.replaceState(null, '', cleanUrl);
         }
 
-        // 2. LocalStorageからセーブデータを復元
         const savedData = localStorage.getItem('stellasora_saves');
         if (savedData) {
             try {
@@ -54,7 +54,11 @@ export default function App() {
         setIsLoaded(true);
     }, []);
 
-    // 以下、変更なし
+    // ★ 削除: saveToUrl を呼び出していた useEffect を削除しました
+    // useEffect(() => {
+    //     if (!isLoaded) return;
+    //     saveToUrl(party);
+    // }, [party, isLoaded]);
 
     // モーダル表示ヘルパー
     const showConfirm = (message, onConfirm, isDestructive = false) => {
@@ -79,14 +83,14 @@ export default function App() {
     const handleLoadData = (index) => {
         if (!saves[index]) return;
         showConfirm(
-            `データ${index + 1}を読み込みますか？\n現在の編集内容は失われます。`,
+            t('confirm.loadData', { index: index + 1 }),
             () => setParty(JSON.parse(JSON.stringify(saves[index].party)))
         );
     };
 
     const handleDeleteData = (index) => {
         showConfirm(
-            `データ${index + 1}を削除しますか？\nこの操作は取り消せません。`,
+            t('confirm.deleteData', { index: index + 1 }),
             () => {
                 const newSaves = [...saves];
                 newSaves[index] = null;
@@ -186,7 +190,7 @@ export default function App() {
 
     const resetAll = () => {
         showConfirm(
-            "全ての構成をリセットしますか？",
+            t('confirm.resetAll'),
             () => {
                 setParty([
                     { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
@@ -201,7 +205,6 @@ export default function App() {
 
     const copyUrl = () => {
         const hash = generateShareHash(party);
-        // ハッシュが空（エラー時など）の場合はURLに付与しない
         const shareUrl = hash ? `${window.location.origin}${window.location.pathname}${hash}` : window.location.href;
         
         const fallbackCopyTextToClipboard = (text) => {
@@ -222,10 +225,10 @@ export default function App() {
                     setIsCopied(true);
                     setTimeout(() => setIsCopied(false), 2000);
                 } else {
-                    alert("クリップボードへのコピーに失敗しました。");
+                    alert("Failed to copy.");
                 }
             } catch (err) {
-                alert("クリップボードへのコピーに失敗しました。");
+                alert("Failed to copy.");
             }
             document.body.removeChild(textArea);
         };
@@ -244,6 +247,11 @@ export default function App() {
         }
     };
 
+    const toggleLanguage = () => {
+        const newLang = i18n.language === 'ja' ? 'en' : 'ja';
+        i18n.changeLanguage(newLang);
+    };
+
     return (
         <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500 selection:text-white pb-8 flex flex-col">
             <nav className="bg-slate-900/90 backdrop-blur border-b border-slate-800 z-20 shadow-xl sticky top-0">
@@ -253,39 +261,50 @@ export default function App() {
                             <Star className="text-yellow-500 w-5 h-5" fill="currentColor" />
                         </div>
                         <h1 className="font-bold text-lg sm:text-xl tracking-wider hidden sm:block">
-                            Stella Sora <span className="text-xs font-normal text-slate-400 ml-1">Build Simulator</span>
+                            {t('appTitle')} <span className="text-xs font-normal text-slate-400 ml-1">{t('appSubtitle')}</span>
                         </h1>
                         <h1 className="font-bold text-lg tracking-wider sm:hidden">
-                            Stella Sora - Build Simulator
+                            {t('appTitle')}
                         </h1>
                     </div>
                     <div className="flex gap-2">
+                        <div className="relative flex items-center">
+                            <Globe size={14} className="absolute left-2.5 text-slate-400 pointer-events-none z-10" />
+                            <select
+                                value={i18n.language}
+                                onChange={(e) => i18n.changeLanguage(e.target.value)}
+                                className="appearance-none pl-8 pr-3 py-1.5 text-xs sm:text-sm text-slate-400 bg-transparent hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700 cursor-pointer focus:outline-none focus:border-slate-600"
+                            >
+                                <option value="ja" className="bg-slate-900 text-slate-300">日本語</option>
+                                <option value="en" className="bg-slate-900 text-slate-300">English</option>
+                            </select>
+                        </div>
+
                         <button 
                             onClick={resetAll}
                             className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 text-xs sm:text-sm text-red-400 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
                         >
                             <RotateCcw size={14} className="sm:w-4 sm:h-4" /> 
-                            <span className="hidden sm:inline">リセット</span>
+                            <span className="hidden sm:inline">{t('reset')}</span>
                         </button>
                         <button 
                             onClick={copyUrl}
                             className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-bold rounded shadow-lg transition-all border ${isCopied ? 'bg-green-600 border-green-500 text-white' : 'bg-indigo-600 border-indigo-500 hover:bg-indigo-500 text-white'}`}
                         >
                             {isCopied ? (
-                                <span className="flex gap-1 items-center">Copied!</span>
+                                <span className="flex gap-1 items-center">{t('copied')}</span>
                             ) : (
-                                <><Share2 size={14} className="sm:w-4 sm:h-4" /> URL共有</>
+                                <><Share2 size={14} className="sm:w-4 sm:h-4" /> {t('share')}</>
                             )}
                         </button>
                     </div>
                 </div>
             </nav>
 
-            {/* セーブデータエリア */}
             <div className="w-full max-w-7xl mx-auto px-4 pt-6 pb-2">
                 <div className="bg-slate-900/80 backdrop-blur border border-slate-700 rounded-xl p-4 shadow-lg">
                     <h2 className="text-white font-bold mb-3 flex items-center gap-2 text-sm">
-                        <Save size={16} className="text-indigo-400" /> セーブデータ
+                        <Save size={16} className="text-indigo-400" /> {t('saveData')}
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                         {saves.map((save, idx) => (
@@ -313,7 +332,7 @@ export default function App() {
                         skillOrder={slot.skillOrder} 
                         sortMode={slot.sortMode} 
                         hideUnacquired={slot.hideUnacquired} 
-                        slotTypeLabel={idx === 0 ? 'Main' : 'Support'}
+                        slotTypeLabel={idx === 0 ? t('slot.main') : t('slot.support')}
                         onSelectChar={(id) => updateSlot(idx, id)}
                         onUpdateSkill={(skillId, data) => updateSkill(idx, skillId, data)}
                         onClear={() => clearSlot(idx)}
@@ -325,7 +344,7 @@ export default function App() {
             </main>
 
             <footer className="py-6 text-center text-slate-500 text-xs flex flex-col gap-2">
-                <div>Stella Sora is a property of Yostar. All rights reserved.</div>
+                <div>{t('footer.copyright')}</div>
                 <div>
                     <a 
                         href="https://github.com/tamaya6/stellasora-sim" 
@@ -338,7 +357,6 @@ export default function App() {
                 </div>
             </footer>
             
-            {/* 確認モーダル */}
             <ConfirmModal 
                 isOpen={confirmState.isOpen}
                 onClose={() => setConfirmState(prev => ({ ...prev, isOpen: false }))}

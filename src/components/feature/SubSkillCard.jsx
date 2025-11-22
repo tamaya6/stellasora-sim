@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, GripVertical } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { SKILL_STYLES } from '../../data';
 import PortalTooltip from '../ui/PortalTooltip';
 
@@ -15,6 +16,7 @@ const SubSkillCard = ({
     onDragEnd,
     isDragging 
 }) => {
+    const { t } = useTranslation();
     const isAcquired = value > 0;
     const designStyle = SKILL_STYLES[skill.bgType] || SKILL_STYLES.normal;
 
@@ -52,7 +54,7 @@ const SubSkillCard = ({
         none: 'bg-gray-700 text-gray-400 border-gray-600'
     };
     
-    const priorityLabel = { high: '高', medium: '中', low: '低', none: '-' };
+    // priorityLabel定数を削除し、直接翻訳キーを使用します
     const ElementIcon = element.icon;
 
     return (
@@ -96,12 +98,11 @@ const SubSkillCard = ({
                                     <ElementIcon className="w-8 h-8 text-white drop-shadow-glow" strokeWidth={2} />
                                 </div>
                             ) : (
-                                <div className="text-slate-400 text-xs font-bold pointer-events-none py-1 px-2 bg-black/40 rounded">未取得</div>
+                                <div className="text-slate-400 text-xs font-bold pointer-events-none py-1 px-2 bg-black/40 rounded">{t('card.unacquired')}</div>
                             )}
                         </div>
                         
                         <div className="w-full px-1 text-center z-10 mt-auto">
-                            {/* パディングを py-0.5 から py-1 に変更 */}
                             <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-0.5 rounded ${isAcquired ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                                 {skill.name}
                             </div>
@@ -129,7 +130,7 @@ const SubSkillCard = ({
                                 onClick={() => handlePriorityChange(p)}
                                 className={`py-0.5 rounded border transition-colors text-center font-medium ${priority === p ? priorityColors[p] : 'bg-slate-800 border-slate-700 text-slate-500 hover:bg-slate-700'}`}
                             >
-                                {priorityLabel[p]}
+                                {t(`priority.${p}`)}
                             </button>
                         ))}
                     </div>

@@ -1,0 +1,55 @@
+{
+  "appTitle": "Stella Sora",
+  "appSubtitle": "Build Simulator",
+  "saveData": "セーブデータ",
+  "reset": "リセット",
+  "share": "URL共有",
+  "save": "保存",
+  "load": "ロード",
+  "overwrite": "上書き",
+  "delete": "削除",
+  "saved": "Saved!",
+  "copied": "Copied!",
+  "language": "Language",
+  "slot": {
+    "main": "主力",
+    "support": "支援",
+    "prefix": "Slot",
+    "coreSkills": "コア素質",
+    "subSkills": "サブ素質",
+    "max2": "Max 2",
+    "totalPoints": "素質数",
+    "hideUnacquired": "未取得OFF",
+    "sortDefault": "デフォルト",
+    "sortPriority": "優先度",
+    "sortLevel": "レベル"
+  },
+  "priority": {
+    "high": "高",
+    "medium": "中",
+    "low": "低"
+  },
+  "filter": {
+    "element": "Element",
+    "rank": "Rank",
+    "all": "ALL"
+  },
+  "modal": {
+    "selectCharacter": "キャラクターを選択",
+    "noCharacter": "該当するキャラクターがいません"
+  },
+  "card": {
+    "unacquired": "未取得"
+  },
+  "confirm": {
+    "title": "確認",
+    "cancel": "キャンセル",
+    "execute": "実行する",
+    "resetAll": "全ての構成をリセットしますか？",
+    "loadData": "データ{{index}}を読み込みますか？\n現在の編集内容は失われます。",
+    "deleteData": "データ{{index}}を削除しますか？\nこの操作は取り消せません。"
+  },
+  "footer": {
+    "copyright": "Stella Sora is a property of Yostar. All rights reserved."
+  }
+}

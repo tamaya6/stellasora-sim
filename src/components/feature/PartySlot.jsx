@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw, Eye, EyeOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CHARACTERS } from '../../data';
 import CharacterSelectModal from './CharacterSelectModal';
 import CoreSkillCard from './CoreSkillCard';
@@ -12,7 +13,7 @@ const PartySlot = ({
     charId, 
     skillsData, 
     skillOrder,
-    sortMode = 'default', // propsとして受け取るが、表示には使用しない
+    sortMode = 'default',
     hideUnacquired = false, 
     onSelectChar, 
     onUpdateSkill, 
@@ -22,6 +23,7 @@ const PartySlot = ({
     onUpdateSettings, 
     slotTypeLabel 
 }) => {
+    const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [draggingId, setDraggingId] = useState(null);
 
@@ -57,8 +59,6 @@ const PartySlot = ({
     // ソート実行関数
     const handleSort = (mode) => {
         if (!selectedChar) return;
-        
-        // ソートモードの保存は行わず、ワンショットのアクションとして処理する
 
         // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
         let currentCoreIds = [];
@@ -100,12 +100,11 @@ const PartySlot = ({
                     return aAcquired ? -1 : 1;
                 }
 
-                // 両方未取得の場合は、優先度に関係なく順序を維持（定義順）
+                // 両方未取得の場合は、優先度に関係なく順序を維持
                 if (!aAcquired && !bAcquired) {
                     return 0;
                 }
 
-                // 両方取得済みの場合のみ、以下のルールでソート
                 if (mode === 'priority') {
                     const pDiff = getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
                     if (pDiff !== 0) return pDiff;
@@ -121,7 +120,6 @@ const PartySlot = ({
             sortedSubSkillIds = sortedList.map(s => s.id);
         }
 
-        // 新しい順序を結合して更新
         const newOrder = [...currentCoreIds, ...sortedSubSkillIds];
         onUpdateSkillOrder(newOrder);
     };
@@ -197,7 +195,7 @@ const PartySlot = ({
                     <div className="flex flex-row md:flex-col h-full items-center md:items-start justify-between relative z-10 gap-4">
                         <div className="flex-1 w-full">
                             <div className="flex items-center justify-between mb-2 md:mb-4">
-                                <h3 className="font-bold text-white drop-shadow-md text-xs uppercase tracking-widest opacity-80">Slot {slotIndex + 1}</h3>
+                                <h3 className="font-bold text-white drop-shadow-md text-xs uppercase tracking-widest opacity-80">{t('slot.prefix')} {slotIndex + 1}</h3>
                                 <span className="px-2 py-0.5 rounded-full bg-black/40 text-[10px] text-white font-bold border border-white/20 whitespace-nowrap">{slotTypeLabel}</span>
                             </div>
                             
@@ -228,14 +226,14 @@ const PartySlot = ({
                                             </div>
                                             
                                             <div className="mt-3 pt-3 border-t border-white/20 hidden md:block">
-                                                <div className="text-xs text-white/80 mb-1">素質数</div>
+                                                <div className="text-xs text-white/80 mb-1">{t('slot.totalPoints')}</div>
                                                 <div className="text-2xl font-bold text-white font-mono">
                                                     {totalPoints}
                                                 </div>
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="text-white/50 font-bold p-2">キャラクター未選択</div>
+                                        <div className="text-white/50 font-bold p-2">{t('modal.selectCharacter')}</div>
                                     )}
                                 </div>
                             </button>
@@ -258,7 +256,7 @@ const PartySlot = ({
                             <div className="mb-4">
                                 <div className="flex items-center gap-2 mb-2 px-1">
                                     <div className="w-1 h-4 bg-pink-500 rounded-full shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
-                                    <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Core Skills <span className="text-slate-500 font-normal ml-2 text-[10px]">Max 2</span></h4>
+                                    <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.coreSkills')} <span className="text-slate-500 font-normal ml-2 text-[10px]">{t('slot.max2')}</span></h4>
                                 </div>
                                 <div className="grid grid-cols-4 gap-3 max-w-2xl">
                                     {coreSkillPool.map(skill => {
@@ -281,7 +279,7 @@ const PartySlot = ({
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 px-1 gap-2">
                                     <div className="flex items-center gap-2">
                                         <div className="w-1 h-4 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
-                                        <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Sub Skills</h4>
+                                        <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.subSkills')}</h4>
                                     </div>
 
                                     {/* ツールバー */}
@@ -297,32 +295,32 @@ const PartySlot = ({
                                             title={hideUnacquired ? "全スキルを表示" : "未取得スキルを非表示"}
                                         >
                                             {hideUnacquired ? <EyeOff size={12} /> : <Eye size={12} />}
-                                            <span className="hidden sm:inline">未取得OFF</span>
+                                            <span className="hidden sm:inline">{t('slot.hideUnacquired')}</span>
                                         </button>
                                         
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
-                                        {/* ソートボタン群: 全て同じスタイルで統一 */}
+                                        {/* ソートボタン群 - ハイライトを廃止して統一スタイルに変更 */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
                                             title="デフォルト順"
                                         >
-                                            <RotateCcw size={10} /> デフォルト
+                                            <RotateCcw size={10} /> {t('slot.sortDefault')}
                                         </button>
                                         <button
                                             onClick={() => handleSort('priority')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
                                             title="優先度が高い順にソート"
                                         >
-                                            <ArrowDownWideNarrow size={10} /> 優先度
+                                            <ArrowDownWideNarrow size={10} /> {t('slot.sortPriority')}
                                         </button>
                                         <button
                                             onClick={() => handleSort('level')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
                                             title="レベルが高い順にソート"
                                         >
-                                            <BarChart3 size={10} /> レベル
+                                            <BarChart3 size={10} /> {t('slot.sortLevel')}
                                         </button>
                                     </div>
                                 </div>
@@ -357,14 +355,14 @@ const PartySlot = ({
                             >
                                 <div className="group-hover:scale-110 transition-transform text-2xl">+</div>
                             </button>
-                            <p className="text-sm">キャラクターを選択してください</p>
+                            <p className="text-sm">{t('modal.selectCharacter')}</p>
                         </div>
                     )}
                     
                     {/* 素質数表示 (モバイル向けフッター) */}
                     {selectedChar && (
                         <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
-                            <span>素質数</span>
+                            <span>{t('slot.totalPoints')}</span>
                             <span className="text-white font-bold">{totalPoints}</span>
                         </div>
                     )}

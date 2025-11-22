@@ -1,0 +1,55 @@
+{
+  "appTitle": "Stella Sora",
+  "appSubtitle": "Build Simulator",
+  "saveData": "Save Data",
+  "reset": "Reset",
+  "share": "Share URL",
+  "save": "Save",
+  "load": "Load",
+  "overwrite": "Overwrite",
+  "delete": "Delete",
+  "saved": "Saved!",
+  "copied": "Copied!",
+  "language": "言語",
+  "slot": {
+    "main": "Main",
+    "support": "Support",
+    "prefix": "Slot",
+    "coreSkills": "Core Skills",
+    "subSkills": "Sub Skills",
+    "max2": "Max 2",
+    "totalPoints": "Total Points",
+    "hideUnacquired": "Hide Unowned",
+    "sortDefault": "Default",
+    "sortPriority": "Priority",
+    "sortLevel": "Level"
+  },
+  "priority": {
+    "high": "High",
+    "medium": "Mid",
+    "low": "Low"
+  },
+  "filter": {
+    "element": "Element",
+    "rank": "Rank",
+    "all": "ALL"
+  },
+  "modal": {
+    "selectCharacter": "Select Character",
+    "noCharacter": "No characters found"
+  },
+  "card": {
+    "unacquired": "Not Acquired"
+  },
+  "confirm": {
+    "title": "Confirmation",
+    "cancel": "Cancel",
+    "execute": "Execute",
+    "resetAll": "Are you sure you want to reset all configurations?",
+    "loadData": "Load Data {{index}}?\nCurrent edits will be lost.",
+    "deleteData": "Delete Data {{index}}?\nThis action cannot be undone."
+  },
+  "footer": {
+    "copyright": "Stella Sora is a property of Yostar. All rights reserved."
+  }
+}

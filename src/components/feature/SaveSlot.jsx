@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Clock, Trash2, Download, Save, FilePlus } from 'lucide-react';
 import { CHARACTERS } from '../../data';
+import { useTranslation } from 'react-i18next';
 
 const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) => {
+    const { t } = useTranslation();
     const hasData = !!data;
     const [isSaved, setIsSaved] = useState(false);
     
@@ -44,7 +46,7 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
                     <button 
                         onClick={(e) => { e.stopPropagation(); onConfirmDelete(); }}
                         className="text-slate-600 hover:text-red-400 transition-colors p-1 rounded hover:bg-slate-700 -mt-1 -mr-1"
-                        title="削除"
+                        title={t('delete')}
                     >
                         <Trash2 size={12} />
                     </button>
@@ -67,16 +69,16 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
                             onClick={onLoad}
                             className="flex items-center justify-center gap-1 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold transition-colors border border-indigo-500/50"
                         >
-                            <Download size={10} /> ロード
+                            <Download size={10} /> {t('load')}
                         </button>
                         <button
                             onClick={handleSave}
                             className={`flex items-center justify-center gap-1 py-1 rounded text-[10px] font-bold transition-all border ${isSaved ? 'bg-green-600 text-white border-green-500' : 'bg-slate-700 hover:bg-slate-600 text-slate-200 border-slate-600'}`}
                         >
                             {isSaved ? (
-                                <span>Saved!</span>
+                                <span>{t('saved')}</span>
                             ) : (
-                                <><Save size={10} /> 上書き</>
+                                <><Save size={10} /> {t('overwrite')}</>
                             )}
                         </button>
                     </div>
@@ -89,9 +91,9 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
                         className={`w-full flex items-center justify-center gap-1 py-1.5 rounded border text-xs font-bold transition-all mt-auto ${isSaved ? 'bg-green-600 text-white border-green-500' : 'bg-slate-800 border-slate-700 hover:bg-slate-700 hover:text-white text-slate-500'}`}
                     >
                         {isSaved ? (
-                            <span>Saved!</span>
+                            <span>{t('saved')}</span>
                         ) : (
-                            <><Save size={12} /> 保存</>
+                            <><Save size={12} /> {t('save')}</>
                         )}
                     </button>
                 </div>
