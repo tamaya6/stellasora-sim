@@ -96,7 +96,7 @@ const PartySlot = ({
                     return aAcquired ? -1 : 1;
                 }
 
-                // 両方未取得の場合は、優先度に関係なく順序を維持
+                // 両方未取得の場合は、優先度に関係なく順序を維持（定義順）
                 if (!aAcquired && !bAcquired) {
                     return 0;
                 }
@@ -172,7 +172,7 @@ const PartySlot = ({
         .filter(([key, val]) => {
             const isCore = coreSkillPool.some(s => s.id === key);
             const isSub = subSkillPool.some(s => s.id === key);
-            return isCore || isSub;
+            return (isCore || isSub) && val.level > 0;
         })
         .reduce((acc, [_, val]) => acc + val.level, 0);
 
