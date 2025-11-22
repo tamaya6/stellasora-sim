@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw } from 'lucide-react';
+import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw, Eye, EyeOff } from 'lucide-react';
 import { CHARACTERS } from '../../data';
 import CharacterSelectModal from './CharacterSelectModal';
 import CoreSkillCard from './CoreSkillCard';
@@ -21,6 +21,7 @@ const PartySlot = ({
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [draggingId, setDraggingId] = useState(null);
+    const [hideUnacquired, setHideUnacquired] = useState(false); // 未取得非表示フラグ
 
     const selectedChar = CHARACTERS.find(c => c.id === charId);
     const ElementIcon = selectedChar?.element?.icon || AlertCircle;
@@ -44,6 +45,13 @@ const PartySlot = ({
         }
     }
 
+    // 未取得非表示フィルタリング
+    const displaySubSkills = orderedSubSkills.filter(skill => {
+        if (!hideUnacquired) return true;
+        const current = skillsData[skill.id] || { level: 0 };
+        return current.level > 0;
+    });
+
     // ソート実行関数
     const handleSort = (mode) => {
         if (!selectedChar) return;
@@ -52,7 +60,6 @@ const PartySlot = ({
         let currentCoreIds = [];
         if (skillOrder && skillOrder.length > 0) {
              currentCoreIds = skillOrder.filter(id => coreSkillPool.some(core => core.id === id));
-             // 万が一足りなければ補充
              const existingCoreSet = new Set(currentCoreIds);
              coreSkillPool.forEach(core => {
                  if (!existingCoreSet.has(core.id)) currentCoreIds.push(core.id);
@@ -89,21 +96,18 @@ const PartySlot = ({
                     return aAcquired ? -1 : 1;
                 }
 
-                // 両方未取得の場合は、優先度に関係なく順序を維持（0を返す）
-                // これにより「高・未取得」がソートで上がってくるのを防ぐ
+                // 両方未取得の場合は、優先度に関係なく順序を維持
                 if (!aAcquired && !bAcquired) {
                     return 0;
                 }
 
                 // 両方取得済みの場合のみ、以下のルールでソート
                 if (mode === 'priority') {
-                    // 優先度高い順 > レベル高い順
                     const pDiff = getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
                     if (pDiff !== 0) return pDiff;
                     return bData.level - aData.level;
                 }
                 if (mode === 'level') {
-                    // レベル高い順 > 優先度高い順
                     const lDiff = bData.level - aData.level;
                     if (lDiff !== 0) return lDiff;
                     return getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
@@ -276,8 +280,25 @@ const PartySlot = ({
                                         <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Sub Skills</h4>
                                     </div>
 
-                                    {/* ソートボタン群 */}
-                                    <div className="flex items-center gap-1.5 bg-slate-900/50 p-1 rounded-lg border border-slate-800">
+                                    {/* ツールバー */}
+                                    <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg border border-slate-800">
+                                        {/* 未取得非表示ボタン */}
+                                        <button
+                                            onClick={() => setHideUnacquired(!hideUnacquired)}
+                                            className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-colors border ${
+                                                hideUnacquired 
+                                                ? 'bg-indigo-600 text-white border-indigo-500' 
+                                                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
+                                            }`}
+                                            title={hideUnacquired ? "全スキルを表示" : "未取得スキルを非表示"}
+                                        >
+                                            {hideUnacquired ? <EyeOff size={12} /> : <Eye size={12} />}
+                                            <span className="hidden sm:inline">未取得OFF</span>
+                                        </button>
+                                        
+                                        <div className="w-px h-3 bg-slate-700 mx-1"></div>
+
+                                        {/* ソートボタン群 */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -285,7 +306,6 @@ const PartySlot = ({
                                         >
                                             <RotateCcw size={10} /> デフォルト
                                         </button>
-                                        <div className="w-px h-3 bg-slate-700"></div>
                                         <button
                                             onClick={() => handleSort('priority')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -304,7 +324,7 @@ const PartySlot = ({
                                 </div>
 
                                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3">
-                                    {orderedSubSkills.map((skill) => {
+                                    {displaySubSkills.map((skill) => {
                                         const current = skillsData[skill.id] || { level: 0, priority: 'medium' };
                                         return (
                                             <SubSkillCard 
