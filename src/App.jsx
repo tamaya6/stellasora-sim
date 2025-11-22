@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Star, RotateCcw, Share2, Save } from 'lucide-react';
 import { CHARACTERS } from './data';
-import { saveToUrl, loadFromUrl, reorder } from './utils/storage';
+// utilsからインポートした関数を使用する
+import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
 
 // コンポーネントのインポート
 import ConfirmModal from './components/ui/ConfirmModal';
@@ -9,7 +10,6 @@ import SaveSlot from './components/feature/SaveSlot';
 import PartySlot from './components/feature/PartySlot';
 
 export default function App() {
-    // partyステートに sortMode と hideUnacquired を含める
     const [party, setParty] = useState([
         { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
         { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
@@ -28,37 +28,24 @@ export default function App() {
         isDestructive: false
     });
 
-    // データの正規化（古いセーブデータ等の互換性維持）
-    const normalizePartyData = (data) => {
-        if (!Array.isArray(data)) return data;
-        return data.map(slot => ({
-            ...slot,
-            // 未定義の場合はデフォルト値を設定
-            sortMode: slot.sortMode || 'default',
-            hideUnacquired: slot.hideUnacquired ?? false,
-            skillOrder: slot.skillOrder || []
-        }));
-    };
-
     // 初期化時にURLとLocalStorageから復元
     useEffect(() => {
+        // 1. URLパラメータ(ハッシュ)があるかチェック
+        // utils/storage.js の loadFromUrl が呼ばれる
         const loadedFromUrl = loadFromUrl();
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
-            setParty(normalizePartyData(loadedFromUrl));
-        } else {
-            // URLパラメータがない場合、LocalStorageをチェック
-            // (セーブデータ自体は下の処理で読み込むが、最後に開いた状態の復元等を実装するならここ)
+            setParty(loadedFromUrl);
+            
+            // ロード成功後、URLからハッシュ(#build=...)を消去してクリーンにする
+            const cleanUrl = window.location.pathname + window.location.search;
+            window.history.replaceState(null, '', cleanUrl);
         }
 
+        // 2. LocalStorageからセーブデータを復元
         const savedData = localStorage.getItem('stellasora_saves');
         if (savedData) {
             try {
-                const parsed = JSON.parse(savedData);
-                // セーブデータ内のパーティデータも正規化しておく
-                const normalizedSaves = parsed.map(save => 
-                    save ? { ...save, party: normalizePartyData(save.party) } : null
-                );
-                setSaves(normalizedSaves);
+                setSaves(JSON.parse(savedData));
             } catch (e) {
                 console.error("Failed to parse save data", e);
             }
@@ -67,10 +54,7 @@ export default function App() {
         setIsLoaded(true);
     }, []);
 
-    useEffect(() => {
-        if (!isLoaded) return;
-        saveToUrl(party);
-    }, [party, isLoaded]);
+    // 以下、変更なし
 
     // モーダル表示ヘルパー
     const showConfirm = (message, onConfirm, isDestructive = false) => {
@@ -125,7 +109,7 @@ export default function App() {
             charId, 
             skills: {}, 
             skillOrder: defaultOrder,
-            sortMode: 'default', // キャラ変更時はデフォルトに戻す
+            sortMode: 'default',
             hideUnacquired: false 
         };
         setParty(newParty);
@@ -189,7 +173,6 @@ export default function App() {
         setParty(newParty);
     };
 
-    // スロットの設定（ソートモード、未取得非表示）を更新する関数
     const updateSlotSettings = (slotIndex, settings) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
@@ -210,14 +193,16 @@ export default function App() {
                     { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
                     { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
                 ]);
-                window.history.replaceState(null, '', ' ');
+                window.history.replaceState(null, '', window.location.pathname);
             },
             true
         );
     }
 
     const copyUrl = () => {
-        const textToCopy = window.location.href;
+        const hash = generateShareHash(party);
+        // ハッシュが空（エラー時など）の場合はURLに付与しない
+        const shareUrl = hash ? `${window.location.origin}${window.location.pathname}${hash}` : window.location.href;
         
         const fallbackCopyTextToClipboard = (text) => {
             const textArea = document.createElement("textarea");
@@ -246,16 +231,16 @@ export default function App() {
         };
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(textToCopy)
+            navigator.clipboard.writeText(shareUrl)
                 .then(() => {
                     setIsCopied(true);
                     setTimeout(() => setIsCopied(false), 2000);
                 })
                 .catch(err => {
-                    fallbackCopyTextToClipboard(textToCopy);
+                    fallbackCopyTextToClipboard(shareUrl);
                 });
         } else {
-            fallbackCopyTextToClipboard(textToCopy);
+            fallbackCopyTextToClipboard(shareUrl);
         }
     };
 
@@ -326,15 +311,15 @@ export default function App() {
                         charId={slot.charId}
                         skillsData={slot.skills}
                         skillOrder={slot.skillOrder} 
-                        sortMode={slot.sortMode} // 追加
-                        hideUnacquired={slot.hideUnacquired} // 追加
+                        sortMode={slot.sortMode} 
+                        hideUnacquired={slot.hideUnacquired} 
                         slotTypeLabel={idx === 0 ? 'Main' : 'Support'}
                         onSelectChar={(id) => updateSlot(idx, id)}
                         onUpdateSkill={(skillId, data) => updateSkill(idx, skillId, data)}
                         onClear={() => clearSlot(idx)}
                         onReorderSkills={(src, dst) => reorderSkills(idx, src, dst)}
                         onUpdateSkillOrder={(newOrder) => updateSkillOrder(idx, newOrder)}
-                        onUpdateSettings={(settings) => updateSlotSettings(idx, settings)} // 追加
+                        onUpdateSettings={(settings) => updateSlotSettings(idx, settings)}
                     />
                 ))}
             </main>
