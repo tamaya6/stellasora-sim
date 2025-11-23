@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw, Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CHARACTERS } from '../../data';
@@ -67,6 +67,7 @@ const PartySlot = ({
     const handleSort = (mode) => {
         if (!selectedChar) return;
 
+        // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
         let currentCoreIds = [];
         if (skillOrder && skillOrder.length > 0) {
              currentCoreIds = skillOrder.filter(id => coreSkillPool.some(core => core.id === id));
@@ -81,8 +82,10 @@ const PartySlot = ({
         let sortedSubSkillIds = [];
 
         if (mode === 'default') {
+            // デフォルト順（定義順）
             sortedSubSkillIds = subSkillPool.map(s => s.id);
         } else {
+            // 優先度やレベルでソート
             const getPriorityValue = (p) => {
                 switch(p) {
                     case 'high': return 3;
@@ -96,6 +99,7 @@ const PartySlot = ({
                 const aData = skillsData[a.id] || { level: 0, priority: 'medium' };
                 const bData = skillsData[b.id] || { level: 0, priority: 'medium' };
 
+                // 1. 取得済み（Lv > 0）を最優先で前に
                 const aAcquired = aData.level > 0;
                 const bAcquired = bData.level > 0;
                 
@@ -103,6 +107,7 @@ const PartySlot = ({
                     return aAcquired ? -1 : 1;
                 }
 
+                // 両方未取得の場合は、優先度に関係なく順序を維持
                 if (!aAcquired && !bAcquired) {
                     return 0;
                 }
@@ -171,6 +176,7 @@ const PartySlot = ({
         }
     };
 
+    // 素質数（ポイント）計算
     const totalPoints = Object.entries(skillsData)
         .filter(([key, val]) => {
             const isCore = coreSkillPool.some(s => s.id === key);
@@ -188,9 +194,9 @@ const PartySlot = ({
             />
             <div className="flex flex-col md:flex-row w-full bg-slate-900/60 backdrop-blur border border-slate-700/50 rounded-xl overflow-hidden shadow-xl mb-4 min-h-[240px]">
                 
-                {/* 左側: キャラ情報 */}
+                {/* 左側: キャラ情報 - h-fullを指定して親要素の高さに追従させる */}
                 <div className={`
-                    md:w-64 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md
+                    md:w-64 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md h-full md:h-auto
                     ${selectedChar ? `bg-gradient-to-br ${selectedChar.element.color}` : 'bg-slate-800'}
                 `}>
                     <div className="flex flex-row md:flex-col h-full items-center md:items-start justify-between relative z-10 gap-4">
@@ -226,6 +232,7 @@ const PartySlot = ({
                                                 <span>{selectedChar.role}</span>
                                             </div>
                                             
+                                            {/* 素質数表示 (PC向け) - mt-3を指定 */}
                                             <div className="mt-3 pt-3 border-t border-white/20 hidden md:block">
                                                 <div className="text-xs text-white/80 mb-1">{t('slot.totalPoints')}</div>
                                                 <div className="text-2xl font-bold text-white font-mono">
@@ -287,7 +294,7 @@ const PartySlot = ({
                                         <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.subSkills')}</h4>
                                     </div>
 
-                                    {/* ツールバー (screenshot-hide クラスを追加) */}
+                                    {/* ツールバー */}
                                     <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg border border-slate-800 screenshot-hide">
                                         {/* 未取得非表示ボタン */}
                                         <button
@@ -305,7 +312,7 @@ const PartySlot = ({
                                         
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
-                                        {/* ソートボタン群 */}
+                                        {/* ソートボタン群 - ハイライトなし */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"

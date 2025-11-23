@@ -58,11 +58,11 @@ const CoreSkillCard = ({
                     )}
 
                     <div className="relative z-10 mb-1">
-                        <ElementIcon className={`w-8 h-8 ${isSelected ? 'text-white drop-shadow-glow' : 'text-slate-600'}`} strokeWidth={1.5} />
+                        <ElementIcon className={`w-8 h-8 ${isSelected ? 'text-white drop-shadow-glow' : 'text-slate-600'}`} strokeWidth={2} />
                     </div>
                     
-                    <div className="w-full px-1 text-center relative z-10">
-                        {/* テキストサイズを text-xs から text-sm に変更 */}
+                    {/* mt-1 を追加して位置を少し下げる */}
+                    <div className="w-full px-1 text-center relative z-10 mt-3">
                         <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-1 rounded shadow-sm ${isSelected ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                             {skill.name}
                         </div>
