@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown, Camera } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { toPng } from 'html-to-image';
-import { CHARACTERS } from './data';
-import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
+import { generateShareHash } from './utils/storage';
 
-// コンポーネントのインポート
+// カスタムフック
+import { useParty } from './hooks/useParty';
+import { useSaves } from './hooks/useSaves';
+import { useScreenshot } from './hooks/useScreenshot';
+
+// コンポーネント
 import ConfirmModal from './components/ui/ConfirmModal';
 import Toast from './components/ui/Toast';
 import SaveSlot from './components/feature/SaveSlot';
@@ -15,26 +18,14 @@ import ScreenshotModal from './components/feature/ScreenshotModal';
 export default function App() {
     const { t, i18n } = useTranslation();
     
-    const [party, setParty] = useState([
-        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-        { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
-    ]);
-    
-    const [saves, setSaves] = useState(Array(6).fill(null)); 
+    // カスタムフックの使用
+    const party = useParty();
+    const storage = useSaves();
+    const screenshot = useScreenshot();
+
+    // UI状態
     const [isCopied, setIsCopied] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-    
-    // スクリーンショット用
-    const mainRef = useRef(null);
-    const [screenshotData, setScreenshotData] = useState(null);
-    const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
-    const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
-
-    // トースト通知用
     const [toast, setToast] = useState({ message: null, type: 'info' });
-
-    // 言語メニュー用
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const langMenuRef = useRef(null);
     
@@ -45,27 +36,7 @@ export default function App() {
         isDestructive: false
     });
 
-    // 初期化時にURLとLocalStorageから復元
-    useEffect(() => {
-        const loadedFromUrl = loadFromUrl();
-        if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
-            setParty(loadedFromUrl);
-            const cleanUrl = window.location.pathname + window.location.search;
-            window.history.replaceState(null, '', cleanUrl);
-        }
-
-        const savedData = localStorage.getItem('stellasora_saves');
-        if (savedData) {
-            try {
-                setSaves(JSON.parse(savedData));
-            } catch (e) {
-                console.error("Failed to parse save data", e);
-            }
-        }
-
-        setIsLoaded(true);
-    }, []);
-
+    // 言語メニューの外側クリック検知
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (langMenuRef.current && !langMenuRef.current.contains(event.target)) {
@@ -78,159 +49,64 @@ export default function App() {
         };
     }, []);
 
-    // トースト表示ヘルパー
+    // --- ヘルパー関数 ---
+
     const showToast = (message, type = 'info') => {
         setToast({ message, type });
     };
 
-    const closeToast = () => {
-        setToast({ ...toast, message: null });
-    };
+    const closeToast = () => setToast({ ...toast, message: null });
 
     const showConfirm = (message, onConfirm, isDestructive = false) => {
-        setConfirmState({
-            isOpen: true,
-            message,
-            onConfirm,
-            isDestructive
-        });
+        setConfirmState({ isOpen: true, message, onConfirm, isDestructive });
     };
 
-    const handleSaveData = (index) => {
-        const newSaves = [...saves];
-        newSaves[index] = {
-            timestamp: new Date().toLocaleString(),
-            party: JSON.parse(JSON.stringify(party))
-        };
-        setSaves(newSaves);
-        localStorage.setItem('stellasora_saves', JSON.stringify(newSaves));
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        setIsLangMenuOpen(false);
     };
 
-    const handleLoadData = (index) => {
-        if (!saves[index]) return;
-        showConfirm(
-            t('confirm.loadData', { index: index + 1 }),
-            () => setParty(JSON.parse(JSON.stringify(saves[index].party)))
-        );
-    };
+    // --- イベントハンドラ ---
 
-    const handleDeleteData = (index) => {
-        showConfirm(
-            t('confirm.deleteData', { index: index + 1 }),
-            () => {
-                const newSaves = [...saves];
-                newSaves[index] = null;
-                setSaves(newSaves);
-                localStorage.setItem('stellasora_saves', JSON.stringify(newSaves));
-            },
-            true
-        );
-    };
-
-    const updateSlot = (slotIndex, charId) => {
-        const newParty = [...party];
-        const selectedChar = CHARACTERS.find(c => c.id === charId);
-        
-        const targetCategory = slotIndex === 0 ? 'main' : 'support';
-        const subSkillPool = selectedChar ? selectedChar.skillSets[`${targetCategory}Sub`] : [];
-        const defaultOrder = subSkillPool.map(s => s.id);
-        
-        newParty[slotIndex] = { 
-            charId, 
-            skills: {}, 
-            skillOrder: defaultOrder,
-            sortMode: 'default',
-            hideUnacquired: false 
-        };
-        setParty(newParty);
-    };
-
-    const updateSkill = (slotIndex, skillId, skillData) => {
-        const newParty = party.map((slot, i) => {
-            if (i !== slotIndex) return slot;
-            return {
-                ...slot,
-                skills: {
-                    ...slot.skills,
-                    [skillId]: skillData
-                }
-            };
-        });
-        setParty(newParty);
-    };
-
-    const clearSlot = (slotIndex) => {
-        const newParty = [...party];
-        newParty[slotIndex] = { 
-            charId: null, 
-            skills: {}, 
-            skillOrder: [],
-            sortMode: 'default',
-            hideUnacquired: false
-        };
-        setParty(newParty);
-    };
-
-    const reorderSkills = (slotIndex, sourceSkillId, targetSkillId) => {
-        const newParty = party.map((slot, i) => {
-            if (i !== slotIndex) return slot;
-
-            const currentOrder = slot.skillOrder;
-            const sourceIndex = currentOrder.indexOf(sourceSkillId);
-            const targetIndex = currentOrder.indexOf(targetSkillId);
-
-            if (sourceIndex === -1 || targetIndex === -1) return slot;
-
-            const newOrder = reorder(currentOrder, sourceIndex, targetIndex);
-            
-            return {
-                ...slot,
-                skillOrder: newOrder
-            };
-        });
-        
-        setParty(newParty);
-    };
-
-    const updateSkillOrder = (slotIndex, newOrder) => {
-        const newParty = party.map((slot, i) => {
-            if (i !== slotIndex) return slot;
-            return {
-                ...slot,
-                skillOrder: newOrder
-            };
-        });
-        setParty(newParty);
-    };
-
-    const updateSlotSettings = (slotIndex, settings) => {
-        const newParty = party.map((slot, i) => {
-            if (i !== slotIndex) return slot;
-            return {
-                ...slot,
-                ...settings
-            };
-        });
-        setParty(newParty);
-    };
-
-    const resetAll = () => {
+    const onResetAll = () => {
         showConfirm(
             t('confirm.resetAll'),
-            () => {
-                setParty([
-                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-                    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
-                ]);
-                window.history.replaceState(null, '', window.location.pathname);
-            },
+            () => party.resetAll(),
             true
         );
-    }
+    };
 
-    const copyUrl = () => {
-        const hash = generateShareHash(party);
+    const onSaveData = (index) => {
+        storage.saveGame(index, party.party);
+    };
+
+    const onLoadData = (index) => {
+        const data = storage.loadGame(index); // ディープコピーされたデータを取得
+        if (!data) return;
+
+        showConfirm(
+            t('confirm.loadData', { index: index + 1 }),
+            () => party.setParty(data)
+        );
+    };
+
+    const onDeleteData = (index) => {
+        showConfirm(
+            t('confirm.deleteData', { index: index + 1 }),
+            () => storage.deleteGame(index),
+            true
+        );
+    };
+
+    const onTakeScreenshot = async () => {
+        const success = await screenshot.takeScreenshot();
+        if (!success) {
+            showToast(t('toast.screenshotFailed'), 'error');
+        }
+    };
+
+    const onCopyUrl = () => {
+        const hash = generateShareHash(party.party);
         const shareUrl = hash ? `${window.location.origin}${window.location.pathname}${hash}` : window.location.href;
         
         const fallbackCopyTextToClipboard = (text) => {
@@ -272,56 +148,6 @@ export default function App() {
                 });
         } else {
             fallbackCopyTextToClipboard(shareUrl);
-        }
-    };
-
-    const changeLanguage = (lang) => {
-        i18n.changeLanguage(lang);
-        setIsLangMenuOpen(false);
-    };
-
-    // スクリーンショット撮影処理
-    const handleTakeScreenshot = async () => {
-        if (!mainRef.current) return;
-
-        setIsTakingScreenshot(true);
-
-        try {
-            const element = mainRef.current;
-            
-            // キャプチャ設定
-            // スクロール領域全体(scrollWidth/Height)を含める
-            const width = element.scrollWidth;
-            const height = element.scrollHeight;
-
-            const dataUrl = await toPng(element, {
-                backgroundColor: '#0f172a', // bg-slate-950
-                width: width,
-                height: height,
-                style: {
-                    // スクロールバーを無視して全内容を展開
-                    overflow: 'visible', 
-                    height: 'auto',
-                    maxHeight: 'none',
-                    // 指定のマージン(10px)をパディングとして適用
-                    padding: '10px',
-                    margin: 0
-                },
-                pixelRatio: 1.5, // 高解像度
-                cacheBust: true,
-                // screenshot-hide クラスを持つ要素を除外
-                filter: (node) => {
-                    return !node.classList?.contains('screenshot-hide');
-                }
-            });
-            
-            setScreenshotData(dataUrl);
-            setIsScreenshotModalOpen(true);
-        } catch (err) {
-            console.error("Screenshot failed:", err);
-            showToast(t('toast.screenshotFailed'), 'error');
-        } finally {
-            setIsTakingScreenshot(false);
         }
     };
 
@@ -378,8 +204,8 @@ export default function App() {
                         
                         {/* スクリーンショットボタン */}
                         <button 
-                            onClick={handleTakeScreenshot}
-                            disabled={isTakingScreenshot}
+                            onClick={onTakeScreenshot}
+                            disabled={screenshot.isTaking}
                             className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 text-xs sm:text-sm text-slate-300 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
                             title={t('screenshot')}
                         >
@@ -388,14 +214,14 @@ export default function App() {
                         </button>
 
                         <button 
-                            onClick={resetAll}
+                            onClick={onResetAll}
                             className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 text-xs sm:text-sm text-red-400 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
                         >
                             <RotateCcw size={14} className="sm:w-4 sm:h-4" /> 
                             <span className="hidden sm:inline">{t('reset')}</span>
                         </button>
                         <button 
-                            onClick={copyUrl}
+                            onClick={onCopyUrl}
                             className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-bold rounded shadow-lg transition-all border ${isCopied ? 'bg-green-600 border-green-500 text-white' : 'bg-indigo-600 border-indigo-500 hover:bg-indigo-500 text-white'}`}
                         >
                             {isCopied ? (
@@ -415,15 +241,15 @@ export default function App() {
                         <Save size={16} className="text-indigo-400" /> {t('saveData')}
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                        {saves.map((save, idx) => (
+                        {storage.saves.map((save, idx) => (
                             <SaveSlot 
                                 key={idx} 
                                 index={idx}
                                 data={save} 
-                                onSave={() => handleSaveData(idx)}
-                                onLoad={() => handleLoadData(idx)}
-                                onDelete={() => handleDeleteData(idx)}
-                                onConfirmDelete={() => handleDeleteData(idx)}
+                                onSave={() => onSaveData(idx)}
+                                onLoad={() => onLoadData(idx)}
+                                onDelete={() => onDeleteData(idx)}
+                                onConfirmDelete={() => onDeleteData(idx)}
                             />
                         ))}
                     </div>
@@ -431,8 +257,8 @@ export default function App() {
             </div>
 
             {/* スクリーンショット撮影対象エリア */}
-            <main ref={mainRef} className="flex-1 w-full max-w-7xl mx-auto p-4 space-y-4 overflow-y-auto bg-slate-950">
-                {party.map((slot, idx) => (
+            <main ref={screenshot.ref} className="flex-1 w-full max-w-7xl mx-auto p-4 space-y-4 overflow-y-auto bg-slate-950">
+                {party.party.map((slot, idx) => (
                     <PartySlot 
                         key={idx}
                         slotIndex={idx}
@@ -442,12 +268,12 @@ export default function App() {
                         sortMode={slot.sortMode} 
                         hideUnacquired={slot.hideUnacquired} 
                         slotTypeLabel={idx === 0 ? t('slot.main') : t('slot.support')}
-                        onSelectChar={(id) => updateSlot(idx, id)}
-                        onUpdateSkill={(skillId, data) => updateSkill(idx, skillId, data)}
-                        onClear={() => clearSlot(idx)}
-                        onReorderSkills={(src, dst) => reorderSkills(idx, src, dst)}
-                        onUpdateSkillOrder={(newOrder) => updateSkillOrder(idx, newOrder)}
-                        onUpdateSettings={(settings) => updateSlotSettings(idx, settings)}
+                        onSelectChar={(id) => party.updateSlot(idx, id)}
+                        onUpdateSkill={(skillId, data) => party.updateSkill(idx, skillId, data)}
+                        onClear={() => party.clearSlot(idx)}
+                        onReorderSkills={(src, dst) => party.reorderSkills(idx, src, dst)}
+                        onUpdateSkillOrder={(newOrder) => party.updateSkillOrder(idx, newOrder)}
+                        onUpdateSettings={(settings) => party.updateSlotSettings(idx, settings)}
                     />
                 ))}
             </main>
@@ -484,9 +310,9 @@ export default function App() {
 
             {/* スクリーンショットプレビューモーダル */}
             <ScreenshotModal 
-                isOpen={isScreenshotModalOpen}
-                onClose={() => setIsScreenshotModalOpen(false)}
-                imageData={screenshotData}
+                isOpen={screenshot.isModalOpen}
+                onClose={screenshot.closeModal}
+                imageData={screenshot.screenshotData}
             />
         </div>
     );
