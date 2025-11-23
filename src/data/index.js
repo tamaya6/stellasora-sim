@@ -2,18 +2,18 @@ import { ELEMENTS } from './constants';
 import fuyuka from './skills/fuyuka';
 import nanoha from './skills/nanoha';
 import freesia from './skills/freesia';
-import minova from './skills/minova';
-import mistique from './skills/mistique';
-import chixia from './skills/chixia';
-import gerie from './skills/gerie';
+import minova from './skills/minova';     // minerva -> minova
+import mistique from './skills/mistique'; // misty -> mistique
+import chixia from './skills/chixia';     // chisia -> chixia
+import gerie from './skills/gerie';       // grey -> gerie
 import nazuna from './skills/nazuna';
 import chitose from './skills/chitose';
 import shia from './skills/shia';
-import amber from './skills/amber';
+import amber from './skills/amber';       // kohaku -> amber
 import tilia from './skills/tilia';
 import kasimira from './skills/kasimira';
-import iris from './skills/iris';
-import noya from './skills/noya';
+import iris from './skills/iris';         // ayame -> iris
+import noya from './skills/noya';         // seina -> noya
 import shimiao from './skills/shimiao';
 import ridge from './skills/ridge';
 import jinglin from './skills/jinglin';
@@ -22,7 +22,7 @@ import canace from './skills/canace';
 import cosette from './skills/cosette';
 import caramel from './skills/caramel';
 import laru from './skills/laru';
-import ann from './skills/ann';
+import ann from './skills/ann';           // anzu -> ann
 import flora from './skills/flora';
 import teresa from './skills/teresa';
 
@@ -141,34 +141,33 @@ const generateSkills = (charId, elementLabel) => {
 };
 
 // キャラクターリスト定義
-// imagePathの指定は削除しても構いませんが、残っていても下部のmapで上書きされるので問題ありません
 const RAW_CHARACTERS = [
-    { id: 'fuyuka', name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5 },
-    { id: 'shia', name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5 },
-    { id: 'chitose', name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5 },
-    { id: 'nazuna', name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5 },
-    { id: 'gerie', name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5 },
-    { id: 'chixia', name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5 },
-    { id: 'nanoha', name: 'ナノハ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 5 },
-    { id: 'freesia', name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5 },
-    { id: 'minova', name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5 },
-    { id: 'mistique', name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5 },
-    { id: 'noya', name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4 },
-    { id: 'amber', name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4 },
-    { id: 'iris', name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4 },
-    { id: 'ann', name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4 },
-    { id: 'jinglin', name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4 },
-    { id: 'teresa', name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4 },
-    { id: 'tilia', name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4 },
-    { id: 'kasimira', name: 'カシミラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
-    { id: 'shimiao', name: 'シーミャオ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 4 },
-    { id: 'ridge', name: 'レイセン', element: ELEMENTS.EARTH, role: 'バランサー', rank: 4 },
-    { id: 'coronis', name: 'クルニス', element: ELEMENTS.DARK, role: 'バランサー', rank: 4 },
-    { id: 'canace', name: 'カナーチェ', element: ELEMENTS.WIND, role: 'バランサー', rank: 4 },
-    { id: 'cosette', name: 'コゼット', element: ELEMENTS.DARK, role: 'サポーター', rank: 4 },
-    { id: 'caramel', name: 'キャラメル', element: ELEMENTS.DARK, role: 'アタッカー', rank: 4 },
-    { id: 'laru', name: 'ラール', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 4 },
-    { id: 'flora', name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
+    { id: 'fuyuka', uid: 134, name: 'フユカ', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 5 },
+    { id: 'shia', uid: 155, name: 'シア', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 5 },
+    { id: 'chitose', uid: 144, name: 'チトセ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 5 },
+    { id: 'nazuna', uid: 156, name: 'ナズナ', element: ELEMENTS.EARTH, role: 'サポーター', rank: 5 },
+    { id: 'gerie', uid: 149, name: 'グレイ', element: ELEMENTS.EARTH, role: 'アタッカー', rank: 5 },
+    { id: 'chixia', uid: 141, name: 'チーシア', element: ELEMENTS.FIRE, role: 'バランサー', rank: 5 },
+    { id: 'nanoha', uid: 119, name: 'ナノハ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 5 },
+    { id: 'freesia', uid: 125, name: 'フリージア', element: ELEMENTS.WATER, role: 'バランサー', rank: 5 },
+    { id: 'minova', uid: 132, name: 'ミネルバ', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 5 },
+    { id: 'mistique', uid: 135, name: 'ミスティ', element: ELEMENTS.DARK, role: 'バランサー', rank: 5 },
+    { id: 'noya', uid: 112, name: 'セイナ', element: ELEMENTS.WIND, role: 'アタッカー', rank: 4 },
+    { id: 'amber', uid: 103, name: 'コハク', element: ELEMENTS.FIRE, role: 'アタッカー', rank: 4 },
+    { id: 'iris', uid: 111, name: 'アヤメ', element: ELEMENTS.WATER, role: 'バランサー', rank: 4 },
+    { id: 'ann', uid: 123, name: 'アンズ', element: ELEMENTS.WIND, role: 'サポーター', rank: 4 },
+    { id: 'jinglin', uid: 117, name: 'ジンリン', element: ELEMENTS.LIGHT, role: 'バランサー', rank: 4 },
+    { id: 'teresa', uid: 127, name: 'テレサ', element: ELEMENTS.WATER, role: 'サポーター', rank: 4 },
+    { id: 'tilia', uid: 107, name: 'ティリア', element: ELEMENTS.LIGHT, role: 'サポーター', rank: 4 },
+    { id: 'kasimira', uid: 108, name: 'カシミラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
+    { id: 'shimiao', uid: 113, name: 'シーミャオ', element: ELEMENTS.WATER, role: 'アタッカー', rank: 4 },
+    { id: 'ridge', uid: 116, name: 'レイセン', element: ELEMENTS.EARTH, role: 'バランサー', rank: 4 },
+    { id: 'coronis', uid: 118, name: 'クルニス', element: ELEMENTS.DARK, role: 'バランサー', rank: 4 },
+    { id: 'canace', uid: 120, name: 'カナーチェ', element: ELEMENTS.WIND, role: 'バランサー', rank: 4 },
+    { id: 'cosette', uid: 142, name: 'コゼット', element: ELEMENTS.DARK, role: 'サポーター', rank: 4 },
+    { id: 'caramel', uid: 147, name: 'キャラメル', element: ELEMENTS.DARK, role: 'アタッカー', rank: 4 },
+    { id: 'laru', uid: 150, name: 'ラール', element: ELEMENTS.LIGHT, role: 'アタッカー', rank: 4 },
+    { id: 'flora', uid: 126, name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
 ];
 
 // ここで画像を動的に割り当てます
