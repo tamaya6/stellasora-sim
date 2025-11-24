@@ -172,9 +172,8 @@ const PartySlot = ({
         }
     };
 
-    // 【修正】素質数計算ロジック: 完全防衛
+    // 素質数（ポイント）計算: 完全防衛
     const totalPoints = useMemo(() => {
-        // データが null/undefined でないことを確認
         if (!safePotentialsData || typeof safePotentialsData !== 'object') return 0;
 
         try {
@@ -183,12 +182,10 @@ const PartySlot = ({
                     if (!key || !val) return false;
                     const isCore = corePotentialPool.some(s => s.id === key);
                     const isSub = subPotentialPool.some(s => s.id === key);
-                    // 数値型のlevelを持ち、かつ0より大きいか確認
                     return (isCore || isSub) && typeof val.level === 'number' && val.level > 0;
                 })
                 .reduce((acc, [_, val]) => acc + val.level, 0);
         } catch (e) {
-            // 万が一エラーになってもクラッシュさせず0を返す
             console.error("Error calculating points:", e);
             return 0;
         }
@@ -217,7 +214,6 @@ const PartySlot = ({
                             
                             <button 
                                 onClick={() => setIsModalOpen(true)}
-                                // -m-2 を削除し、p-2とボーダーを追加してマージンを整える
                                 className="flex md:flex-col items-center md:items-start gap-3 group text-left hover:bg-black/20 p-2 rounded-xl transition-colors w-full border border-transparent hover:border-white/10"
                             >
                                 <div className="flex-shrink-0">
@@ -236,16 +232,19 @@ const PartySlot = ({
                                             <div className="font-bold text-lg md:text-xl text-white group-hover:text-yellow-200 transition-colors truncate shadow-black drop-shadow-sm mb-0.5">
                                                 {selectedChar.name}
                                             </div>
-                                            <div className="flex items-center gap-2 text-xs text-white/90">
-                                                <RankStars rank={selectedChar.rank} size={10} />
+                                            <div className="flex items-center gap-2 text-white/90">
+                                                {/* ランクスターのサイズを16から14に変更 */}
+                                                <RankStars rank={selectedChar.rank} size={14} />
                                                 <span className="opacity-70">|</span>
-                                                <span className="text-[10px]">{selectedChar.role}</span>
+                                                {/* ロール名をtext-[13px]に変更 */}
+                                                <span className="text-[13px]">{selectedChar.role}</span>
                                             </div>
                                             
                                             <div className="mt-2 pt-2 border-t border-white/20 hidden md:block">
                                                 <div className="flex justify-between items-baseline">
-                                                    <div className="text-[10px] text-white/80">{t('slot.totalPoints')}</div>
-                                                    <div className="text-xl font-bold text-white font-mono">
+                                                    {/* 素質数ラベルをtext-[13px]に変更 */}
+                                                    <div className="text-[13px] text-white/80">{t('slot.totalPoints')}</div>
+                                                    <div className="text-2xl font-bold text-white font-mono">
                                                         {totalPoints}
                                                     </div>
                                                 </div>
@@ -384,9 +383,9 @@ const PartySlot = ({
                     
                     {/* 素質数表示 (モバイル向けフッター) */}
                     {selectedChar && (
-                        <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                        <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-[13px] text-slate-400">
                             <span>{t('slot.totalPoints')}</span>
-                            <span className="text-white font-bold">{totalPoints}</span>
+                            <span className="text-white font-bold text-base">{totalPoints}</span>
                         </div>
                     )}
                 </div>
