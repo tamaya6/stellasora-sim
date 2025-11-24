@@ -34,6 +34,7 @@ const SubPotentialCard = ({
 
     const handleMouseEnter = (e) => {
         if (isDragging) return;
+        
         const rect = e.currentTarget.getBoundingClientRect();
         setTooltipPos({
             top: rect.top,
@@ -53,6 +54,7 @@ const SubPotentialCard = ({
         none: 'bg-gray-700 text-gray-400 border-gray-600'
     };
     
+    const priorityLabel = { high: '高', medium: '中', low: '低', none: '-' };
     const ElementIcon = element.icon;
 
     return (
@@ -92,7 +94,7 @@ const SubPotentialCard = ({
 
                         <div className="mb-1">
                             {isAcquired ? (
-                                <div className="relative z-10">
+                                <div className="relative z-10 mt-2"> {/* mt-2を追加してアイコン位置を下げる */}
                                     <ElementIcon className="w-8 h-8 text-white drop-shadow-glow" strokeWidth={2} />
                                 </div>
                             ) : (
@@ -109,7 +111,7 @@ const SubPotentialCard = ({
                 </div>
 
                 <div 
-                    className={`h-[4.5rem] p-1.5 flex flex-col gap-1.5 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
+                    className={`h-auto p-1 flex flex-col gap-1 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
                     draggable={true}
                     onDragStart={(e) => { e.preventDefault(); e.stopPropagation(); }}
                 >
