@@ -3,10 +3,39 @@ import { CHARACTERS } from '../data';
 import { loadFromUrl, reorder } from '../utils/storage';
 
 const INITIAL_PARTY = [
-    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false },
-    { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false }
+    { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false },
+    { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false },
+    { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false }
 ];
+
+// データの正規化関数（古いデータ構造を新しいものに変換）
+const normalizePartyData = (data) => {
+    if (!Array.isArray(data)) return INITIAL_PARTY;
+    
+    return data.map(slot => {
+        // スキルデータの移行: potentials がなければ skills を使う
+        let potentials = slot.potentials;
+        if (!potentials && slot.skills) {
+            potentials = slot.skills;
+        }
+        if (!potentials) potentials = {};
+
+        // スキル順序の移行: potentialOrder がなければ skillOrder を使う
+        let potentialOrder = slot.potentialOrder;
+        if (!potentialOrder && slot.skillOrder) {
+            potentialOrder = slot.skillOrder;
+        }
+        if (!potentialOrder) potentialOrder = [];
+
+        return {
+            ...slot,
+            potentials: potentials,
+            potentialOrder: potentialOrder,
+            sortMode: slot.sortMode || 'default',
+            hideUnacquired: slot.hideUnacquired ?? false
+        };
+    });
+};
 
 export const useParty = () => {
     const [party, setParty] = useState(INITIAL_PARTY);
@@ -16,41 +45,46 @@ export const useParty = () => {
     useEffect(() => {
         const loadedFromUrl = loadFromUrl();
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
-            setParty(loadedFromUrl);
-            // ロード成功後、URLをクリーンにする
+            // ロードしたデータを正規化してからセット
+            setParty(normalizePartyData(loadedFromUrl));
+            
             const cleanUrl = window.location.pathname + window.location.search;
             window.history.replaceState(null, '', cleanUrl);
         }
         setIsLoaded(true);
     }, []);
 
+    // 外部からデータをセットする際も正規化を通す
+    const setPartyData = (newData) => {
+        setParty(normalizePartyData(newData));
+    };
+
     const updateSlot = (slotIndex, charId) => {
         const newParty = [...party];
         const selectedChar = CHARACTERS.find(c => c.id === charId);
         
-        // キャラクター変更時は初期設定に戻す
         const targetCategory = slotIndex === 0 ? 'main' : 'support';
-        const subSkillPool = selectedChar ? selectedChar.skillSets[`${targetCategory}Sub`] : [];
-        const defaultOrder = subSkillPool.map(s => s.id);
+        const subPotentialPool = selectedChar ? selectedChar.potentialSets[`${targetCategory}Sub`] : [];
+        const defaultOrder = subPotentialPool.map(s => s.id);
         
         newParty[slotIndex] = { 
             charId, 
-            skills: {}, 
-            skillOrder: defaultOrder,
+            potentials: {}, 
+            potentialOrder: defaultOrder,
             sortMode: 'default',
             hideUnacquired: false 
         };
         setParty(newParty);
     };
 
-    const updateSkill = (slotIndex, skillId, skillData) => {
+    const updatePotential = (slotIndex, potentialId, potentialData) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
             return {
                 ...slot,
-                skills: {
-                    ...slot.skills,
-                    [skillId]: skillData
+                potentials: {
+                    ...slot.potentials,
+                    [potentialId]: potentialData
                 }
             };
         });
@@ -61,21 +95,21 @@ export const useParty = () => {
         const newParty = [...party];
         newParty[slotIndex] = { 
             charId: null, 
-            skills: {}, 
-            skillOrder: [],
+            potentials: {}, 
+            potentialOrder: [],
             sortMode: 'default',
             hideUnacquired: false
         };
         setParty(newParty);
     };
 
-    const reorderSkills = (slotIndex, sourceSkillId, targetSkillId) => {
+    const reorderPotentials = (slotIndex, sourceId, targetId) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
 
-            const currentOrder = slot.skillOrder;
-            const sourceIndex = currentOrder.indexOf(sourceSkillId);
-            const targetIndex = currentOrder.indexOf(targetSkillId);
+            const currentOrder = slot.potentialOrder;
+            const sourceIndex = currentOrder.indexOf(sourceId);
+            const targetIndex = currentOrder.indexOf(targetId);
 
             if (sourceIndex === -1 || targetIndex === -1) return slot;
 
@@ -83,18 +117,18 @@ export const useParty = () => {
             
             return {
                 ...slot,
-                skillOrder: newOrder
+                potentialOrder: newOrder
             };
         });
         setParty(newParty);
     };
 
-    const updateSkillOrder = (slotIndex, newOrder) => {
+    const updatePotentialOrder = (slotIndex, newOrder) => {
         const newParty = party.map((slot, i) => {
             if (i !== slotIndex) return slot;
             return {
                 ...slot,
-                skillOrder: newOrder
+                potentialOrder: newOrder
             };
         });
         setParty(newParty);
@@ -118,13 +152,13 @@ export const useParty = () => {
 
     return {
         party,
-        setParty,
+        setParty: setPartyData, // 正規化付きのセッターを公開
         isLoaded,
         updateSlot,
-        updateSkill,
+        updatePotential,
         clearSlot,
-        reorderSkills,
-        updateSkillOrder,
+        reorderPotentials,
+        updatePotentialOrder,
         updateSlotSettings,
         resetAll
     };

@@ -2,31 +2,25 @@ import { CHARACTERS } from '../data';
 
 // --- 定数・変換マップ ---
 
-// バージョン識別子（将来のフォーマット変更に備える）
 const VERSION_PREFIX = 'v1';
 
 // 優先度とレベルを1文字に圧縮するためのマップ (0:未取得, 1-18:取得済み)
-// 0: Lv0
-// 1: Lv1 Low, 2: Lv1 Mid, 3: Lv1 High
-// 4: Lv2 Low, ...
-// 18: Lv6 High
-const SKILL_VAL_CHARS = "0123456789abcdefghi"; 
+const POTENTIAL_VAL_CHARS = "0123456789abcdefghi"; 
 
 // 0-11 のインデックスを1文字で表すマップ (順序保存用)
-// 12個以上に対応するため文字セットを拡張しておく（念のため）
 const ORDER_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 // --- ヘルパー関数 ---
 
-// スキル情報(Level, Priority)を数値(0-18)に変換
-const encodeSkillVal = (skill) => {
-    if (!skill || skill.level === 0) return 0;
-    const pVal = skill.priority === 'high' ? 3 : skill.priority === 'low' ? 1 : 2; // medium=2
-    return (skill.level - 1) * 3 + pVal;
+// ポテンシャル情報(Level, Priority)を数値(0-18)に変換
+const encodePotentialVal = (potential) => {
+    if (!potential || potential.level === 0) return 0;
+    const pVal = potential.priority === 'high' ? 3 : potential.priority === 'low' ? 1 : 2; // medium=2
+    return (potential.level - 1) * 3 + pVal;
 };
 
-// 数値(0-18)をスキル情報オブジェクトに復元
-const decodeSkillVal = (val) => {
+// 数値(0-18)をポテンシャル情報オブジェクトに復元
+const decodePotentialVal = (val) => {
     if (val === 0) return { level: 0, priority: 'medium' };
     const level = Math.ceil(val / 3);
     const rem = val % 3;
@@ -37,7 +31,6 @@ const decodeSkillVal = (val) => {
 // --- 圧縮ロジック ---
 
 const compressSlot = (slot) => {
-    // (この関数は使われていませんが、念のため残すなら修正不要)
     return "";
 };
 
@@ -50,43 +43,44 @@ const compress = (state) => {
         if (charIdx === -1) return "";
         const charData = CHARACTERS[charIdx];
 
-        // スロット位置(0=Main, 1,2=Support) に応じて参照するスキルリストを決定
+        // スロット位置(0=Main, 1,2=Support) に応じて参照するポテンシャルリストを決定
         const categoryPrefix = index === 0 ? 'main' : 'support';
-        const coreSkills = charData.skillSets[`${categoryPrefix}Core`];
-        const subSkills = charData.skillSets[`${categoryPrefix}Sub`];
+        // data/index.js で potentialSets にリネーム済みであることを前提
+        const corePotentials = charData.potentialSets[`${categoryPrefix}Core`];
+        const subPotentials = charData.potentialSets[`${categoryPrefix}Sub`];
 
-        // 1. コアスキル (4つ, ON/OFFのみ) -> 2進数4桁 -> 16進数1文字
+        // ★互換性対応: 新旧どちらのプロパティ名でも動くようにする
+        const currentPotentials = slot.potentials || slot.skills || {};
+        const currentOrder = slot.potentialOrder || slot.skillOrder || [];
+
+        // 1. コアポテンシャル (4つ, ON/OFFのみ)
         let coreBits = 0;
-        coreSkills.forEach((s, i) => {
-            if ((slot.skills[s.id]?.level || 0) > 0) {
+        corePotentials.forEach((s, i) => {
+            if ((currentPotentials[s.id]?.level || 0) > 0) {
                 coreBits |= (1 << i);
             }
         });
         const coreStr = coreBits.toString(16);
 
-        // 2. サブスキル (可変長, 0-18) -> カスタム文字N文字
+        // 2. サブポテンシャル (可変長, 0-18)
         let subStr = "";
-        subSkills.forEach(s => {
-            const val = encodeSkillVal(slot.skills[s.id]);
-            subStr += SKILL_VAL_CHARS[val];
+        subPotentials.forEach(s => {
+            const val = encodePotentialVal(currentPotentials[s.id]);
+            subStr += POTENTIAL_VAL_CHARS[val];
         });
 
-        // 3. 設定フラグ (SortMode, HideUnacquired)
-        // SortMode: default=0, priority=1, level=2
-        // Hide: false=0, true=4
+        // 3. 設定フラグ
         let flagVal = 0;
         if (slot.sortMode === 'priority') flagVal += 1;
         if (slot.sortMode === 'level') flagVal += 2;
         if (slot.hideUnacquired) flagVal += 4;
-        const flagStr = flagVal.toString(16); // 0-7
+        const flagStr = flagVal.toString(16); 
 
         // 4. 並び順 (Order)
-        // デフォルト順（subSkillsのID順）と異なる場合のみ保存
-        const defaultOrder = subSkills.map(s => s.id);
-        const currentOrder = slot.skillOrder; 
+        const defaultOrder = subPotentials.map(s => s.id);
         
-        // currentOrderからSubスキルのIDだけを抽出
-        const currentSubOrder = currentOrder.filter(id => subSkills.some(s => s.id === id));
+        // currentOrderからSubポテンシャルのIDだけを抽出
+        const currentSubOrder = currentOrder.filter(id => subPotentials.some(s => s.id === id));
         
         let orderStr = "";
         let isDefault = true;
@@ -102,79 +96,88 @@ const compress = (state) => {
         }
 
         if (!isDefault) {
-            // 並び順をインデックス列に変換
             const indices = currentSubOrder.map(id => {
-                return subSkills.findIndex(s => s.id === id);
+                return subPotentials.findIndex(s => s.id === id);
             });
             orderStr = indices.map(i => (i >= 0 && i < ORDER_CHARS.length) ? ORDER_CHARS[i] : "0").join("");
         }
 
-        // 結合: CharIdx(Base36) + "_" + Core(1) + Sub(N) + Flag(1) + [ "_" + Order(N) ]
+        // 結合
         const baseData = `${charIdx.toString(36)}_${coreStr}${subStr}${flagStr}`;
         return orderStr ? `${baseData}_${orderStr}` : baseData;
     });
 
-    // スロット間は "." で結合
     return `${VERSION_PREFIX}.${compressedSlots.join('.')}`;
 };
 
 // --- 復元ロジック ---
 
 const decompress = (hash) => {
-    // バージョンチェック
+    // バージョンチェック & 旧形式フォールバック
     if (!hash.startsWith(VERSION_PREFIX + '.')) {
-        // 新形式でない場合、旧形式（JSON）としてトライ
         try {
             const json = decodeURIComponent(escape(atob(hash)));
             const parsed = JSON.parse(json);
-            return Array.isArray(parsed) ? parsed : null;
+            // 旧JSON形式(skillsプロパティを持つ)の場合、
+            // 呼び出し元で変換してもらうか、ここで変換して返す
+            if (Array.isArray(parsed)) {
+                return parsed.map(slot => ({
+                    ...slot,
+                    // 旧データ(skills)を新データ(potentials)にマッピング
+                    potentials: slot.skills || {},
+                    potentialOrder: slot.skillOrder || [],
+                    // 旧プロパティは削除しても良いが、念のため残しても害はない
+                    // skills: undefined, 
+                    // skillOrder: undefined
+                }));
+            }
+            return null;
         } catch {
             return null;
         }
     }
 
-    const content = hash.substring(VERSION_PREFIX.length + 1); // "v1." を除去
+    const content = hash.substring(VERSION_PREFIX.length + 1);
     const slotStrings = content.split('.');
 
     return slotStrings.map((str, index) => {
-        if (!str) return { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false };
+        // 空スロットのデフォルト値も新プロパティ名にする
+        if (!str) return { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false };
 
         const parts = str.split('_');
         const charIdxStr = parts[0];
-        const dataStr = parts[1]; // Core(1) + Sub(N) + Flag(1)
-        const orderStr = parts[2]; // Optional
+        const dataStr = parts[1]; 
+        const orderStr = parts[2]; 
 
         const charIdx = parseInt(charIdxStr, 36);
         const charData = CHARACTERS[charIdx];
-        if (!charData) return { charId: null, skills: {}, skillOrder: [], sortMode: 'default', hideUnacquired: false };
+        if (!charData) return { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false };
 
         const categoryPrefix = index === 0 ? 'main' : 'support';
-        const coreSkillsDef = charData.skillSets[`${categoryPrefix}Core`];
-        const subSkillsDef = charData.skillSets[`${categoryPrefix}Sub`];
+        // potentialSets を参照
+        const corePotentialsDef = charData.potentialSets[`${categoryPrefix}Core`];
+        const subPotentialsDef = charData.potentialSets[`${categoryPrefix}Sub`];
 
-        const skills = {};
-        let skillOrder = [];
+        const potentials = {};
+        let potentialOrder = [];
 
-        // 1. Core復元 (1文字目)
+        // 1. Core復元
         const coreVal = parseInt(dataStr[0], 16);
-        coreSkillsDef.forEach((s, i) => {
+        corePotentialsDef.forEach((s, i) => {
             const isAcquired = (coreVal & (1 << i)) !== 0;
-            skills[s.id] = { level: isAcquired ? 1 : 0, priority: 'medium' };
+            potentials[s.id] = { level: isAcquired ? 1 : 0, priority: 'medium' };
         });
 
-        // 2. Sub復元 (2文字目からSub数分)
-        // 修正: 固定12回ではなく、定義されているサブスキル数分ループする
-        subSkillsDef.forEach((s, i) => {
+        // 2. Sub復元
+        subPotentialsDef.forEach((s, i) => {
             const charCode = dataStr[i + 1];
-            const val = SKILL_VAL_CHARS.indexOf(charCode);
-            skills[s.id] = decodeSkillVal(val !== -1 ? val : 0);
+            const val = POTENTIAL_VAL_CHARS.indexOf(charCode);
+            potentials[s.id] = decodePotentialVal(val !== -1 ? val : 0);
         });
 
-        // 3. Flag復元 (Core(1) + Sub(N) の次の文字)
-        // 修正: 固定13番目ではなく、動的に位置を特定
-        const flagIndex = 1 + subSkillsDef.length;
+        // 3. Flag復元
+        const flagIndex = 1 + subPotentialsDef.length;
         const flagChar = dataStr[flagIndex];
-        // 古いURLなどでflagが無い場合のガード
         const flagVal = flagChar ? parseInt(flagChar, 16) : 0;
         
         const hideUnacquired = (flagVal & 4) !== 0;
@@ -182,28 +185,26 @@ const decompress = (hash) => {
         const sortMode = sortModeVal === 1 ? 'priority' : sortModeVal === 2 ? 'level' : 'default';
 
         // 4. Order復元
-        if (orderStr && orderStr.length === subSkillsDef.length) {
-            // インデックス列からID列へ変換
+        if (orderStr && orderStr.length === subPotentialsDef.length) {
             const subOrder = orderStr.split('').map(c => {
                 const idx = ORDER_CHARS.indexOf(c);
-                return subSkillsDef[idx]?.id;
+                return subPotentialsDef[idx]?.id;
             }).filter(Boolean);
             
-            // コアスキルのID（順序は定義順）+ サブスキルの順序
-            const coreIds = coreSkillsDef.map(s => s.id);
-            skillOrder = [...coreIds, ...subOrder];
+            const coreIds = corePotentialsDef.map(s => s.id);
+            potentialOrder = [...coreIds, ...subOrder];
         } else {
-            // デフォルト順
-            skillOrder = [
-                ...coreSkillsDef.map(s => s.id),
-                ...subSkillsDef.map(s => s.id)
+            potentialOrder = [
+                ...corePotentialsDef.map(s => s.id),
+                ...subPotentialsDef.map(s => s.id)
             ];
         }
 
+        // 新しいプロパティ名で返す
         return {
             charId: charData.id,
-            skills,
-            skillOrder,
+            potentials,       // skills -> potentials
+            potentialOrder,   // skillOrder -> potentialOrder
             sortMode,
             hideUnacquired
         };
@@ -221,7 +222,7 @@ export const loadFromUrl = () => {
         const hash = window.location.hash;
         if (!hash) return null;
         
-        let content = hash.substring(1); // #除去
+        let content = hash.substring(1); 
         if (content.startsWith('build=')) {
             content = content.replace('build=', '');
             return decompress(content); 
