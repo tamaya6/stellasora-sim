@@ -8,7 +8,8 @@ const CharacterIcon = ({ char, size = "md", className = "" }) => {
         sm: "w-8 h-8",
         md: "w-12 h-12",
         lg: "w-16 h-16",
-        xl: "w-20 h-20" 
+        xl: "w-20 h-20", 
+        "2xl": "w-24 h-24 md:w-28 md:h-28" // 追加: より大きなサイズ
     };
 
     const containerSize = sizeClasses[size] || sizeClasses.md;
@@ -18,7 +19,8 @@ const CharacterIcon = ({ char, size = "md", className = "" }) => {
             <img 
                 src={char.imagePath} 
                 alt={char.name} 
-                className={`object-cover rounded-lg border-2 border-slate-600 bg-slate-800 ${containerSize} ${className}`}
+                // border-2 border-white/20 を削除しました
+                className={`object-cover rounded-lg ${containerSize} ${className}`}
                 onError={() => setImgError(true)}
             />
         );

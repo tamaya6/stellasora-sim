@@ -175,7 +175,7 @@ const PartySlot = ({
     // 【修正】素質数計算ロジック: 完全防衛
     const totalPoints = useMemo(() => {
         // データが null/undefined でないことを確認
-        if (!safePotentialsData) return 0;
+        if (!safePotentialsData || typeof safePotentialsData !== 'object') return 0;
 
         try {
             return Object.entries(safePotentialsData)
@@ -205,7 +205,7 @@ const PartySlot = ({
                 
                 {/* 左側: キャラ情報 */}
                 <div className={`
-                    md:w-64 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md
+                    md:w-60 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md
                     ${selectedChar ? `bg-gradient-to-br ${selectedChar.element.color}` : 'bg-slate-800'}
                 `}>
                     <div className="flex flex-row md:flex-col h-full items-center md:items-start justify-between relative z-10 gap-4">
@@ -217,34 +217,37 @@ const PartySlot = ({
                             
                             <button 
                                 onClick={() => setIsModalOpen(true)}
-                                className="flex md:flex-col items-center md:items-start gap-3 group text-left hover:bg-black/20 p-2 -m-2 rounded-lg transition-colors w-full"
+                                // -m-2 を削除し、p-2とボーダーを追加してマージンを整える
+                                className="flex md:flex-col items-center md:items-start gap-3 group text-left hover:bg-black/20 p-2 rounded-xl transition-colors w-full border border-transparent hover:border-white/10"
                             >
                                 <div className="flex-shrink-0">
                                     {selectedChar ? (
-                                        <CharacterIcon char={selectedChar} size="xl" className="group-hover:border-white/50 transition-colors shadow-2xl" />
+                                        <CharacterIcon char={selectedChar} size="2xl" className="group-hover:border-white/50 transition-colors shadow-2xl" />
                                     ) : (
-                                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg bg-black/30 border border-white/20 flex items-center justify-center">
-                                            <User size={32} className="text-white/50" />
+                                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-lg bg-black/30 border border-white/20 flex items-center justify-center">
+                                            <User size={48} className="text-white/50" />
                                         </div>
                                     )}
                                 </div>
 
                                 <div className="min-w-0 flex-1 w-full z-10">
                                     {selectedChar ? (
-                                        <div className="bg-slate-900/60 rounded-lg p-3 backdrop-blur-sm border border-white/10 shadow-lg">
-                                            <div className="font-bold text-xl md:text-2xl text-white group-hover:text-yellow-200 transition-colors truncate shadow-black drop-shadow-sm mb-1">
+                                        <div className="bg-slate-900/60 rounded-lg p-2 backdrop-blur-sm border border-white/10 shadow-lg">
+                                            <div className="font-bold text-lg md:text-xl text-white group-hover:text-yellow-200 transition-colors truncate shadow-black drop-shadow-sm mb-0.5">
                                                 {selectedChar.name}
                                             </div>
                                             <div className="flex items-center gap-2 text-xs text-white/90">
-                                                <RankStars rank={selectedChar.rank} size={12} />
+                                                <RankStars rank={selectedChar.rank} size={10} />
                                                 <span className="opacity-70">|</span>
-                                                <span>{selectedChar.role}</span>
+                                                <span className="text-[10px]">{selectedChar.role}</span>
                                             </div>
                                             
-                                            <div className="mt-3 pt-3 border-t border-white/20 hidden md:block">
-                                                <div className="text-xs text-white/80 mb-1">{t('slot.totalPoints')}</div>
-                                                <div className="text-2xl font-bold text-white font-mono">
-                                                    {totalPoints}
+                                            <div className="mt-2 pt-2 border-t border-white/20 hidden md:block">
+                                                <div className="flex justify-between items-baseline">
+                                                    <div className="text-[10px] text-white/80">{t('slot.totalPoints')}</div>
+                                                    <div className="text-xl font-bold text-white font-mono">
+                                                        {totalPoints}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
