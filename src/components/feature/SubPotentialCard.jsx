@@ -48,13 +48,13 @@ const SubPotentialCard = ({
     };
 
     const priorityColors = {
+        highest: 'bg-purple-600 text-white border-purple-500 shadow-[0_0_8px_rgba(147,51,234,0.5)]',
         high: 'bg-red-500 text-white border-red-400',
         medium: 'bg-amber-500 text-black border-amber-400',
         low: 'bg-blue-500 text-white border-blue-400',
         none: 'bg-gray-700 text-gray-400 border-gray-600'
     };
     
-    const priorityLabel = { high: '高', medium: '中', low: '低', none: '-' };
     const ElementIcon = element.icon;
 
     return (
@@ -94,7 +94,7 @@ const SubPotentialCard = ({
 
                         <div className="mb-1">
                             {isAcquired ? (
-                                <div className="relative z-10 mt-2"> {/* mt-2を追加してアイコン位置を下げる */}
+                                <div className="relative z-10 mt-2">
                                     <ElementIcon className="w-8 h-8 text-white drop-shadow-glow" strokeWidth={2} />
                                 </div>
                             ) : (
@@ -123,12 +123,14 @@ const SubPotentialCard = ({
                         <button onClick={() => handleLevelChange(1)} className={`w-6 h-full flex items-center justify-center rounded text-white text-sm font-bold ${value >= 6 ? 'bg-slate-900 text-slate-600' : 'bg-slate-800 hover:bg-slate-700'}`} disabled={value >= 6}>+</button>
                     </div>
 
-                    <div className={`grid grid-cols-3 gap-0.5 text-xs transition-opacity duration-200 ${isAcquired ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>
-                        {['high', 'medium', 'low'].map(p => (
+                    {/* グリッド比率を変更: 最優先(1.4fr) 他(1fr) */}
+                    <div className={`grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-0.5 text-[10px] transition-opacity duration-200 ${isAcquired ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>
+                        {['highest', 'high', 'medium', 'low'].map(p => (
                             <button
                                 key={p}
                                 onClick={() => handlePriorityChange(p)}
-                                className={`py-0.5 rounded border transition-colors text-center font-medium ${priority === p ? priorityColors[p] : 'bg-slate-800 border-slate-700 text-slate-500 hover:bg-slate-700'}`}
+                                className={`py-0.5 rounded border transition-colors text-center font-bold tracking-tighter ${priority === p ? priorityColors[p] : 'bg-slate-800 border-slate-700 text-slate-500 hover:bg-slate-700'}`}
+                                title={t(`priority.${p}`)}
                             >
                                 {t(`priority.${p}`)}
                             </button>

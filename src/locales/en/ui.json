@@ -35,6 +35,7 @@
     "tooltipRemove": "Remove character"
   },
   "priority": {
+    "highest": "Highest",
     "high": "High",
     "medium": "Mid",
     "low": "Low"

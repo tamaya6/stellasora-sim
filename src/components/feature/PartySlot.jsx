@@ -33,14 +33,12 @@ const PartySlot = ({
     const isMainSlot = slotIndex === 0;
     const categoryPrefix = isMainSlot ? 'main' : 'support';
     
-    // データの安全化: null/undefinedなら空オブジェクト/空配列にする
     const safePotentialsData = (potentialsData && typeof potentialsData === 'object') ? potentialsData : {};
     const safePotentialOrder = Array.isArray(potentialOrder) ? potentialOrder : [];
     
     const corePotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Core`] || []) : [];
     const subPotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Sub`] || []) : [];
 
-    // 表示順序に基づいてリストを作成
     let orderedSubPotentials = [];
     if (selectedChar) {
         if (safePotentialOrder.length > 0) {
@@ -53,21 +51,18 @@ const PartySlot = ({
         }
     }
 
-    // 未取得非表示フィルタリング (サブ)
     const displaySubPotentials = orderedSubPotentials.filter(potential => {
         if (!hideUnacquired) return true;
         const current = safePotentialsData[potential.id] || { level: 0 };
         return current.level > 0;
     });
 
-    // 未取得非表示フィルタリング (コア)
     const displayCorePotentials = corePotentialPool.filter(potential => {
         if (!hideUnacquired) return true;
         const current = safePotentialsData[potential.id] || { level: 0 };
         return current.level > 0; 
     });
 
-    // ソート実行関数
     const handleSort = (mode) => {
         if (!selectedChar) return;
 
@@ -89,6 +84,7 @@ const PartySlot = ({
         } else {
             const getPriorityValue = (p) => {
                 switch(p) {
+                    case 'highest': return 4; // 最優先を追加
                     case 'high': return 3;
                     case 'medium': return 2;
                     case 'low': return 1;
@@ -172,7 +168,6 @@ const PartySlot = ({
         }
     };
 
-    // 素質数（ポイント）計算: 完全防衛
     const totalPoints = useMemo(() => {
         if (!safePotentialsData || typeof safePotentialsData !== 'object') return 0;
 
@@ -232,17 +227,14 @@ const PartySlot = ({
                                             <div className="font-bold text-lg md:text-xl text-white group-hover:text-yellow-200 transition-colors truncate shadow-black drop-shadow-sm mb-0.5">
                                                 {selectedChar.name}
                                             </div>
-                                            <div className="flex items-center gap-2 text-white/90">
-                                                {/* ランクスターのサイズを16から14に変更 */}
+                                            <div className="flex items-center gap-2 text-sm text-white/90">
                                                 <RankStars rank={selectedChar.rank} size={14} />
                                                 <span className="opacity-70">|</span>
-                                                {/* ロール名をtext-[13px]に変更 */}
                                                 <span className="text-[13px]">{selectedChar.role}</span>
                                             </div>
                                             
                                             <div className="mt-2 pt-2 border-t border-white/20 hidden md:block">
                                                 <div className="flex justify-between items-baseline">
-                                                    {/* 素質数ラベルをtext-[13px]に変更 */}
                                                     <div className="text-[13px] text-white/80">{t('slot.totalPoints')}</div>
                                                     <div className="text-2xl font-bold text-white font-mono">
                                                         {totalPoints}
@@ -383,7 +375,7 @@ const PartySlot = ({
                     
                     {/* 素質数表示 (モバイル向けフッター) */}
                     {selectedChar && (
-                        <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-[13px] text-slate-400">
+                        <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-sm text-slate-400">
                             <span>{t('slot.totalPoints')}</span>
                             <span className="text-white font-bold text-base">{totalPoints}</span>
                         </div>
