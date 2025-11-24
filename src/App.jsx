@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown, Camera } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { generateShareHash } from './utils/storage';
+import { toPng } from 'html-to-image';
+import { CHARACTERS } from './data';
+import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
 
 // カスタムフック
 import { useParty } from './hooks/useParty';
@@ -81,11 +83,12 @@ export default function App() {
     };
 
     const onLoadData = (index) => {
-        const data = storage.loadGame(index); // ディープコピーされたデータを取得
+        const data = storage.loadGame(index); 
         if (!data) return;
 
         showConfirm(
             t('confirm.loadData', { index: index + 1 }),
+            // データの正規化は useParty.setParty 内で行われる
             () => party.setParty(data)
         );
     };
@@ -263,16 +266,16 @@ export default function App() {
                         key={idx}
                         slotIndex={idx}
                         charId={slot.charId}
-                        skillsData={slot.skills}
-                        skillOrder={slot.skillOrder} 
+                        potentialsData={slot.potentials} // skills -> potentials
+                        potentialOrder={slot.potentialOrder} // skillOrder -> potentialOrder
                         sortMode={slot.sortMode} 
                         hideUnacquired={slot.hideUnacquired} 
                         slotTypeLabel={idx === 0 ? t('slot.main') : t('slot.support')}
                         onSelectChar={(id) => party.updateSlot(idx, id)}
-                        onUpdateSkill={(skillId, data) => party.updateSkill(idx, skillId, data)}
+                        onUpdatePotential={(pId, pData) => party.updatePotential(idx, pId, pData)}
                         onClear={() => party.clearSlot(idx)}
-                        onReorderSkills={(src, dst) => party.reorderSkills(idx, src, dst)}
-                        onUpdateSkillOrder={(newOrder) => party.updateSkillOrder(idx, newOrder)}
+                        onReorderPotentials={(src, dst) => party.reorderPotentials(idx, src, dst)}
+                        onUpdatePotentialOrder={(newOrder) => party.updatePotentialOrder(idx, newOrder)}
                         onUpdateSettings={(settings) => party.updateSlotSettings(idx, settings)}
                     />
                 ))}

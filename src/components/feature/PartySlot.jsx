@@ -3,23 +3,23 @@ import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw, E
 import { useTranslation } from 'react-i18next';
 import { CHARACTERS } from '../../data';
 import CharacterSelectModal from './CharacterSelectModal';
-import CoreSkillCard from './CoreSkillCard';
-import SubSkillCard from './SubSkillCard';
+import CorePotentialCard from './CorePotentialCard';
+import SubPotentialCard from './SubPotentialCard';
 import CharacterIcon from '../ui/CharacterIcon';
 import RankStars from '../ui/RankStars';
 
 const PartySlot = ({ 
     slotIndex, 
     charId, 
-    skillsData, 
-    skillOrder,
+    potentialsData, 
+    potentialOrder, 
     sortMode = 'default',
     hideUnacquired = false, 
     onSelectChar, 
-    onUpdateSkill, 
+    onUpdatePotential, 
     onClear, 
-    onReorderSkills,
-    onUpdateSkillOrder,
+    onReorderPotentials, 
+    onUpdatePotentialOrder, 
     onUpdateSettings, 
     slotTypeLabel 
 }) => {
@@ -33,33 +33,37 @@ const PartySlot = ({
     const isMainSlot = slotIndex === 0;
     const categoryPrefix = isMainSlot ? 'main' : 'support';
     
-    const coreSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Core`] : [];
-    const subSkillPool = selectedChar ? selectedChar.skillSets[`${categoryPrefix}Sub`] : [];
+    // データの安全化: null/undefinedなら空オブジェクト/空配列にする
+    const safePotentialsData = (potentialsData && typeof potentialsData === 'object') ? potentialsData : {};
+    const safePotentialOrder = Array.isArray(potentialOrder) ? potentialOrder : [];
+    
+    const corePotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Core`] || []) : [];
+    const subPotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Sub`] || []) : [];
 
-    // 表示順序に基づいてスキルリストを作成
-    let orderedSubSkills = [];
+    // 表示順序に基づいてリストを作成
+    let orderedSubPotentials = [];
     if (selectedChar) {
-        if (skillOrder && skillOrder.length > 0) {
-            const mapped = skillOrder.map(id => subSkillPool.find(s => s.id === id)).filter(Boolean);
+        if (safePotentialOrder.length > 0) {
+            const mapped = safePotentialOrder.map(id => subPotentialPool.find(s => s.id === id)).filter(Boolean);
             const existingIds = new Set(mapped.map(s => s.id));
-            const remaining = subSkillPool.filter(s => !existingIds.has(s.id));
-            orderedSubSkills = [...mapped, ...remaining];
+            const remaining = subPotentialPool.filter(s => !existingIds.has(s.id));
+            orderedSubPotentials = [...mapped, ...remaining];
         } else {
-            orderedSubSkills = subSkillPool;
+            orderedSubPotentials = subPotentialPool; 
         }
     }
 
-    // 未取得非表示フィルタリング (サブスキル)
-    const displaySubSkills = orderedSubSkills.filter(skill => {
+    // 未取得非表示フィルタリング (サブ)
+    const displaySubPotentials = orderedSubPotentials.filter(potential => {
         if (!hideUnacquired) return true;
-        const current = skillsData[skill.id] || { level: 0 };
+        const current = safePotentialsData[potential.id] || { level: 0 };
         return current.level > 0;
     });
 
-    // 未取得非表示フィルタリング (コアスキル)
-    const displayCoreSkills = coreSkillPool.filter(skill => {
+    // 未取得非表示フィルタリング (コア)
+    const displayCorePotentials = corePotentialPool.filter(potential => {
         if (!hideUnacquired) return true;
-        const current = skillsData[skill.id] || { level: 0 };
+        const current = safePotentialsData[potential.id] || { level: 0 };
         return current.level > 0; 
     });
 
@@ -67,25 +71,22 @@ const PartySlot = ({
     const handleSort = (mode) => {
         if (!selectedChar) return;
 
-        // 現在の skillOrder からコアスキル部分だけ取り出す（コアスキルの順序は維持）
         let currentCoreIds = [];
-        if (skillOrder && skillOrder.length > 0) {
-             currentCoreIds = skillOrder.filter(id => coreSkillPool.some(core => core.id === id));
+        if (safePotentialOrder.length > 0) {
+             currentCoreIds = safePotentialOrder.filter(id => corePotentialPool.some(core => core.id === id));
              const existingCoreSet = new Set(currentCoreIds);
-             coreSkillPool.forEach(core => {
+             corePotentialPool.forEach(core => {
                  if (!existingCoreSet.has(core.id)) currentCoreIds.push(core.id);
              });
         } else {
-             currentCoreIds = coreSkillPool.map(c => c.id);
+             currentCoreIds = corePotentialPool.map(c => c.id);
         }
 
-        let sortedSubSkillIds = [];
+        let sortedSubIds = [];
 
         if (mode === 'default') {
-            // デフォルト順（定義順）
-            sortedSubSkillIds = subSkillPool.map(s => s.id);
+            sortedSubIds = subPotentialPool.map(s => s.id);
         } else {
-            // 優先度やレベルでソート
             const getPriorityValue = (p) => {
                 switch(p) {
                     case 'high': return 3;
@@ -95,22 +96,17 @@ const PartySlot = ({
                 }
             };
 
-            const sortedList = [...subSkillPool].sort((a, b) => {
-                const aData = skillsData[a.id] || { level: 0, priority: 'medium' };
-                const bData = skillsData[b.id] || { level: 0, priority: 'medium' };
+            const sortedList = [...subPotentialPool].sort((a, b) => {
+                const aData = safePotentialsData[a.id] || { level: 0, priority: 'medium' };
+                const bData = safePotentialsData[b.id] || { level: 0, priority: 'medium' };
 
-                // 1. 取得済み（Lv > 0）を最優先で前に
                 const aAcquired = aData.level > 0;
                 const bAcquired = bData.level > 0;
                 
                 if (aAcquired !== bAcquired) {
                     return aAcquired ? -1 : 1;
                 }
-
-                // 両方未取得の場合は、優先度に関係なく順序を維持
-                if (!aAcquired && !bAcquired) {
-                    return 0;
-                }
+                if (!aAcquired && !bAcquired) return 0;
 
                 if (mode === 'priority') {
                     const pDiff = getPriorityValue(bData.priority) - getPriorityValue(aData.priority);
@@ -124,23 +120,23 @@ const PartySlot = ({
                 }
                 return 0;
             });
-            sortedSubSkillIds = sortedList.map(s => s.id);
+            sortedSubIds = sortedList.map(s => s.id);
         }
 
-        const newOrder = [...currentCoreIds, ...sortedSubSkillIds];
-        onUpdateSkillOrder(newOrder);
+        const newOrder = [...currentCoreIds, ...sortedSubIds];
+        onUpdatePotentialOrder(newOrder);
     };
 
-    const handleCoreToggle = (skillId) => {
-        const currentSkill = skillsData[skillId] || { level: 0, priority: 'medium' };
-        const isSelected = currentSkill.level > 0;
+    const handleCoreToggle = (potentialId) => {
+        const current = safePotentialsData[potentialId] || { level: 0, priority: 'medium' };
+        const isSelected = current.level > 0;
 
         if (isSelected) {
-            onUpdateSkill(skillId, { level: 0, priority: 'medium' });
+            onUpdatePotential(potentialId, { level: 0, priority: 'medium' });
         } else {
-            const selectedCount = coreSkillPool.filter(s => (skillsData[s.id]?.level || 0) > 0).length;
+            const selectedCount = corePotentialPool.filter(s => (safePotentialsData[s.id]?.level || 0) > 0).length;
             if (selectedCount < 2) {
-                onUpdateSkill(skillId, { level: 1, priority: 'medium' });
+                onUpdatePotential(potentialId, { level: 1, priority: 'medium' });
             }
         }
     };
@@ -150,10 +146,10 @@ const PartySlot = ({
         setIsModalOpen(false);
     };
 
-    const handleDragStart = (e, skillId) => {
-        setDraggingId(skillId);
+    const handleDragStart = (e, potentialId) => {
+        setDraggingId(potentialId);
         e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("text/plain", JSON.stringify({ slotIndex, skillId }));
+        e.dataTransfer.setData("text/plain", JSON.stringify({ slotIndex, potentialId }));
     };
 
     const handleDragOver = (e) => {
@@ -161,7 +157,7 @@ const PartySlot = ({
         e.dataTransfer.dropEffect = "move";
     };
 
-    const handleDrop = (e, targetSkillId) => {
+    const handleDrop = (e, targetId) => {
         e.preventDefault();
         setDraggingId(null);
         const dataStr = e.dataTransfer.getData("text/plain");
@@ -169,21 +165,34 @@ const PartySlot = ({
         try {
             const data = JSON.parse(dataStr);
             if (data.slotIndex !== slotIndex) return;
-            if (data.skillId === targetSkillId) return;
-            onReorderSkills(data.skillId, targetSkillId);
+            if (data.potentialId === targetId) return;
+            onReorderPotentials(data.potentialId, targetId);
         } catch (err) {
             console.error("Drop error", err);
         }
     };
 
-    // 素質数（ポイント）計算
-    const totalPoints = Object.entries(skillsData)
-        .filter(([key, val]) => {
-            const isCore = coreSkillPool.some(s => s.id === key);
-            const isSub = subSkillPool.some(s => s.id === key);
-            return (isCore || isSub) && val.level > 0;
-        })
-        .reduce((acc, [_, val]) => acc + val.level, 0);
+    // 【修正】素質数計算ロジック: 完全防衛
+    const totalPoints = useMemo(() => {
+        // データが null/undefined でないことを確認
+        if (!safePotentialsData) return 0;
+
+        try {
+            return Object.entries(safePotentialsData)
+                .filter(([key, val]) => {
+                    if (!key || !val) return false;
+                    const isCore = corePotentialPool.some(s => s.id === key);
+                    const isSub = subPotentialPool.some(s => s.id === key);
+                    // 数値型のlevelを持ち、かつ0より大きいか確認
+                    return (isCore || isSub) && typeof val.level === 'number' && val.level > 0;
+                })
+                .reduce((acc, [_, val]) => acc + val.level, 0);
+        } catch (e) {
+            // 万が一エラーになってもクラッシュさせず0を返す
+            console.error("Error calculating points:", e);
+            return 0;
+        }
+    }, [safePotentialsData, corePotentialPool, subPotentialPool]);
 
     return (
         <>
@@ -194,9 +203,9 @@ const PartySlot = ({
             />
             <div className="flex flex-col md:flex-row w-full bg-slate-900/60 backdrop-blur border border-slate-700/50 rounded-xl overflow-hidden shadow-xl mb-4 min-h-[240px]">
                 
-                {/* 左側: キャラ情報 - h-fullを指定して親要素の高さに追従させる */}
+                {/* 左側: キャラ情報 */}
                 <div className={`
-                    md:w-64 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md h-full md:h-auto
+                    md:w-64 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md
                     ${selectedChar ? `bg-gradient-to-br ${selectedChar.element.color}` : 'bg-slate-800'}
                 `}>
                     <div className="flex flex-row md:flex-col h-full items-center md:items-start justify-between relative z-10 gap-4">
@@ -232,7 +241,6 @@ const PartySlot = ({
                                                 <span>{selectedChar.role}</span>
                                             </div>
                                             
-                                            {/* 素質数表示 (PC向け) - mt-3を指定 */}
                                             <div className="mt-3 pt-3 border-t border-white/20 hidden md:block">
                                                 <div className="text-xs text-white/80 mb-1">{t('slot.totalPoints')}</div>
                                                 <div className="text-2xl font-bold text-white font-mono">
@@ -268,18 +276,18 @@ const PartySlot = ({
                             <div className="mb-4">
                                 <div className="flex items-center gap-2 mb-2 px-1">
                                     <div className="w-1 h-4 bg-pink-500 rounded-full shadow-[0_0_8px_rgba(236,72,153,0.8)]"></div>
-                                    <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.coreSkills')} <span className="text-slate-500 font-normal ml-2 text-[10px]">{t('slot.max2')}</span></h4>
+                                    <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.corePotentials')} <span className="text-slate-500 font-normal ml-2 text-[10px]">{t('slot.max2')}</span></h4>
                                 </div>
                                 <div className="grid grid-cols-4 gap-3 max-w-2xl">
-                                    {displayCoreSkills.map(skill => {
-                                        const isSelected = (skillsData[skill.id]?.level || 0) > 0;
+                                    {displayCorePotentials.map(potential => {
+                                        const isSelected = (safePotentialsData[potential.id]?.level || 0) > 0;
                                         return (
-                                            <CoreSkillCard
-                                                key={skill.id}
-                                                skill={skill}
+                                            <CorePotentialCard
+                                                key={potential.id}
+                                                potential={potential} 
                                                 isSelected={isSelected}
                                                 element={selectedChar.element}
-                                                onToggle={() => handleCoreToggle(skill.id)}
+                                                onToggle={() => handleCoreToggle(potential.id)}
                                             />
                                         );
                                     })}
@@ -291,7 +299,7 @@ const PartySlot = ({
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 px-1 gap-2">
                                     <div className="flex items-center gap-2">
                                         <div className="w-1 h-4 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
-                                        <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.subSkills')}</h4>
+                                        <h4 className="text-sm font-bold text-slate-300 uppercase tracking-wider">{t('slot.subPotentials')}</h4>
                                     </div>
 
                                     {/* ツールバー */}
@@ -312,7 +320,7 @@ const PartySlot = ({
                                         
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
-                                        {/* ソートボタン群 - ハイライトなし */}
+                                        {/* ソートボタン群 */}
                                         <button
                                             onClick={() => handleSort('default')}
                                             className="flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -338,20 +346,20 @@ const PartySlot = ({
                                 </div>
 
                                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3">
-                                    {displaySubSkills.map((skill) => {
-                                        const current = skillsData[skill.id] || { level: 0, priority: 'medium' };
+                                    {displaySubPotentials.map((potential) => {
+                                        const current = safePotentialsData[potential.id] || { level: 0, priority: 'medium' };
                                         return (
-                                            <SubSkillCard 
-                                                key={skill.id}
-                                                skill={skill}
+                                            <SubPotentialCard 
+                                                key={potential.id}
+                                                potential={potential} 
                                                 value={current.level}
                                                 priority={current.priority}
                                                 element={selectedChar.element}
-                                                onChange={(newVal) => onUpdateSkill(skill.id, newVal)}
-                                                isDragging={draggingId === skill.id}
-                                                onDragStart={(e) => handleDragStart(e, skill.id)}
+                                                onChange={(newVal) => onUpdatePotential(potential.id, newVal)}
+                                                isDragging={draggingId === potential.id}
+                                                onDragStart={(e) => handleDragStart(e, potential.id)}
                                                 onDragOver={handleDragOver}
-                                                onDrop={(e) => handleDrop(e, skill.id)}
+                                                onDrop={(e) => handleDrop(e, potential.id)}
                                                 onDragEnd={() => setDraggingId(null)}
                                             />
                                         );

@@ -1,50 +1,45 @@
 import { ELEMENTS } from './constants';
-import fuyuka from './skills/fuyuka';
-import nanoha from './skills/nanoha';
-import freesia from './skills/freesia';
-import minova from './skills/minova';     // minerva -> minova
-import mistique from './skills/mistique'; // misty -> mistique
-import chixia from './skills/chixia';     // chisia -> chixia
-import gerie from './skills/gerie';       // grey -> gerie
-import nazuna from './skills/nazuna';
-import chitose from './skills/chitose';
-import shia from './skills/shia';
-import amber from './skills/amber';       // kohaku -> amber
-import tilia from './skills/tilia';
-import kasimira from './skills/kasimira';
-import iris from './skills/iris';         // ayame -> iris
-import noya from './skills/noya';         // seina -> noya
-import shimiao from './skills/shimiao';
-import ridge from './skills/ridge';
-import jinglin from './skills/jinglin';
-import coronis from './skills/coronis';
-import canace from './skills/canace';
-import cosette from './skills/cosette';
-import caramel from './skills/caramel';
-import laru from './skills/laru';
-import ann from './skills/ann';           // anzu -> ann
-import flora from './skills/flora';
-import teresa from './skills/teresa';
+import fuyuka from './potentials/fuyuka';
+import nanoha from './potentials/nanoha';
+import freesia from './potentials/freesia';
+import minova from './potentials/minova';
+import mistique from './potentials/mistique';
+import chixia from './potentials/chixia';
+import gerie from './potentials/gerie';
+import nazuna from './potentials/nazuna';
+import chitose from './potentials/chitose';
+import shia from './potentials/shia';
+import amber from './potentials/amber';
+import tilia from './potentials/tilia';
+import kasimira from './potentials/kasimira';
+import iris from './potentials/iris';
+import noya from './potentials/noya';
+import shimiao from './potentials/shimiao';
+import ridge from './potentials/ridge';
+import jinglin from './potentials/jinglin';
+import coronis from './potentials/coronis';
+import canace from './potentials/canace';
+import cosette from './potentials/cosette';
+import caramel from './potentials/caramel';
+import laru from './potentials/laru';
+import ann from './potentials/ann';
+import flora from './potentials/flora';
+import teresa from './potentials/teresa';
 
-// 他のファイルからも使えるよう再エクスポート
-export { ELEMENTS, SKILL_STYLES } from './constants';
+// 【修正】SKILL_STYLES -> POTENTIAL_STYLES に変更
+export { ELEMENTS, POTENTIAL_STYLES } from './constants';
 
-// --- 画像読み込みロジック (追加) ---
-// src/assets/char_icon/ フォルダ内の全pngファイルを一括インポートします
-// ※ eager: true にすることで、非同期ではなく即座にパスを取得します
+// 画像読み込みロジック
+// src/data/index.js から見て ../assets/char_icon/
 const iconFiles = import.meta.glob('../assets/char_icon/*.png', { eager: true });
 
-// キャラクターIDから画像パスを取得する関数
 const getIconImage = (charId) => {
-    // このファイル(src/data/index.js)から見た画像の相対パス
-    // フォルダ構成が src/assets/char_icon/ であることを前提としています
     const path = `../assets/char_icon/icon_${charId}.png`;
     return iconFiles[path]?.default;
 };
-// ----------------------------------
 
-// 特定キャラのスキルマップ
-const SPECIFIC_SKILLS = {
+// 特定キャラのポテンシャルマップ
+const SPECIFIC_POTENTIALS = {
     fuyuka,
     nanoha,
     freesia,
@@ -73,12 +68,12 @@ const SPECIFIC_SKILLS = {
     teresa,
 };
 
-// スキル生成ロジック (Factory)
-const generateSkills = (charId, elementLabel) => {
-    const specific = SPECIFIC_SKILLS[charId];
+// ポテンシャル生成ロジック (Factory)
+const generatePotentials = (charId, elementLabel) => {
+    const specific = SPECIFIC_POTENTIALS[charId];
 
     if (specific) {
-        const mapSkills = (list, typePrefix, isCore) => list.map((s, i) => ({
+        const mapPotentials = (list, typePrefix, isCore) => list.map((s, i) => ({
             id: `${charId}_${typePrefix}_${i + 1}`,
             name: s.name,
             description: s.description || '詳細情報はありません',
@@ -88,10 +83,10 @@ const generateSkills = (charId, elementLabel) => {
         }));
 
         return {
-            mainCore: mapSkills(specific.mainCore, 'mc', true),
-            mainSub: mapSkills(specific.mainSub, 'ms', false),
-            supportCore: mapSkills(specific.supportCore, 'sc', true),
-            supportSub: mapSkills(specific.supportSub, 'ss', false),
+            mainCore: mapPotentials(specific.mainCore, 'mc', true),
+            mainSub: mapPotentials(specific.mainSub, 'ms', false),
+            supportCore: mapPotentials(specific.supportCore, 'sc', true),
+            supportSub: mapPotentials(specific.supportSub, 'ss', false),
         };
     }
 
@@ -100,7 +95,7 @@ const generateSkills = (charId, elementLabel) => {
         Array.from({ length: 4 }, (_, i) => ({
             id: `${charId}_${prefix}_c_${i + 1}`,
             name: `${elementLabel}コア${i + 1}`,
-            description: `未実装キャラクターのため、スキル${i + 1}の仮テキストが表示されています。`,
+            description: `未実装キャラクターのため、ポテンシャル${i + 1}の仮テキストが表示されています。`,
             type: 'core',
             bgType: 'core',
             isCore: true
@@ -125,7 +120,7 @@ const generateSkills = (charId, elementLabel) => {
         return configs.map((conf, i) => ({
             id: `${charId}_${prefix}_s_${i + 1}`,
             name: `${elementLabel}${conf.label}`,
-            description: `未実装キャラクターのため、スキル${i + 1}の仮テキストが表示されています。`,
+            description: `未実装キャラクターのため、ポテンシャル${i + 1}の仮テキストが表示されています。`,
             type: 'passive',
             bgType: conf.bgType,
             isCore: false
@@ -170,10 +165,8 @@ const RAW_CHARACTERS = [
     { id: 'flora', uid: 126, name: 'フローラ', element: ELEMENTS.FIRE, role: 'バランサー', rank: 4 },
 ];
 
-// ここで画像を動的に割り当てます
 export const CHARACTERS = RAW_CHARACTERS.map(char => ({
     ...char,
-    // IDに基づいて画像を自動設定 (例: id='fuyuka' -> icon_fuyuka.png)
     imagePath: getIconImage(char.id),
-    skillSets: generateSkills(char.id, char.element.label)
+    potentialSets: generatePotentials(char.id, char.element.label)
 }));

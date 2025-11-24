@@ -17,8 +17,8 @@ export const ELEMENTS = {
     DARK: { id: 'dark', label: '闇', color: 'from-purple-500 to-slate-800', bgColor: 'bg-purple-900/40', icon: Moon, textColor: 'text-purple-400' },
 };
 
-// スキル背景スタイルの定義
-export const SKILL_STYLES = {
+// ポテンシャル背景スタイルの定義 (旧 SKILL_STYLES)
+export const POTENTIAL_STYLES = {
     core: {
         className: "", 
         style: {
