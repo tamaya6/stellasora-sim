@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown, Camera } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { toPng } from 'html-to-image';
-import { CHARACTERS } from './data';
-import { generateShareHash, loadFromUrl, reorder } from './utils/storage';
+import { generateShareHash, loadFromUrl, reorder, saveToUrl } from './utils/storage';
 
 // カスタムフック
 import { useParty } from './hooks/useParty';
 import { useSaves } from './hooks/useSaves';
 import { useScreenshot } from './hooks/useScreenshot';
+import { useCharacters } from './hooks/useCharacters';
 
 // コンポーネント
 import ConfirmModal from './components/ui/ConfirmModal';
@@ -17,11 +17,23 @@ import SaveSlot from './components/feature/SaveSlot';
 import PartySlot from './components/feature/PartySlot';
 import ScreenshotModal from './components/feature/ScreenshotModal';
 
-export default function App() {
+const App = () => {
     const { t, i18n } = useTranslation();
-    
+    const characters = useCharacters();
+
     // カスタムフックの使用
-    const party = useParty();
+    const {
+        party,
+        setParty,
+        isLoaded,
+        updateSlot,
+        updatePotential,
+        clearSlot,
+        reorderPotentials,
+        updatePotentialOrder,
+        updateSlotSettings,
+        resetAll
+    } = useParty();
     const storage = useSaves();
     const screenshot = useScreenshot();
 
@@ -30,13 +42,27 @@ export default function App() {
     const [toast, setToast] = useState({ message: null, type: 'info' });
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const langMenuRef = useRef(null);
-    
+
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [screenshotMode, setScreenshotMode] = useState(false);
+    const contentRef = useRef(null);
+
     const [confirmState, setConfirmState] = useState({
         isOpen: false,
         message: '',
-        onConfirm: () => {},
+        onConfirm: () => { },
         isDestructive: false
     });
+
+    // URLハッシュの更新
+    useEffect(() => {
+        if (isLoaded && characters.length > 0) {
+            // URLの自動更新を停止
+            // const hash = generateShareHash(party, characters);
+            // window.history.replaceState(null, '', hash);
+            saveToUrl(party); // LocalStorage update (backup)
+        }
+    }, [party, isLoaded, characters]);
 
     // 言語メニューの外側クリック検知
     useEffect(() => {
@@ -73,23 +99,23 @@ export default function App() {
     const onResetAll = () => {
         showConfirm(
             t('confirm.resetAll'),
-            () => party.resetAll(),
+            () => resetAll(),
             true
         );
     };
 
     const onSaveData = (index) => {
-        storage.saveGame(index, party.party);
+        storage.saveGame(index, party);
     };
 
     const onLoadData = (index) => {
-        const data = storage.loadGame(index); 
+        const data = storage.loadGame(index);
         if (!data) return;
 
         showConfirm(
             t('confirm.loadData', { index: index + 1 }),
             // データの正規化は useParty.setParty 内で行われる
-            () => party.setParty(data)
+            () => setParty(data)
         );
     };
 
@@ -109,9 +135,9 @@ export default function App() {
     };
 
     const onCopyUrl = () => {
-        const hash = generateShareHash(party.party);
+        const hash = generateShareHash(party, characters);
         const shareUrl = hash ? `${window.location.origin}${window.location.pathname}${hash}` : window.location.href;
-        
+
         const fallbackCopyTextToClipboard = (text) => {
             const textArea = document.createElement("textarea");
             textArea.value = text;
@@ -170,10 +196,10 @@ export default function App() {
                         </h1>
                     </div>
                     <div className="flex gap-2 items-center">
-                        
+
                         {/* 言語切り替え */}
                         <div className="relative" ref={langMenuRef}>
-                            <button 
+                            <button
                                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                                 className={`flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm rounded transition-all border ${isLangMenuOpen ? 'bg-slate-800 text-white border-slate-600' : 'text-slate-400 border-transparent hover:bg-slate-800 hover:border-slate-700'}`}
                             >
@@ -185,14 +211,14 @@ export default function App() {
 
                             {isLangMenuOpen && (
                                 <div className="absolute right-0 top-full mt-2 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                                    <button 
+                                    <button
                                         onClick={() => changeLanguage('ja')}
                                         className={`w-full text-left px-4 py-2 text-xs sm:text-sm flex items-center justify-between hover:bg-slate-800 transition-colors ${i18n.language === 'ja' ? 'text-yellow-400 font-bold' : 'text-slate-300'}`}
                                     >
                                         <span>日本語</span>
                                         {i18n.language === 'ja' && <Check size={12} />}
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={() => changeLanguage('en')}
                                         className={`w-full text-left px-4 py-2 text-xs sm:text-sm flex items-center justify-between hover:bg-slate-800 transition-colors ${i18n.language === 'en' ? 'text-yellow-400 font-bold' : 'text-slate-300'}`}
                                     >
@@ -204,9 +230,9 @@ export default function App() {
                         </div>
 
                         <div className="w-px h-6 bg-slate-800 mx-1 hidden sm:block"></div>
-                        
+
                         {/* スクリーンショットボタン */}
-                        <button 
+                        <button
                             onClick={onTakeScreenshot}
                             disabled={screenshot.isTaking}
                             className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 text-xs sm:text-sm text-slate-300 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
@@ -216,14 +242,14 @@ export default function App() {
                             <span className="hidden sm:inline">{t('screenshot')}</span>
                         </button>
 
-                        <button 
+                        <button
                             onClick={onResetAll}
                             className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 text-xs sm:text-sm text-red-400 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
                         >
-                            <RotateCcw size={14} className="sm:w-4 sm:h-4" /> 
+                            <RotateCcw size={14} className="sm:w-4 sm:h-4" />
                             <span className="hidden sm:inline">{t('reset')}</span>
                         </button>
-                        <button 
+                        <button
                             onClick={onCopyUrl}
                             className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-bold rounded shadow-lg transition-all border ${isCopied ? 'bg-green-600 border-green-500 text-white' : 'bg-indigo-600 border-indigo-500 hover:bg-indigo-500 text-white'}`}
                         >
@@ -245,10 +271,10 @@ export default function App() {
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                         {storage.saves.map((save, idx) => (
-                            <SaveSlot 
-                                key={idx} 
+                            <SaveSlot
+                                key={idx}
                                 index={idx}
-                                data={save} 
+                                data={save}
                                 onSave={() => onSaveData(idx)}
                                 onLoad={() => onLoadData(idx)}
                                 onDelete={() => onDeleteData(idx)}
@@ -261,22 +287,22 @@ export default function App() {
 
             {/* スクリーンショット撮影対象エリア */}
             <main ref={screenshot.ref} className="flex-1 w-full max-w-7xl mx-auto p-4 space-y-4 overflow-y-auto bg-slate-950">
-                {party.party.map((slot, idx) => (
-                    <PartySlot 
+                {party.map((slot, idx) => (
+                    <PartySlot
                         key={idx}
                         slotIndex={idx}
                         charId={slot.charId}
                         potentialsData={slot.potentials} // skills -> potentials
                         potentialOrder={slot.potentialOrder} // skillOrder -> potentialOrder
-                        sortMode={slot.sortMode} 
-                        hideUnacquired={slot.hideUnacquired} 
+                        sortMode={slot.sortMode}
+                        hideUnacquired={slot.hideUnacquired}
                         slotTypeLabel={idx === 0 ? t('slot.main') : t('slot.support')}
-                        onSelectChar={(id) => party.updateSlot(idx, id)}
-                        onUpdatePotential={(pId, pData) => party.updatePotential(idx, pId, pData)}
-                        onClear={() => party.clearSlot(idx)}
-                        onReorderPotentials={(src, dst) => party.reorderPotentials(idx, src, dst)}
-                        onUpdatePotentialOrder={(newOrder) => party.updatePotentialOrder(idx, newOrder)}
-                        onUpdateSettings={(settings) => party.updateSlotSettings(idx, settings)}
+                        onSelectChar={(id) => updateSlot(idx, id)}
+                        onUpdatePotential={(pId, pData) => updatePotential(idx, pId, pData)}
+                        onClear={() => clearSlot(idx)}
+                        onReorderPotentials={(src, dst) => reorderPotentials(idx, src, dst)}
+                        onUpdatePotentialOrder={(newOrder) => updatePotentialOrder(idx, newOrder)}
+                        onUpdateSettings={(settings) => updateSlotSettings(idx, settings)}
                     />
                 ))}
             </main>
@@ -284,9 +310,9 @@ export default function App() {
             <footer className="py-6 text-center text-slate-500 text-xs flex flex-col gap-2">
                 <div>{t('footer.copyright')}</div>
                 <div>
-                    <a 
-                        href="https://github.com/tamaya6/stellasora-sim" 
-                        target="_blank" 
+                    <a
+                        href="https://github.com/tamaya6/stellasora-sim"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-slate-300 transition-colors underline"
                     >
@@ -294,16 +320,16 @@ export default function App() {
                     </a>
                 </div>
             </footer>
-            
+
             {/* トースト通知 */}
-            <Toast 
-                message={toast.message} 
-                type={toast.type} 
-                onClose={closeToast} 
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={closeToast}
             />
 
             {/* 確認モーダル */}
-            <ConfirmModal 
+            <ConfirmModal
                 isOpen={confirmState.isOpen}
                 onClose={() => setConfirmState(prev => ({ ...prev, isOpen: false }))}
                 onConfirm={confirmState.onConfirm}
@@ -312,7 +338,7 @@ export default function App() {
             />
 
             {/* スクリーンショットプレビューモーダル */}
-            <ScreenshotModal 
+            <ScreenshotModal
                 isOpen={screenshot.isModalOpen}
                 onClose={screenshot.closeModal}
                 imageData={screenshot.screenshotData}
@@ -320,3 +346,5 @@ export default function App() {
         </div>
     );
 }
+
+export default App;

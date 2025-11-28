@@ -1,41 +1,42 @@
 import React, { useState, useMemo } from 'react';
 import { AlertCircle, Trash2, User, ArrowDownWideNarrow, BarChart3, RotateCcw, Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { CHARACTERS } from '../../data';
+import { useCharacters } from '../../hooks/useCharacters';
 import CharacterSelectModal from './CharacterSelectModal';
 import CorePotentialCard from './CorePotentialCard';
 import SubPotentialCard from './SubPotentialCard';
 import CharacterIcon from '../ui/CharacterIcon';
 import RankStars from '../ui/RankStars';
 
-const PartySlot = ({ 
-    slotIndex, 
-    charId, 
-    potentialsData, 
-    potentialOrder, 
+const PartySlot = ({
+    slotIndex,
+    charId,
+    potentialsData,
+    potentialOrder,
     sortMode = 'default',
-    hideUnacquired = false, 
-    onSelectChar, 
-    onUpdatePotential, 
-    onClear, 
-    onReorderPotentials, 
-    onUpdatePotentialOrder, 
-    onUpdateSettings, 
-    slotTypeLabel 
+    hideUnacquired = false,
+    onSelectChar,
+    onUpdatePotential,
+    onClear,
+    onReorderPotentials,
+    onUpdatePotentialOrder,
+    onUpdateSettings,
+    slotTypeLabel
 }) => {
     const { t } = useTranslation();
+    const characters = useCharacters();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [draggingId, setDraggingId] = useState(null);
 
-    const selectedChar = CHARACTERS.find(c => c.id === charId);
+    const selectedChar = characters.find(c => c.id === charId);
     const ElementIcon = selectedChar?.element?.icon || AlertCircle;
 
     const isMainSlot = slotIndex === 0;
     const categoryPrefix = isMainSlot ? 'main' : 'support';
-    
+
     const safePotentialsData = (potentialsData && typeof potentialsData === 'object') ? potentialsData : {};
     const safePotentialOrder = Array.isArray(potentialOrder) ? potentialOrder : [];
-    
+
     const corePotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Core`] || []) : [];
     const subPotentialPool = selectedChar ? (selectedChar.potentialSets[`${categoryPrefix}Sub`] || []) : [];
 
@@ -47,7 +48,7 @@ const PartySlot = ({
             const remaining = subPotentialPool.filter(s => !existingIds.has(s.id));
             orderedSubPotentials = [...mapped, ...remaining];
         } else {
-            orderedSubPotentials = subPotentialPool; 
+            orderedSubPotentials = subPotentialPool;
         }
     }
 
@@ -60,7 +61,7 @@ const PartySlot = ({
     const displayCorePotentials = corePotentialPool.filter(potential => {
         if (!hideUnacquired) return true;
         const current = safePotentialsData[potential.id] || { level: 0 };
-        return current.level > 0; 
+        return current.level > 0;
     });
 
     const handleSort = (mode) => {
@@ -68,13 +69,13 @@ const PartySlot = ({
 
         let currentCoreIds = [];
         if (safePotentialOrder.length > 0) {
-             currentCoreIds = safePotentialOrder.filter(id => corePotentialPool.some(core => core.id === id));
-             const existingCoreSet = new Set(currentCoreIds);
-             corePotentialPool.forEach(core => {
-                 if (!existingCoreSet.has(core.id)) currentCoreIds.push(core.id);
-             });
+            currentCoreIds = safePotentialOrder.filter(id => corePotentialPool.some(core => core.id === id));
+            const existingCoreSet = new Set(currentCoreIds);
+            corePotentialPool.forEach(core => {
+                if (!existingCoreSet.has(core.id)) currentCoreIds.push(core.id);
+            });
         } else {
-             currentCoreIds = corePotentialPool.map(c => c.id);
+            currentCoreIds = corePotentialPool.map(c => c.id);
         }
 
         let sortedSubIds = [];
@@ -83,7 +84,7 @@ const PartySlot = ({
             sortedSubIds = subPotentialPool.map(s => s.id);
         } else {
             const getPriorityValue = (p) => {
-                switch(p) {
+                switch (p) {
                     case 'highest': return 4; // 最優先を追加
                     case 'high': return 3;
                     case 'medium': return 2;
@@ -98,7 +99,7 @@ const PartySlot = ({
 
                 const aAcquired = aData.level > 0;
                 const bAcquired = bData.level > 0;
-                
+
                 if (aAcquired !== bAcquired) {
                     return aAcquired ? -1 : 1;
                 }
@@ -188,13 +189,13 @@ const PartySlot = ({
 
     return (
         <>
-            <CharacterSelectModal 
-                isOpen={isModalOpen} 
+            <CharacterSelectModal
+                isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSelect={handleSelect}
             />
             <div className="flex flex-col md:flex-row w-full bg-slate-900/60 backdrop-blur border border-slate-700/50 rounded-xl overflow-hidden shadow-xl mb-4 min-h-[240px]">
-                
+
                 {/* 左側: キャラ情報 */}
                 <div className={`
                     md:w-60 flex-shrink-0 p-4 transition-all duration-300 relative overflow-hidden shadow-md
@@ -206,8 +207,8 @@ const PartySlot = ({
                                 <h3 className="font-bold text-white drop-shadow-md text-xs uppercase tracking-widest opacity-80">{t('slot.prefix')} {slotIndex + 1}</h3>
                                 <span className="px-2 py-0.5 rounded-full bg-black/40 text-[10px] text-white font-bold border border-white/20 whitespace-nowrap">{slotTypeLabel}</span>
                             </div>
-                            
-                            <button 
+
+                            <button
                                 onClick={() => setIsModalOpen(true)}
                                 className="flex md:flex-col items-center md:items-start gap-3 group text-left hover:bg-black/20 p-2 rounded-xl transition-colors w-full border border-transparent hover:border-white/10"
                             >
@@ -232,7 +233,7 @@ const PartySlot = ({
                                                 <span className="opacity-70">|</span>
                                                 <span className="text-[13px]">{selectedChar.role}</span>
                                             </div>
-                                            
+
                                             <div className="mt-2 pt-2 border-t border-white/20 hidden md:block">
                                                 <div className="flex justify-between items-baseline">
                                                     <div className="text-[13px] text-white/80">{t('slot.totalPoints')}</div>
@@ -248,11 +249,11 @@ const PartySlot = ({
                                 </div>
                             </button>
                         </div>
-                        
+
                         {selectedChar && (
-                            <button 
-                                onClick={onClear} 
-                                className="text-white/60 hover:text-white p-2 hover:bg-black/20 rounded-full transition-colors md:self-start" 
+                            <button
+                                onClick={onClear}
+                                className="text-white/60 hover:text-white p-2 hover:bg-black/20 rounded-full transition-colors md:self-start"
                                 title={t('slot.tooltipRemove')}
                             >
                                 <Trash2 size={20} />
@@ -278,7 +279,7 @@ const PartySlot = ({
                                         return (
                                             <CorePotentialCard
                                                 key={potential.id}
-                                                potential={potential} 
+                                                potential={potential}
                                                 isSelected={isSelected}
                                                 element={selectedChar.element}
                                                 onToggle={() => handleCoreToggle(potential.id)}
@@ -301,17 +302,16 @@ const PartySlot = ({
                                         {/* 未取得非表示ボタン */}
                                         <button
                                             onClick={() => onUpdateSettings({ hideUnacquired: !hideUnacquired })}
-                                            className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-colors border ${
-                                                hideUnacquired 
-                                                ? 'bg-indigo-600 text-white border-indigo-500' 
-                                                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
-                                            }`}
+                                            className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-colors border ${hideUnacquired
+                                                    ? 'bg-indigo-600 text-white border-indigo-500'
+                                                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
+                                                }`}
                                             title={hideUnacquired ? t('slot.tooltipShowAll') : t('slot.tooltipHideUnacquired')}
                                         >
                                             {hideUnacquired ? <EyeOff size={12} /> : <Eye size={12} />}
                                             <span className="hidden sm:inline">{t('slot.hideUnacquired')}</span>
                                         </button>
-                                        
+
                                         <div className="w-px h-3 bg-slate-700 mx-1"></div>
 
                                         {/* ソートボタン群 */}
@@ -343,9 +343,9 @@ const PartySlot = ({
                                     {displaySubPotentials.map((potential) => {
                                         const current = safePotentialsData[potential.id] || { level: 0, priority: 'medium' };
                                         return (
-                                            <SubPotentialCard 
+                                            <SubPotentialCard
                                                 key={potential.id}
-                                                potential={potential} 
+                                                potential={potential}
                                                 value={current.level}
                                                 priority={current.priority}
                                                 element={selectedChar.element}
@@ -363,7 +363,7 @@ const PartySlot = ({
                         </>
                     ) : (
                         <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-3 opacity-50 min-h-[200px]">
-                             <button 
+                            <button
                                 onClick={() => setIsModalOpen(true)}
                                 className="w-16 h-16 border-2 border-dashed border-slate-600 rounded-full flex items-center justify-center hover:border-slate-400 hover:text-slate-300 transition-colors group"
                             >
@@ -372,7 +372,7 @@ const PartySlot = ({
                             <p className="text-sm">{t('modal.selectCharacter')}</p>
                         </div>
                     )}
-                    
+
                     {/* 素質数表示 (モバイル向けフッター) */}
                     {selectedChar && (
                         <div className="md:hidden mt-4 pt-2 border-t border-slate-800 flex justify-between items-center text-sm text-slate-400">

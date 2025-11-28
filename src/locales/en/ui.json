@@ -38,12 +38,21 @@
     "highest": "Highest",
     "high": "High",
     "medium": "Mid",
-    "low": "Low"
+    "low": "Low",
+    "unacquired": "Not Acquired"
   },
   "filter": {
     "element": "Element",
     "rank": "Rank",
     "all": "ALL"
+  },
+  "element": {
+    "fire": "Ignis",
+    "water": "Aqua",
+    "earth": "Terra",
+    "wind": "Ventus",
+    "light": "Lux",
+    "dark": "Umbra"
   },
   "modal": {
     "selectCharacter": "Select Character",

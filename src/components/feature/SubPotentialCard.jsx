@@ -4,17 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { POTENTIAL_STYLES } from '../../data';
 import PortalTooltip from '../ui/PortalTooltip';
 
-const SubPotentialCard = ({ 
-    potential, 
-    value, 
-    priority, 
+const SubPotentialCard = ({
+    potential,
+    value,
+    priority,
     element,
-    onChange, 
+    onChange,
     onDragStart,
     onDragOver,
     onDrop,
     onDragEnd,
-    isDragging 
+    isDragging
 }) => {
     const { t } = useTranslation();
     const isAcquired = value > 0;
@@ -34,7 +34,7 @@ const SubPotentialCard = ({
 
     const handleMouseEnter = (e) => {
         if (isDragging) return;
-        
+
         const rect = e.currentTarget.getBoundingClientRect();
         setTooltipPos({
             top: rect.top,
@@ -54,14 +54,14 @@ const SubPotentialCard = ({
         low: 'bg-blue-500 text-white border-blue-400',
         none: 'bg-gray-700 text-gray-400 border-gray-600'
     };
-    
+
     const ElementIcon = element.icon;
 
     return (
         <>
-            <div 
+            <div
                 className={`
-                    relative flex flex-col border rounded-lg overflow-visible transition-all duration-200 h-40 group
+                    relative flex flex-col border rounded-lg overflow-visible transition-all duration-200 h-45 group
                     ${isAcquired ? 'border-slate-400 shadow-lg' : 'border-slate-700 bg-slate-900/80'} 
                     ${isDragging ? 'opacity-40 ring-2 ring-indigo-500 scale-95' : 'hover:border-slate-400'}
                 `}
@@ -74,7 +74,7 @@ const SubPotentialCard = ({
                 onDrop={onDrop}
                 onDragEnd={onDragEnd}
             >
-                <div 
+                <div
                     className={`flex-1 w-full flex flex-col items-center justify-center relative transition-all duration-300 py-2 rounded-t-lg ${!isAcquired ? 'bg-slate-900' : ''} cursor-grab active:cursor-grabbing`}
                     style={isAcquired ? designStyle.style : {}}
                     onMouseEnter={handleMouseEnter}
@@ -92,25 +92,33 @@ const SubPotentialCard = ({
                             <GripVertical size={12} />
                         </div>
 
-                        <div className="mb-1">
+                        <div className="">
                             {isAcquired ? (
-                                <div className="relative z-10 mt-2">
-                                    <ElementIcon className="w-8 h-8 text-white drop-shadow-glow" strokeWidth={2} />
+                                <div className="relative z-10">
+                                    {potential.iconPath ? (
+                                        <img
+                                            src={potential.iconPath}
+                                            alt={potential.name}
+                                            className="w-15 h-15 object-contain drop-shadow-glow"
+                                        />
+                                    ) : (
+                                        <ElementIcon className="w-8 h-8 text-white drop-shadow-glow" strokeWidth={2} />
+                                    )}
                                 </div>
                             ) : (
                                 <div className="text-slate-400 text-xs font-bold pointer-events-none py-1 px-2 bg-black/40 rounded">{t('card.unacquired')}</div>
                             )}
                         </div>
-                        
-                        <div className="w-full px-1 text-center z-10 mt-auto">
-                            <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-0.5 rounded ${isAcquired ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
+
+                        <div className="w-full text-center z-10 mt-auto">
+                            <div className={`text-sm font-bold leading-tight line-clamp-2 py-1 px-1 rounded ${isAcquired ? 'text-white bg-black/40' : 'text-slate-400 bg-black/20'}`}>
                                 {potential.name}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div 
+                <div
                     className={`h-auto p-1 flex flex-col gap-1 cursor-default bg-slate-900 border-t border-slate-700 relative z-20 rounded-b-lg ${!isAcquired ? 'opacity-60' : ''}`}
                     draggable={true}
                     onDragStart={(e) => { e.preventDefault(); e.stopPropagation(); }}
@@ -124,7 +132,10 @@ const SubPotentialCard = ({
                     </div>
 
                     {/* グリッド比率を変更: 最優先(1.4fr) 他(1fr) */}
-                    <div className={`grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-0.5 text-[10px] transition-opacity duration-200 ${isAcquired ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}>
+                    <div
+                        className={`grid gap-0.5 text-[10px] transition-opacity duration-200 ${isAcquired ? 'opacity-100' : 'opacity-20 pointer-events-none'}`}
+                        style={{ gridTemplateColumns: '1.4fr 1fr 1fr 1fr' }}
+                    >
                         {['highest', 'high', 'medium', 'low'].map(p => (
                             <button
                                 key={p}
@@ -139,7 +150,7 @@ const SubPotentialCard = ({
                 </div>
             </div>
 
-            <PortalTooltip 
+            <PortalTooltip
                 title={potential.name}
                 description={potential.description}
                 visible={showTooltip && !isDragging}
