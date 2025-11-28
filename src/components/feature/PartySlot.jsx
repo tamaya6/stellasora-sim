@@ -303,8 +303,8 @@ const PartySlot = ({
                                         <button
                                             onClick={() => onUpdateSettings({ hideUnacquired: !hideUnacquired })}
                                             className={`flex items-center gap-1 px-2 py-1 rounded text-[10px] font-bold transition-colors border ${hideUnacquired
-                                                    ? 'bg-indigo-600 text-white border-indigo-500'
-                                                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
+                                                ? 'bg-indigo-600 text-white border-indigo-500'
+                                                : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white hover:bg-slate-700'
                                                 }`}
                                             title={hideUnacquired ? t('slot.tooltipShowAll') : t('slot.tooltipHideUnacquired')}
                                         >
@@ -339,7 +339,7 @@ const PartySlot = ({
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-3">
+                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-2 md:gap-3">
                                     {displaySubPotentials.map((potential) => {
                                         const current = safePotentialsData[potential.id] || { level: 0, priority: 'medium' };
                                         return (
