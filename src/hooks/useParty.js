@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CHARACTERS } from '../data';
+import { useCharacters } from './useCharacters';
 import { loadFromUrl, reorder } from '../utils/storage';
 
 const INITIAL_PARTY = [
@@ -11,7 +11,7 @@ const INITIAL_PARTY = [
 // データの正規化関数（古いデータ構造を新しいものに変換）
 const normalizePartyData = (data) => {
     if (!Array.isArray(data)) return INITIAL_PARTY;
-    
+
     return data.map(slot => {
         // スキルデータの移行: potentials がなければ skills を使う
         let potentials = slot.potentials;
@@ -40,19 +40,24 @@ const normalizePartyData = (data) => {
 export const useParty = () => {
     const [party, setParty] = useState(INITIAL_PARTY);
     const [isLoaded, setIsLoaded] = useState(false);
+    const characters = useCharacters();
 
     // 初期化時にURLから復元
     useEffect(() => {
-        const loadedFromUrl = loadFromUrl();
+        if (characters.length === 0) return;
+
+        const loadedFromUrl = loadFromUrl(characters);
         if (loadedFromUrl && Array.isArray(loadedFromUrl) && loadedFromUrl.length === 3) {
             // ロードしたデータを正規化してからセット
             setParty(normalizePartyData(loadedFromUrl));
-            
+
             const cleanUrl = window.location.pathname + window.location.search;
             window.history.replaceState(null, '', cleanUrl);
         }
+        // URLにデータがない場合は何もしない（初期状態＝空）
+
         setIsLoaded(true);
-    }, []);
+    }, [characters]);
 
     // 外部からデータをセットする際も正規化を通す
     const setPartyData = (newData) => {
@@ -61,18 +66,18 @@ export const useParty = () => {
 
     const updateSlot = (slotIndex, charId) => {
         const newParty = [...party];
-        const selectedChar = CHARACTERS.find(c => c.id === charId);
-        
+        const selectedChar = characters.find(c => c.id === charId);
+
         const targetCategory = slotIndex === 0 ? 'main' : 'support';
         const subPotentialPool = selectedChar ? selectedChar.potentialSets[`${targetCategory}Sub`] : [];
         const defaultOrder = subPotentialPool.map(s => s.id);
-        
-        newParty[slotIndex] = { 
-            charId, 
-            potentials: {}, 
+
+        newParty[slotIndex] = {
+            charId,
+            potentials: {},
             potentialOrder: defaultOrder,
             sortMode: 'default',
-            hideUnacquired: false 
+            hideUnacquired: false
         };
         setParty(newParty);
     };
@@ -93,9 +98,9 @@ export const useParty = () => {
 
     const clearSlot = (slotIndex) => {
         const newParty = [...party];
-        newParty[slotIndex] = { 
-            charId: null, 
-            potentials: {}, 
+        newParty[slotIndex] = {
+            charId: null,
+            potentials: {},
             potentialOrder: [],
             sortMode: 'default',
             hideUnacquired: false
@@ -114,7 +119,7 @@ export const useParty = () => {
             if (sourceIndex === -1 || targetIndex === -1) return slot;
 
             const newOrder = reorder(currentOrder, sourceIndex, targetIndex);
-            
+
             return {
                 ...slot,
                 potentialOrder: newOrder

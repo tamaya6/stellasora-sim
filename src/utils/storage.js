@@ -1,12 +1,10 @@
-import { CHARACTERS } from '../data';
-
 // --- 定数・変換マップ ---
 
 const VERSION_PREFIX = 'v2'; // ロジック変更のためv2へ
 
 // 優先度(4段階)とレベル(6段階)を1文字に圧縮するためのマップ
 // Max = (6-1)*4 + 3 + 1 = 24 なので、25文字以上必要
-const POTENTIAL_VAL_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+const POTENTIAL_VAL_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // 0-11 のインデックスを1文字で表すマップ (順序保存用)
 const ORDER_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -17,7 +15,7 @@ const ORDER_CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
 // 優先度: low=0, medium=1, high=2, highest=3
 const encodePotentialVal = (potential) => {
     if (!potential || potential.level === 0) return 0;
-    
+
     let pVal = 1; // default medium
     if (potential.priority === 'low') pVal = 0;
     else if (potential.priority === 'medium') pVal = 1;
@@ -32,11 +30,11 @@ const encodePotentialVal = (potential) => {
 // 数値(0-24)をポテンシャル情報オブジェクトに復元
 const decodePotentialVal = (val) => {
     if (val === 0) return { level: 0, priority: 'medium' };
-    
+
     const adjusted = val - 1;
     const level = Math.floor(adjusted / 4) + 1;
     const pVal = adjusted % 4;
-    
+
     let priority = 'medium';
     if (pVal === 0) priority = 'low';
     else if (pVal === 1) priority = 'medium';
@@ -53,13 +51,13 @@ const compressSlot = (slot) => {
 };
 
 // 全体圧縮
-const compress = (state) => {
+const compress = (state, characters) => {
     const compressedSlots = state.map((slot, index) => {
         if (!slot.charId) return "";
 
-        const charIdx = CHARACTERS.findIndex(c => c.id === slot.charId);
+        const charIdx = characters.findIndex(c => c.id === slot.charId);
         if (charIdx === -1) return "";
-        const charData = CHARACTERS[charIdx];
+        const charData = characters[charIdx];
 
         const categoryPrefix = index === 0 ? 'main' : 'support';
         const corePotentials = charData.potentialSets[`${categoryPrefix}Core`];
@@ -89,12 +87,12 @@ const compress = (state) => {
         if (slot.sortMode === 'priority') flagVal += 1;
         if (slot.sortMode === 'level') flagVal += 2;
         if (slot.hideUnacquired) flagVal += 4;
-        const flagStr = flagVal.toString(16); 
+        const flagStr = flagVal.toString(16);
 
         // 4. 並び順 (Order)
         const defaultOrder = subPotentials.map(s => s.id);
         const currentSubOrder = currentOrder.filter(id => subPotentials.some(s => s.id === id));
-        
+
         let orderStr = "";
         let isDefault = true;
         if (currentSubOrder.length !== defaultOrder.length) {
@@ -124,7 +122,7 @@ const compress = (state) => {
 
 // --- 復元ロジック ---
 
-const decompress = (hash) => {
+const decompress = (hash, characters) => {
     // v1互換性維持 (旧ロジックで復元を試みる)
     if (hash.startsWith('v1.')) {
         // v1ロジックの簡易版実装（本来は別関数に分けるべきだが簡略化）
@@ -139,7 +137,7 @@ const decompress = (hash) => {
     }
 
     if (!hash.startsWith(VERSION_PREFIX + '.')) {
-         try {
+        try {
             // 旧JSON形式
             const json = decodeURIComponent(escape(atob(hash)));
             const parsed = JSON.parse(json);
@@ -164,11 +162,11 @@ const decompress = (hash) => {
 
         const parts = str.split('_');
         const charIdxStr = parts[0];
-        const dataStr = parts[1]; 
-        const orderStr = parts[2]; 
+        const dataStr = parts[1];
+        const orderStr = parts[2];
 
         const charIdx = parseInt(charIdxStr, 36);
-        const charData = CHARACTERS[charIdx];
+        const charData = characters[charIdx];
         if (!charData) return { charId: null, potentials: {}, potentialOrder: [], sortMode: 'default', hideUnacquired: false };
 
         const categoryPrefix = index === 0 ? 'main' : 'support';
@@ -196,7 +194,7 @@ const decompress = (hash) => {
         const flagIndex = 1 + subPotentialsDef.length;
         const flagChar = dataStr[flagIndex];
         const flagVal = flagChar ? parseInt(flagChar, 16) : 0;
-        
+
         const hideUnacquired = (flagVal & 4) !== 0;
         const sortModeVal = flagVal & 3;
         const sortMode = sortModeVal === 1 ? 'priority' : sortModeVal === 2 ? 'level' : 'default';
@@ -207,7 +205,7 @@ const decompress = (hash) => {
                 const idx = ORDER_CHARS.indexOf(c);
                 return subPotentialsDef[idx]?.id;
             }).filter(Boolean);
-            
+
             const coreIds = corePotentialsDef.map(s => s.id);
             potentialOrder = [...coreIds, ...subOrder];
         } else {
@@ -219,8 +217,8 @@ const decompress = (hash) => {
 
         return {
             charId: charData.id,
-            potentials,       
-            potentialOrder,   
+            potentials,
+            potentialOrder,
             sortMode,
             hideUnacquired
         };
@@ -229,16 +227,16 @@ const decompress = (hash) => {
 
 // --- エクスポート ---
 
-export const generateShareHash = (state) => {
-    return `#${compress(state)}`;
+export const generateShareHash = (state, characters) => {
+    return `#${compress(state, characters)}`;
 };
 
-export const loadFromUrl = () => {
+export const loadFromUrl = (characters) => {
     try {
         const hash = window.location.hash;
         if (!hash) return null;
-        
-        let content = hash.substring(1); 
+
+        let content = hash.substring(1);
         if (content.startsWith('build=')) {
             content = content.replace('build=', '');
             // JSON形式のみ対応（v1ハッシュは非対応化）
@@ -246,15 +244,25 @@ export const loadFromUrl = () => {
                 const json = decodeURIComponent(escape(atob(content)));
                 const parsed = JSON.parse(json);
                 if (Array.isArray(parsed)) return parsed;
-            } catch {}
+            } catch { }
             return null;
         } else if (content.startsWith(VERSION_PREFIX)) {
-            return decompress(content);
+            return decompress(content, characters);
         }
     } catch (e) {
         console.error("Load failed", e);
     }
     return null;
+};
+
+const STORAGE_KEY = 'stellasora-sim-v2';
+
+export const saveToUrl = (state) => {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.error("Failed to save to local storage", e);
+    }
 };
 
 export const reorder = (list, startIndex, endIndex) => {

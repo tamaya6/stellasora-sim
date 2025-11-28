@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Clock, Trash2, Download, Save, FilePlus } from 'lucide-react';
-import { CHARACTERS } from '../../data';
 import { useTranslation } from 'react-i18next';
+import { useCharacters } from '../../hooks/useCharacters';
 import PortalTooltip from '../ui/PortalTooltip';
 
 const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) => {
     const { t } = useTranslation();
+    const characters = useCharacters();
     const hasData = !!data;
     const [isSaved, setIsSaved] = useState(false);
 
@@ -32,13 +33,13 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
     const handleMouseLeave = () => {
         setTooltip(prev => ({ ...prev, visible: false }));
     };
-    
+
     const getCharIcon = (charId) => {
-        const char = CHARACTERS.find(c => c.id === charId);
+        const char = characters.find(c => c.id === charId);
         if (!char) return null;
         const Icon = char.element.icon;
         return (
-            <div 
+            <div
                 className={`w-full h-full rounded-full bg-gradient-to-br ${char.element.color} flex items-center justify-center border border-white/20 cursor-default`}
                 onMouseEnter={(e) => handleMouseEnter(e, char.name)}
                 onMouseLeave={handleMouseLeave}
@@ -58,8 +59,8 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
         <>
             <div className={`
                 relative flex flex-col p-3 rounded-lg border transition-all duration-200 h-32
-                ${hasData 
-                    ? 'bg-slate-800 border-slate-600 hover:border-slate-500 shadow-lg' 
+                ${hasData
+                    ? 'bg-slate-800 border-slate-600 hover:border-slate-500 shadow-lg'
                     : 'bg-slate-900/50 border-slate-800 border-dashed hover:border-slate-600 hover:bg-slate-800/50'}
             `}>
                 <div className="flex justify-between items-start mb-1">
@@ -73,7 +74,7 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
                         )}
                     </div>
                     {hasData && (
-                        <button 
+                        <button
                             onClick={(e) => { e.stopPropagation(); onConfirmDelete(); }}
                             className="text-slate-600 hover:text-red-400 transition-colors p-1 rounded hover:bg-slate-700 -mt-1 -mr-1"
                             title={t('delete')}
@@ -131,9 +132,9 @@ const SaveSlot = ({ index, data, onSave, onLoad, onDelete, onConfirmDelete }) =>
             </div>
 
             {/* ツールチップの表示: 幅を自動調整(w-auto)し、折り返しを禁止(whitespace-nowrap) */}
-            <PortalTooltip 
+            <PortalTooltip
                 title={tooltip.text}
-                description={null} 
+                description={null}
                 visible={tooltip.visible}
                 position={tooltip.position}
                 className="w-auto whitespace-nowrap"

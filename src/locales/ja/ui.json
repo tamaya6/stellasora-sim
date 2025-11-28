@@ -45,6 +45,14 @@
     "rank": "Rank",
     "all": "ALL"
   },
+  "element": {
+    "fire": "火",
+    "water": "水",
+    "earth": "土",
+    "wind": "風",
+    "light": "光",
+    "dark": "闇"
+  },
   "modal": {
     "selectCharacter": "キャラクターを選択",
     "noCharacter": "該当するキャラクターがいません",
