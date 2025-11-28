@@ -1,6 +1,8 @@
 {
   "appTitle": "Stella Sora",
   "appSubtitle": "Build Simulator",
+  "wideMode": "ワイド",
+  "normalMode": "通常",
   "saveData": "セーブデータ",
   "reset": "リセット",
   "share": "URL共有",

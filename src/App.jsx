@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown, Camera } from 'lucide-react';
+import { Star, RotateCcw, Share2, Save, Globe, Check, ChevronDown, Camera, Maximize, Minimize } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { toPng } from 'html-to-image';
 import { generateShareHash, loadFromUrl, reorder, saveToUrl } from './utils/storage';
@@ -45,6 +45,7 @@ const App = () => {
 
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [screenshotMode, setScreenshotMode] = useState(false);
+    const [isWideMode, setIsWideMode] = useState(false);
     const contentRef = useRef(null);
 
     const [confirmState, setConfirmState] = useState({
@@ -183,7 +184,7 @@ const App = () => {
     return (
         <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-indigo-500 selection:text-white pb-8 flex flex-col">
             <nav className="bg-slate-900/90 backdrop-blur border-b border-slate-800 z-20 shadow-xl sticky top-0">
-                <div className="max-w-7xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+                <div className={`${isWideMode ? 'max-w-[2200px] px-6' : 'max-w-7xl mx-auto px-4'} h-14 sm:h-16 flex items-center justify-between transition-all duration-300 mx-auto`}>
                     <div className="flex items-center gap-2">
                         <div className="p-1.5 bg-slate-800 rounded-lg border border-slate-700">
                             <Star className="text-yellow-500 w-5 h-5" fill="currentColor" />
@@ -196,6 +197,16 @@ const App = () => {
                         </h1>
                     </div>
                     <div className="flex gap-2 items-center">
+
+                        {/* ワイドモード切り替え */}
+                        <button
+                            onClick={() => setIsWideMode(!isWideMode)}
+                            className="flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm text-slate-400 hover:bg-slate-800 rounded transition-colors border border-transparent hover:border-slate-700"
+                            title={isWideMode ? t('normalMode') : t('wideMode')}
+                        >
+                            {isWideMode ? <Minimize size={14} /> : <Maximize size={14} />}
+                            <span className="hidden sm:inline">{isWideMode ? t('normalMode') : t('wideMode')}</span>
+                        </button>
 
                         {/* 言語切り替え */}
                         <div className="relative" ref={langMenuRef}>
@@ -264,7 +275,7 @@ const App = () => {
             </nav>
 
             {/* セーブデータエリア */}
-            <div className="w-full max-w-7xl mx-auto px-4 pt-6 pb-2">
+            <div className={`w-full ${isWideMode ? 'max-w-[2200px] px-6' : 'max-w-7xl mx-auto px-4'} pt-6 pb-2 transition-all duration-300 mx-auto`}>
                 <div className="bg-slate-900/80 backdrop-blur border border-slate-700 rounded-xl p-4 shadow-lg">
                     <h2 className="text-white font-bold mb-3 flex items-center gap-2 text-sm">
                         <Save size={16} className="text-indigo-400" /> {t('saveData')}
@@ -286,7 +297,7 @@ const App = () => {
             </div>
 
             {/* スクリーンショット撮影対象エリア */}
-            <main ref={screenshot.ref} className="flex-1 w-full max-w-7xl mx-auto p-4 space-y-4 overflow-y-auto bg-slate-950">
+            <main ref={screenshot.ref} className={`flex-1 w-full ${isWideMode ? 'max-w-[2200px] px-6 py-4' : 'max-w-7xl mx-auto p-4'} space-y-4 overflow-y-auto bg-slate-950 transition-all duration-300 mx-auto`}>
                 {party.map((slot, idx) => (
                     <PartySlot
                         key={idx}
