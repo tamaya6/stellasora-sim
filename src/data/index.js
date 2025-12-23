@@ -15,6 +15,7 @@ const getIconImage = (charId) => {
 // キャラクターメタデータ定義
 // 名前やロールはJSONから取得するため削除
 const RAW_METADATA = [
+    { id: 'snowish_laru', uid: 158, element: ELEMENTS.FIRE, rank: 5 },
     { id: 'natsuka', uid: 133, element: ELEMENTS.WIND, rank: 5 },
     { id: 'fuyuka', uid: 134, element: ELEMENTS.FIRE, rank: 5 },
     { id: 'shia', uid: 155, element: ELEMENTS.LIGHT, rank: 5 },

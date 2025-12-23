@@ -81,7 +81,7 @@
                     "id": 510304,
                     "name": "感情残響",
                     "briefDesc": "主力スキル命中時、範囲内に追加でダメージを与える。",
-                    "desc": "主力スキル命中時、範囲内に追加で、攻撃力の<color=#0abec5>&Param1&</color>の火属性ダメージを与える。\u000bこの効果は1秒ごとに<color=#0abec5>5</color>回まで発動する。",
+                    "desc": "主力スキル命中時、範囲内に追加で、攻撃力の<color=#0abec5>&Param1&</color>の火属性のスキルダメージを与える。\u000bこの効果は1秒ごとに<color=#0abec5>5</color>回まで発動する。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -544,23 +544,6 @@
                 }
             ]
         }
-    },
-    "106": {
-        "id": 106,
-        "name": "？？？",
-        "element": "闇",
-        "class": "サポーター",
-        "attackType": "Melee",
-        "loveGift": [
-            "カード写真器",
-            "反射写真器",
-            "超精密写真器",
-            "明日の新星光",
-            "未来の超新星",
-            "絢爛の超新星光"
-        ],
-        "date": [],
-        "potential": {}
     },
     "107": {
         "id": 107,
@@ -1186,7 +1169,7 @@
                     "id": 510801,
                     "name": "散弾準備",
                     "briefDesc": "1回の主力スキルで装填できる火炎散弾が1発になる。装填後、次の射撃で追加でダメージを与えるようになる。",
-                    "desc": "1回の主力スキルで装填できる火炎散弾が<color=#0abec5>1発</color>になる。装填後、次の射撃で発射する火炎散弾の数が増加し、追加で範囲内に、攻撃力の<color=#0abec5>&Param1&</color>の火属性ダメージを与えるようになる。この効果は火炎散弾を発射するとリセットされる。",
+                    "desc": "1回の主力スキルで装填できる火炎散弾が<color=#0abec5>1発</color>になる。装填後、次の射撃で発射する火炎散弾の数が増加し、追加で範囲内に、攻撃力の<color=#0abec5>&Param1&</color>の火属性のスキルダメージを与えるようになる。この効果は火炎散弾を発射するとリセットされる。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -1696,543 +1679,6 @@
             ]
         }
     },
-    "109": {
-        "id": 109,
-        "name": "？？？",
-        "element": "光",
-        "class": "サポーター",
-        "attackType": "Ranged",
-        "loveGift": [
-            "歓喜の着火装置",
-            "赤翼の着火装置",
-            "激情の着火装置",
-            "金メッキのボウル",
-            "飛花の茶器",
-            "玄霊の急須"
-        ],
-        "date": [],
-        "potential": {}
-    },
-    "110": {
-        "id": 110,
-        "name": "？？？",
-        "element": "闇",
-        "class": "アタッカー",
-        "attackType": "Melee",
-        "loveGift": [
-            "歓喜の着火装置",
-            "赤翼の着火装置",
-            "激情の着火装置",
-            "頭髪乾燥機",
-            "頭髪乾燥機・改",
-            "頭髪乾燥機・改（真）",
-            "金メッキのボウル",
-            "飛花の茶器",
-            "玄霊の急須"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 511001,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11001_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511002,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "53%",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11001_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511003,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "23%",
-                        "従者ダメージ"
-                    ],
-                    "icon": "11001_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511004,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "23%",
-                        "従者ダメージ"
-                    ],
-                    "icon": "11001_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 511005,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "27%/36%/45%/53%/62%/71%/79%/88%/96%"
-                    ],
-                    "icon": "11001_Potential_01",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511006,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "15%/24%/33%/42%/51%/60%/69%/78%/87%",
-                        3
-                    ],
-                    "icon": "11001_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511007,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "12%/19%/26%/34%/41%/48%/55%/62%/70%",
-                        5,
-                        5
-                    ],
-                    "icon": "11001_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511009,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "1/1/2/2/3/3/4/4/4",
-                        "攻撃",
-                        "10%/16%/22%/28%/34%/40%/46%/52%/58%"
-                    ],
-                    "icon": "11001_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511010,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "18%/29%/40%/51%/62%/73%/84%/95%/106%"
-                    ],
-                    "icon": "11001_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511011,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "14%/22%/31%/39%/47%/55%/64%/72%/80%"
-                    ],
-                    "icon": "11001_Potential_04",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511013,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "6%/10%/13%/17%/20%/24%/28%/31%/35%",
-                        6,
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511008,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "12%/16%/20%/23%/27%/31%/35%/39%/42%"
-                    ],
-                    "icon": "11001_Potential_03",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511012,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "従者ダメージ",
-                        "10%/16%/22%/28%/34%/40%/46%/52%/58%"
-                    ],
-                    "icon": "11001_Potential_04",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 511041,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "12%/19%/26%/34%/41%/48%/55%/62%/70%",
-                        5,
-                        "必殺技ダメージ"
-                    ],
-                    "icon": "11001_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511042,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技会心率"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "必殺技会心率",
-                        "16%/26%/36%/45%/55%/65%/74%/84%/94%"
-                    ],
-                    "icon": "11001_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511043,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "16%/26%/36%/45%/55%/65%/74%/84%/94%",
-                        20,
-                        2
-                    ],
-                    "icon": "11001_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 511021,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "7.5%/8.4%/9.4%/10.4%/11.4%/12.3%/13.7%/15%/16.3%/17.6%/19%/20.3%/21.6%"
-                    ],
-                    "icon": "11001_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511022,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "90%/102%/113%/125%/137%/148%/164%/180%/196%/212%/228%/244%/260%"
-                    ],
-                    "icon": "11001_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511023,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11001_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511024,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11001_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 511025,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "26%/41%/57%/72%/88%/103%/119%/134%/150%",
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511026,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "13%/20%/28%/35%/43%/50%/58%/65%/73%",
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511027,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "8%/13%/18%/22%/27%/32%/37%/42%/46%",
-                        10,
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511028,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "10/10/20/20/30/30/40/40/40",
-                        "38%/61%/84%/107%/130%/153%/176%/198%/221%",
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_23",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511030,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "17%/28%/38%/48%/58%/69%/79%/89%/100%",
-                        3,
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511031,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "26%/41%/57%/72%/87%/103%/118%/134%/149%",
-                        "従者ダメージ"
-                    ],
-                    "icon": "11001_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511032,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "10%/16%/22%/28%/34%/40%/46%/52%/58%",
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511029,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "10%/14%/17%/20%/23%/27%/30%/33%/36%"
-                    ],
-                    "icon": "11001_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511033,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "11%/17%/23%/29%/36%/42%/48%/55%/61%",
-                        "攻撃"
-                    ],
-                    "icon": "11001_Potential_24",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
     "111": {
         "id": 111,
         "name": "アヤメ",
@@ -2267,7 +1713,7 @@
                     "id": 511101,
                     "name": "ベクトル・硬化",
                     "briefDesc": "アヤメの通常攻撃命中時、次に発動する主力スキルのダメージが増加する。上限まで重複後、次に発動する主力スキルが変化する。",
-                    "desc": "アヤメの通常攻撃命中時、次に発動する主力スキルのダメージが<color=#0abec5>&Param1&</color>増加する。この効果は&Param2&回重複でき、主力スキルを発動するとリセットされる。\u000b&Param2&回重複後、次に発動する主力スキルは&Param4&に変化し、範囲内に攻撃力の<color=#0abec5>&Param3&</color>の水属性ダメージを与える。",
+                    "desc": "アヤメの通常攻撃命中時、次に発動する主力スキルのダメージが<color=#0abec5>&Param1&</color>増加する。この効果は&Param2&回重複でき、主力スキルを発動するとリセットされる。\u000b&Param2&回重複後、次に発動する主力スキルは&Param4&に変化し、範囲内に攻撃力の<color=#0abec5>&Param3&</color>の水属性のスキルダメージを与える。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -2294,7 +1740,7 @@
                     "id": 511102,
                     "name": "ベクトル・粉砕",
                     "briefDesc": "主力スキル命中時、追加で範囲内にダメージを与えるようになる。",
-                    "desc": "主力スキル命中時、追加で範囲内に、攻撃力の<color=#0abec5>&Param1&</color>の水属性ダメージを与えるようになる。\u000b&Param4&命中時、追加で攻撃力の<color=#0abec5>&Param2&</color>の水属性のスキルダメージを与え、&Param3&秒間の##氷結#1002#を付与する。\u000bこの効果は12秒ごとに1回まで発動する。",
+                    "desc": "主力スキル命中時、追加で範囲内に、攻撃力の<color=#0abec5>&Param1&</color>の水属性のスキルダメージを与えるようになる。\u000b&Param4&命中時、追加で攻撃力の<color=#0abec5>&Param2&</color>の水属性のスキルダメージを与え、&Param3&秒間の##氷結#1002#を付与する。\u000bこの効果は12秒ごとに1回まで発動する。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -2496,7 +1942,7 @@
                     "id": 511111,
                     "name": "詐欺師警戒",
                     "briefDesc": "アヤメが近接攻撃を受けた時、周囲にダメージを与え、##氷結#1002#を付与するようになる。",
-                    "desc": "アヤメが近接攻撃を受けた時、周囲に攻撃力の<color=#ec6d21>&Param1&</color>の水属性ダメージを与え、&Param2&秒間の##氷結#1002#を付与するようになる。この効果は&Param3&秒ごとに1回まで発動する。",
+                    "desc": "アヤメが近接攻撃を受けた時、周囲に攻撃力の<color=#ec6d21>&Param1&</color>の水属性のスキルダメージを与え、&Param2&秒間の##氷結#1002#を付与するようになる。この効果は&Param3&秒ごとに1回まで発動する。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -2548,7 +1994,7 @@
                     "id": 511108,
                     "name": "念には念を",
                     "briefDesc": "アヤメの主力スキルで会心発生時、追加でダメージを与えるようになる。",
-                    "desc": "アヤメの主力スキルで会心発生時、追加で攻撃力の<color=#ec6d21>&Param1&</color>の水属性ダメージを与えるようになる。",
+                    "desc": "アヤメの主力スキルで会心発生時、追加で攻撃力の<color=#ec6d21>&Param1&</color>の水属性のスキルダメージを与えるようになる。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -2752,7 +2198,7 @@
                     "id": 511124,
                     "name": "定量・転移",
                     "briefDesc": "氷柱陣列終了時、追加でダメージを与え、敵をノックバックさせるようになる。",
-                    "desc": "氷柱陣列終了時、追加で範囲内の敵に攻撃力の<color=#0abec5>&Param1&</color>の水属性ダメージを与え、敵をノックバックさせるようになる。",
+                    "desc": "氷柱陣列終了時、追加で範囲内の敵に攻撃力の<color=#0abec5>&Param1&</color>の水属性のスキルダメージを与え、敵をノックバックさせるようになる。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -3774,7 +3220,7 @@
                     "id": 511308,
                     "name": "驟雨のさざめき",
                     "briefDesc": "##氷結#1002#が付与されている敵を二式で撃破時、二式を再発動できるようになる。さらに、&Param1&が増加する。",
-                    "desc": "##氷結#1002#が付与されている敵を二式で撃破した時、二式を再発動できるようになる。さらに、&Param3&秒間、&Param1&が<color=#ec6d21>&Param2&</color>増加する。この効果は&Param4&回重複できる。\u000b1回のスキル持続中、<color=#ec6d21>&Param5&</color>回再発動できる。",
+                    "desc": "##氷結#1002#が付与されている敵を二式で撃破した時、二式を再発動できるようになる。さらに、&Param3&秒間、&Param1&が&Param2&増加する。この効果は&Param4&回重複できる。\u000b1回のスキル持続中、<color=#ec6d21>&Param5&</color>回再発動できる。",
                     "damageType": [],
                     "effectType": [
                         "主力スキルダメージ"
@@ -4112,1091 +3558,6 @@
                         "10%/16%/22%/28%/34%/39%/45%/51%/57%",
                         20,
                         "攻撃"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
-    "114": {
-        "id": 114,
-        "name": "？？？",
-        "element": "火",
-        "class": "アタッカー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "歓喜の着火装置",
-            "赤翼の着火装置",
-            "激情の着火装置",
-            "明日の新星光",
-            "未来の超新星",
-            "絢爛の超新星光",
-            "一番星のオブジェ",
-            "三日月のオブジェ",
-            "宙のオブジェ"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 511401,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "584.46%/642.91%/701.36%/759.81%/818.26%/876.71%/935.16%/993.61%/1052.06%/1110.51%/1168.96%/1227.41%/1285.86%",
-                        "BuffValue,NoLevel,11450111,Time,10K"
-                    ],
-                    "icon": "11401_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511402,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "火属性ダメージ"
-                    ],
-                    "params": [
-                        "72.7%",
-                        "火属性ダメージ"
-                    ],
-                    "icon": "11401_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511403,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "519.46%/571.41%/623.36%/675.31%/727.26%/779.21%/831.16%/883.11%/935.06%/987.01%/1038.96%/1090.91%/1142.86%"
-                    ],
-                    "icon": "11401_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511404,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "72.7%",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11401_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 511405,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "25.5%/34%/42.5%/51%/59.5%/68%/76.5%/85%/93.5%",
-                        10,
-                        3
-                    ],
-                    "icon": "11401_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511406,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "7.81%/10.41%/13.01%/15.61%/18.21%/20.81%/23.41%/26.01%/28.61%"
-                    ],
-                    "icon": "11401_Potential_02",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511407,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "15%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        "攻撃"
-                    ],
-                    "icon": "11401_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511409,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "40%/53.3%/66.6%/79.9%/93.2%/106.5%/119.8%/133.1%/146.4%",
-                        4,
-                        "攻撃"
-                    ],
-                    "icon": "11401_Potential_04",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511410,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "1.1%/1.5%/1.9%/2.3%/2.7%/3.1%/3.5%/3.9%/4.3%",
-                        5,
-                        10,
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11401_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511411,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "印ダメージ"
-                    ],
-                    "params": [
-                        "75%/100%/125%/150%/175%/200%/225%/250%/275%",
-                        "印ダメージ"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511412,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "火属性ダメージ"
-                    ],
-                    "params": [
-                        "6.7%/8.9%/11.1%/13.3%/15.5%/17.7%/19.9%/22.1%/24.3%",
-                        "火属性ダメージ"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511408,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "40%/50%/60%/80%/90%/100%/120%/130%/140%",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11401_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511413,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "会心ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "36%/48%/60%/72%/84%/96%/108%/120%/132%",
-                        "会心ダメージ"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 511441,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "印ダメージ"
-                    ],
-                    "params": [
-                        "207%/276%/345%/414%/483%/552%/621%/690%/759%",
-                        "印ダメージ"
-                    ],
-                    "icon": "11401_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511442,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "会心ダメージ"
-                    ],
-                    "params": [
-                        "14.3%/19.1%/23.9%/28.7%/33.5%/38.3%/43.1%/47.9%/52.7%",
-                        "会心ダメージ"
-                    ],
-                    "icon": "11401_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511443,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "必殺技ダメージ"
-                    ],
-                    "params": [
-                        "50%/66.7%/83.4%/100.1%/116.8%/133.5%/150.2%/166.9%/183.6%",
-                        "必殺技ダメージ"
-                    ],
-                    "icon": "11401_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 511421,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "火属性ダメージ"
-                    ],
-                    "params": [
-                        "21.9%",
-                        "火属性ダメージ"
-                    ],
-                    "icon": "11401_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511422,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "火属性ダメージ"
-                    ],
-                    "params": [
-                        "36.5%",
-                        2,
-                        "火属性ダメージ"
-                    ],
-                    "icon": "11401_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511423,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "62.2%/68.42%/74.64%/80.86%/87.08%/93.3%/99.52%/105.74%/111.96%/118.18%/124.4%/130.62%/136.84%"
-                    ],
-                    "icon": "11401_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511424,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "149.28%/164.21%/179.14%/194.07%/209%/223.93%/238.86%/253.79%/268.72%/283.65%/298.58%/313.51%/328.44%"
-                    ],
-                    "icon": "11401_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 511425,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ブレイク値貫通効率"
-                    ],
-                    "params": [
-                        "140%/186.7%/233.4%/280.1%/326.8%/373.5%/420.2%/466.9%/513.6%",
-                        "ブレイク値貫通効率"
-                    ],
-                    "icon": "11401_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511426,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "42%/56%/70%/83%/97%/111%/125%/139%/153%",
-                        "攻撃"
-                    ],
-                    "icon": "11401_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511427,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "会心率"
-                    ],
-                    "params": [
-                        "27%/36%/45%/54%/63%/72%/81%/90%/99%",
-                        "会心率"
-                    ],
-                    "icon": "11401_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511428,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "7.3%/9.7%/12.1%/14.5%/16.9%/19.3%/21.7%/24.1%/26.5%",
-                        4,
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11401_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511430,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "36.6%/48.8%/61%/73.2%/85.4%/97.6%/109.8%/122%/134.2%",
-                        8,
-                        "6/7/8/9/10/11/12/13/14",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "11401_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511431,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "18%/24%/30%/36%/42%/48%/54%/60%/66%",
-                        "主力スキルダメージ"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511432,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "火属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "15%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        "火属性ダメージ"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511429,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "火属性被ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "23.8%/31.7%/39.6%/47.5%/55.4%/63.3%/71.2%/79.1%/87%",
-                        2,
-                        "火属性被ダメージ"
-                    ],
-                    "icon": "11401_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511433,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "0.5%",
-                        "1.056%/1.408%/1.76%/2.112%/2.464%/2.816%/3.168%/3.52%/3.872%"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
-    "115": {
-        "id": 115,
-        "name": "？？？",
-        "element": "光",
-        "class": "バランサー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "カード写真器",
-            "反射写真器",
-            "超精密写真器",
-            "一番星のオブジェ",
-            "三日月のオブジェ",
-            "宙のオブジェ",
-            "納涼かき氷機",
-            "ふわ雪かき氷機",
-            "爆盛りかき氷機"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 511501,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "通常攻撃"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "12.7%/14%/15.3%/16.5%/17.8%/19.1%/20.3%/21.6%/22.9%/24.1%/25.4%/26.7%/28%"
-                    ],
-                    "icon": "11501_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511502,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "？？？",
-                        "10%",
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511503,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "44%/49%/53%/57%/62%/66%/71%/75%/79%/84%/88%/93%/97%"
-                    ],
-                    "icon": "11501_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511504,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "44%/49%/53%/57%/62%/66%/71%/75%/79%/84%/88%/93%/97%"
-                    ],
-                    "icon": "11501_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 511505,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "100%/8%/10%/13%/15%/17%/19%/21%/23%",
-                        3,
-                        100,
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511506,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "237%/261%/284%/308%/332%/355%/379%/403%/427%/450%/474%/498%/521%",
-                        "237%/261%/284%/308%/332%/355%/379%/403%/427%/450%/474%/498%/521%"
-                    ],
-                    "icon": "11501_Potential_02",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511507,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "15%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511508,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "44%/49%/53%/57%/62%/66%/71%/75%/79%/84%/88%/93%/97%",
-                        "88%/117%/147%/176%/205%/235%/264%/293%/323%"
-                    ],
-                    "icon": "11501_Potential_03",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511509,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "？？？",
-                        "24%/66%/107%/148%/190%/231%/273%/273%/273%",
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511511,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "印ダメージ"
-                    ],
-                    "params": [
-                        "80%/100%/130%/150%/180%/200%/230%/250%/280%",
-                        "印ダメージ"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511513,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "88%/117%/147%/176%/205%/235%/264%/293%/323%",
-                        3,
-                        7
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511510,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "6%/8%/10%/13%/15%/17%/19%/21%/23%",
-                        7,
-                        5,
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511512,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "45%/52%/60%/68%/75%/83%/90%/98%",
-                        "6%/8%/10%/13%/15%/17%/19%/21%/23%",
-                        10,
-                        4,
-                        "攻撃"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 511541,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "37%/50%/62%/75%/87%/99%/112%/124%/137%",
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511542,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "必殺技ダメージ"
-                    ],
-                    "params": [
-                        "？？？",
-                        "42%/56%/70%/83%/97%/111%/125%/139%/153%",
-                        "必殺技ダメージ"
-                    ],
-                    "icon": "11501_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511543,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "光属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "36%/47%/59%/71%/83%/95%/106%/118%/130%",
-                        12,
-                        3,
-                        "光属性ダメージ"
-                    ],
-                    "icon": "11501_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 511521,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？"
-                    ],
-                    "icon": "11501_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511522,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "params": [
-                        "？？？",
-                        "100%"
-                    ],
-                    "icon": "11501_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511523,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "28%/31%/34%/37%/40%/43%/45%/48%/51%/54%/57%/60%/62%",
-                        "100%",
-                        7,
-                        5,
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 511524,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "34%/45%/57%/68%/80%/91%/102%/114%/125%"
-                    ],
-                    "icon": "11501_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 511525,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "params": [
-                        "？？？",
-                        "18%/24%/30%/36%/42%/48%/54%/60%/66%",
-                        "通常攻撃ダメージ"
-                    ],
-                    "icon": "11501_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511526,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "15%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        1,
-                        3,
-                        "攻撃"
-                    ],
-                    "icon": "11501_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511527,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "6.8%/7.5%/8.2%/8.9%/9.5%/10.2%/10.9%/11.6%/12.3%/12.9%/13.6%/14.3%/15%"
-                    ],
-                    "icon": "11501_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511528,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "30%/40%/50%/60%/69%/79%/89%/99%/109%",
-                        10,
-                        3,
-                        "通常攻撃ダメージ"
-                    ],
-                    "icon": "11501_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511530,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "34%/45%/57%/68%/80%/91%/102%/114%/125%",
-                        "97%/107%/116%/126%/136%/146%/155%/165%/175%"
-                    ],
-                    "icon": "11501_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 511531,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/13%/17%/20%/23%/27%/30%/33%/36%",
-                        "必殺技ダメージ"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511532,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "？？？",
-                        3,
-                        "100%/50%/62%/75%/87%/99%/112%/124%/137%",
-                        "攻撃"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511529,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "光属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "？？？",
-                        "1.3%/1.7%/2.1%/2.5%/2.9%/3.3%/3.7%/4.1%/4.5%",
-                        10,
-                        30,
-                        "光属性ダメージ"
-                    ],
-                    "icon": "11501_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 511533,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "光属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "12%/16%/20%/25%/29%/33%/37%/41%/45%",
-                        "6%/7%/9%/11%/13%/15%/16%/18%/20%",
-                        "光属性ダメージ"
                     ],
                     "icon": "Common_Potential_15",
                     "rarity": "rare"
@@ -5972,7 +4333,7 @@
                     "id": 511711,
                     "name": "千客万来",
                     "briefDesc": "必殺技は##光属性の印：光明#2016#を発動させることができるようになる。発動させると、&Param6&が上昇する。",
-                    "desc": "ジンリンの必殺技は##光属性の印#2016#を発動させることができるようになる。発動させると、攻撃力の<color=#ec6d21>&Param2&</color>の光属性の印ダメージを与える。\u000b発動させた時から&Param4&秒間、&Param6&が<color=#ec6d21>&Param3&</color>上昇する。この効果は&Param5&回重複できる。",
+                    "desc": "必殺技は##光属性の印#2016#を発動させることができるようになる。攻撃力の&Param2&の光属性の印ダメージを与える。\u000b発動させた時から&Param4&秒間、&Param6&が<color=#ec6d21>&Param3&</color>上昇する。この効果は&Param5&回まで重複できる。",
                     "damageType": [
                         null
                     ],
@@ -6596,7 +4957,7 @@
                     "id": 511841,
                     "name": "暗夜の鎌",
                     "briefDesc": "必殺技の&Param3&が上昇する。横斬りが命中した敵が多いほど、そのダメージが増加する。",
-                    "desc": "クルニスの必殺技の横斬りが命中した敵1体につき、そのダメージが<color=#ec6d21>&Param2&</color>増加する。この効果は3回重複できる。\u000b必殺技の&Param3&が&Param1&上昇する。",
+                    "desc": "クルニスの必殺技の横斬りが命中した敵1体につき、そのダメージが<color=#ec6d21>&Param2&</color>増加する。この効果は3回重複できる。\u000b必殺技の&Param3&が<color=#ec6d21>&Param1&</color>上昇する。",
                     "damageType": [],
                     "effectType": [],
                     "addAttrType": [
@@ -6943,8 +5304,8 @@
                 {
                     "id": 511902,
                     "name": "扇の散花",
-                    "briefDesc": "主力スキル発動後、通常攻撃は向日葵手裏剣を追加で投げるようになる。",
-                    "desc": "主力スキル発動後の10秒間、通常攻撃は、敵を貫通する向日葵手裏剣を追加で<color=#0abec5>3</color>枚投げ、それぞれ攻撃力の<color=#0abec5>&Param1&</color>の風属性の通常攻撃ダメージを与えるようになる。",
+                    "briefDesc": "主力スキル発動後、通常攻撃は手裏剣を追加で投げるようになる。",
+                    "desc": "主力スキル発動後の10秒間、通常攻撃は、敵を貫通する手裏剣を追加で<color=#0abec5>3</color>枚投げ、それぞれ攻撃力の<color=#0abec5>&Param1&</color>の風属性の通常攻撃ダメージを与えるようになる。",
                     "damageType": [
                         "通常攻撃"
                     ],
@@ -6960,7 +5321,7 @@
                     "id": 511903,
                     "name": "飛旋の刃",
                     "briefDesc": "向日葵手裏剣は複数回ダメージを与えるようになる。",
-                    "desc": "向日葵手裏剣は複数回ダメージを与えるようになり、<color=#0abec5>0.15</color>秒ごとに1回ダメージを与える。",
+                    "desc": "主力スキルで投げた向日葵手裏剣は複数回ダメージを与えるようになり、<color=#0abec5>0.15</color>秒ごとに1回ダメージを与える。",
                     "damageType": [],
                     "effectType": [],
                     "addAttrType": [],
@@ -6972,7 +5333,7 @@
                     "id": 511904,
                     "name": "満開の舞",
                     "briefDesc": "向日葵手裏剣のダメージ範囲が拡大し、ダメージが増加する。",
-                    "desc": "向日葵手裏剣のダメージ範囲が<color=#0abec5>50%</color>拡大し、&Param1&が<color=#0abec5>&Param2&</color>増加する。",
+                    "desc": "主力スキルで投げた向日葵手裏剣のダメージ範囲が<color=#0abec5>50%</color>拡大し、&Param1&が<color=#0abec5>&Param2&</color>増加する。",
                     "damageType": [],
                     "effectType": [],
                     "addAttrType": [
@@ -6991,7 +5352,7 @@
                     "id": 511905,
                     "name": "疾風怒濤",
                     "briefDesc": "向日葵手裏剣を投げるたびに、&Param5&が上昇し、&Param6&が増加する。",
-                    "desc": "向日葵手裏剣を投げるたびに、&Param3&秒間、&Param5&が<color=#ec6d21>&Param1&</color>上昇し、&Param6&が<color=#ec6d21>&Param2&</color>増加する。この効果は&Param4&回重複できる。",
+                    "desc": "主力スキルで向日葵手裏剣を投げるたびに、&Param3&秒間、&Param5&が<color=#ec6d21>&Param1&</color>上昇し、&Param6&が<color=#ec6d21>&Param2&</color>増加する。この効果は&Param4&回重複できる。",
                     "damageType": [],
                     "effectType": [
                         "攻撃速度",
@@ -7051,7 +5412,7 @@
                     "id": 511908,
                     "name": "日輪草への祈り",
                     "briefDesc": "向日葵手裏剣はナノハから離れるほどダメージが増加する。",
-                    "desc": "向日葵手裏剣はナノハから離れるほどダメージが増加する。最小で<color=#ec6d21>&Param1&</color>増加する。",
+                    "desc": "主力スキルで投げた向日葵手裏剣はナノハから離れるほどダメージが増加する。最小で<color=#ec6d21>&Param1&</color>増加する。",
                     "damageType": [],
                     "effectType": [],
                     "addAttrType": [
@@ -7318,8 +5679,8 @@
                 {
                     "id": 511927,
                     "name": "監視交代",
-                    "briefDesc": "爆散向日葵生成時、分身が周囲に多数の手裏剣を投げるようになる。",
-                    "desc": "爆散向日葵生成時、分身が周囲に多数の手裏剣を投げるようになる。それぞれナノハの攻撃力の<color=#ec6d21>&Param1&</color>の風属性のスキルダメージを与える。",
+                    "briefDesc": "爆散向日葵生成時、分身が周囲に複数の手裏剣を投げるようになる。",
+                    "desc": "爆散向日葵生成時、分身が周囲に手裏剣を12枚投げるようになる。それぞれナノハの攻撃力の<color=#ec6d21>&Param1&</color>の風属性のスキルダメージを与える。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -7404,7 +5765,7 @@
                     "id": 511930,
                     "name": "支援忍術",
                     "briefDesc": "爆散向日葵消滅時、分身が前方に手裏剣を投げるようになる。",
-                    "desc": "爆散向日葵消滅時、分身が前方に手裏剣を投げ、それぞれ攻撃力の<color=#ec6d21>&Param1&</color>の風属性のスキルダメージを与えるようになる。",
+                    "desc": "爆散向日葵消滅時、分身が前方に手裏剣を5枚投げ、それぞれ攻撃力の<color=#ec6d21>&Param1&</color>の風属性のスキルダメージを与えるようになる。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -7641,7 +6002,7 @@
                 {
                     "id": 512013,
                     "name": "模範的行動",
-                    "briefDesc": "カナーチェの回避の発動可能回数が1回増加する。回避発動後、&Param1&が上昇する。",
+                    "briefDesc": "カナーチェの回避の発動可能回数が増加する。回避発動後、&Param1&が上昇する。",
                     "desc": "カナーチェの回避の発動可能回数が1回増加する。\u000b回避発動後の&Param3&秒間、&Param1&が<color=#ec6d21>&Param2&</color>上昇する。",
                     "damageType": [],
                     "effectType": [
@@ -8039,8 +6400,8 @@
                 {
                     "id": 512302,
                     "name": "飛石舞塵",
-                    "briefDesc": "爆風が弱い敵をノックバックさせるようになる。ノックバックした敵の&Param1&を増加させる。",
-                    "desc": "爆風が弱い敵をノックバックさせるようになる。ノックバックさせると、&Param3&秒間、その敵の&Param1&を<color=#0abec5>&Param2&</color>増加させる。",
+                    "briefDesc": "爆風が弱い敵をノックバックさせるようになる。敵の&Param1&を増加させる。",
+                    "desc": "爆風が弱い敵をノックバックさせるようになる。&Param3&秒間、その敵の&Param1&を<color=#0abec5>&Param2&</color>増加させる。",
                     "damageType": [],
                     "effectType": [
                         "風属性被ダメージ"
@@ -8430,8 +6791,8 @@
                 {
                     "id": 512328,
                     "name": "乱気流",
-                    "briefDesc": "支援スキルのダメージを与えた時、その敵の&Param3&を増加させる。",
-                    "desc": "アンズの支援スキルのダメージを与えた時から<color=#ec6d21>&Param2&</color>秒間、その敵の&Param3&を<color=#ec6d21>&Param1&</color>増加させる。この効果は&Param4&回重複できる。",
+                    "briefDesc": "支援スキルがダメージを与えた時、その敵の&Param3&を増加させる。",
+                    "desc": "アンズの支援スキルがダメージを与えた時から&Param2&秒間、その敵の&Param3&を<color=#ec6d21>&Param1&</color>増加させる。この効果は&Param4&回重複できる。",
                     "damageType": [],
                     "effectType": [
                         "風属性被ダメージ"
@@ -10403,790 +8764,6 @@
             ]
         }
     },
-    "129": {
-        "id": 129,
-        "name": "？？？",
-        "element": "地",
-        "class": "アタッカー",
-        "attackType": "Melee",
-        "loveGift": [
-            "歓喜の着火装置",
-            "赤翼の着火装置",
-            "激情の着火装置",
-            "そよ風製造機",
-            "納涼製造機",
-            "暴風製造機"
-        ],
-        "date": [],
-        "potential": {}
-    },
-    "130": {
-        "id": 130,
-        "name": "？？？",
-        "element": "水",
-        "class": "バランサー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "頭髪乾燥機",
-            "頭髪乾燥機・改",
-            "頭髪乾燥機・改（真）",
-            "そよ風製造機",
-            "納涼製造機",
-            "暴風製造機",
-            "納涼かき氷機",
-            "ふわ雪かき氷機",
-            "爆盛りかき氷機"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 513001,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "120%",
-                        3,
-                        "攻撃",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513002,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "通常攻撃"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "11.47%/12.62%/13.77%/14.92%/16.07%/17.22%/18.37%/19.52%/20.67%/21.82%/22.97%/24.12%/25.27%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513003,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "132.21%/145.43%/158.65%/171.87%/185.09%/198.31%/211.53%/224.75%/237.97%/251.19%/264.41%/277.63%/290.85%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513004,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [
-                        "HP"
-                    ],
-                    "addAttrType": [
-                        "攻撃"
-                    ],
-                    "params": [
-                        "50%",
-                        "180.48%/198.53%/216.58%/234.63%/252.68%/270.73%/288.78%/306.83%/324.88%/342.93%/360.98%/379.03%/397.08%",
-                        "24.11%",
-                        10,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 513005,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "通常攻撃"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "21%/23.1%/25.2%/27.3%/29.4%/31.5%/33.6%/35.7%/37.8%/39.9%/42%/44.1%/46.2%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_01",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 513006,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/4.4%/5.5%/6.6%/7.7%/8.8%/9.9%/11%/12.1%",
-                        2,
-                        36,
-                        "通常攻撃ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513007,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "params": [
-                        "35%",
-                        "80%/106.7%/133.4%/160.1%/186.8%/213.5%/240.2%/266.9%/293.6%",
-                        "通常攻撃ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513008,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "30%/42.5%/53.1%/63.7%/74.3%/84.9%/95.5%/106.1%/116.7%",
-                        "攻撃",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513010,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/10%/12%/14%/17%/19%/22%/24%/26%",
-                        8,
-                        "21%/23.1%/25.2%/27.3%/29.4%/31.5%/33.6%/35.7%/37.8%/39.9%/42%/44.1%/46.2%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_03",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 513012,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "18%/24%/30%/36%/42%/48%/54%/60%/66%",
-                        "攻撃",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_7",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 513013,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "水属性被ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        "水属性被ダメージ",
-                        8,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513009,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        null,
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "25",
-                        "100%/28.4%/35.5%/42.6%/49.7%/56.8%/63.9%/71%/78.1%",
-                        12,
-                        4,
-                        3,
-                        "従者ダメージ",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513011,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "165.2%/220.2%/275.2%/330.2%/385.2%/440.2%/495.2%/550.2%/605.2%",
-                        6,
-                        8,
-                        "通常攻撃ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 513041,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "必殺技ダメージ"
-                    ],
-                    "params": [
-                        "100%/67%/83%/100%/117%/134%/150%/167%/184%",
-                        "必殺技ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513042,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/34.7%/43.4%/52.1%/60.8%/69.5%/78.2%/86.9%/95.6%",
-                        "従者ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513043,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "必殺技ダメージ"
-                    ],
-                    "params": [
-                        1,
-                        "100%/16.7%/20.9%/25.1%/29.3%/33.5%/37.7%/41.9%/46.1%",
-                        "必殺技ダメージ",
-                        4,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 513021,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "22.87%/25.16%/27.45%/29.74%/32.03%/34.32%/36.61%/38.9%/41.19%/43.48%/45.77%/48.06%/50.35%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513022,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [
-                        "水属性ダメージ"
-                    ],
-                    "params": [
-                        "137.19%/150.91%/164.63%/178.35%/192.07%/205.79%/219.51%/233.23%/246.95%/260.67%/274.39%/288.11%/301.83%",
-                        "10%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513023,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [
-                        "水属性被ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "48.39%/53.23%/58.07%/62.91%/67.75%/72.59%/77.43%/82.27%/87.11%/91.95%/96.79%/101.63%/106.47%",
-                        "水属性被ダメージ",
-                        "100%",
-                        8,
-                        4,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 513024,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "10.98%/12.08%/13.18%/14.28%/15.38%/16.48%/17.58%/18.68%/19.78%/20.88%/21.98%/23.08%/24.18%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 513025,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "14.84%/19.79%/24.74%/29.69%/34.64%/39.59%/44.54%/49.49%/54.44%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 513026,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "水属性ダメージ"
-                    ],
-                    "params": [
-                        "42%/56%/70%/85%/99%/113%/127%/141%/155%",
-                        "水属性ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513027,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "params": [
-                        "60%",
-                        "33.8%/45.1%/56.4%/67.7%/79%/90.3%/101.6%/112.9%/124.2%",
-                        "通常攻撃ダメージ",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513028,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "水属性被ダメージ",
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%",
-                        "攻撃",
-                        "7.3%/9.7%/12.1%/14.5%/16.9%/19.3%/21.7%/24.1%/26.5%",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513030,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "弱点特攻"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "30%",
-                        "6.9%/9.2%/11.5%/13.8%/16.1%/18.4%/20.7%/23%/25.3%",
-                        10,
-                        "弱点特攻",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 513031,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "スキル会心率"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "20%/1000%/1300%/1500%/1800%/2000%/2300%/2500%/2800%",
-                        "スキル会心率",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_7",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513032,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/20%/25%/30%/35%/40%/45%/50%/55%",
-                        "攻撃",
-                        10,
-                        60,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513029,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "100%/9.7%/12.1%/14.5%/16.9%/19.3%/21.7%/24.1%/26.5%",
-                        10,
-                        10,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "13001_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 513033,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技ダメージ",
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "24%/32%/40%/48%/56%/64%/72%/80%/88%",
-                        "5%/5%/10%/10%/15%/15%/20%/20%/20%",
-                        "必殺技ダメージ",
-                        "攻撃",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "？？？"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
     "132": {
         "id": 132,
         "name": "ミネルバ",
@@ -12603,8 +10180,8 @@
                 {
                     "id": 513412,
                     "name": "勇猛火敢",
-                    "briefDesc": "フユカがエリート以上の敵に会心発生時、&Param4&が増加する。",
-                    "desc": "フユカがエリート以上の敵に会心発生時から&Param2&秒間、&Param4&が<color=#ec6d21>&Param1&</color>増加する。この効果は&Param3&回重複できる。",
+                    "briefDesc": "フユカがエリート以上の敵に会心発生時、&Param4&が上昇する。",
+                    "desc": "フユカがエリート以上の敵に会心発生時から&Param2&秒間、&Param4&が<color=#ec6d21>&Param1&</color>上昇する。この効果は&Param3&回重複できる。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -12624,8 +10201,8 @@
                 {
                     "id": 513441,
                     "name": "灼熱ハート",
-                    "briefDesc": "必殺技で##火属性の印#1016#を発動させた時、その必殺技のダメージが増加する。",
-                    "desc": "フユカの必殺技で##火属性の印#1016#を発動させた時、その必殺技のダメージが<color=#ec6d21>&Param2&</color>増加する。この効果は&Param4&回重複できる。",
+                    "briefDesc": "必殺技で##火属性の印#1016#を発動させた時、必殺技使用中&Param5&が上昇する。",
+                    "desc": "フユカの必殺技で##火属性の印#1016#を発動させた時、必殺技使用中&Param5&が<color=#ec6d21>&Param2&</color>上昇する。この効果は&Param4&回重複できる。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -13466,26 +11043,6 @@
             ]
         }
     },
-    "136": {
-        "id": 136,
-        "name": "？？？",
-        "element": "風",
-        "class": "アタッカー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "カード写真器",
-            "反射写真器",
-            "超精密写真器",
-            "頭髪乾燥機",
-            "頭髪乾燥機・改",
-            "頭髪乾燥機・改（真）",
-            "明日の新星光",
-            "未来の超新星",
-            "絢爛の超新星光"
-        ],
-        "date": [],
-        "potential": {}
-    },
     "141": {
         "id": 141,
         "name": "チーシア",
@@ -13889,7 +11446,7 @@
                     "id": 514126,
                     "name": "墨符・残火",
                     "briefDesc": "自身以外の巡遊者が主力スキル発動時、チーシアの従者が追加でダメージを与えるようになる。",
-                    "desc": "自身以外の巡遊者が主力スキル発動時、赤龍が敵に追加で<color=#ec6d21>&Param1&</color>の火属性の従者ダメージを与えるようになる。猛虎は範囲内に追加で<color=#ec6d21>&Param2&x5</color>の火属性の従者ダメージを与えるようになる。",
+                    "desc": "自身以外の巡遊者が主力スキル発動時、赤龍が敵に追加で攻撃力の<color=#ec6d21>&Param1&</color>の火属性の従者ダメージを与えるようになる。猛虎は範囲内に追加で攻撃力の<color=#ec6d21>&Param2&x5</color>の火属性の従者ダメージを与えるようになる。",
                     "damageType": [
                         null
                     ],
@@ -14180,7 +11737,7 @@
                     "id": 514207,
                     "name": "闇爪刻影",
                     "briefDesc": "主力スキル発動時、味方の&Param1&が上昇する。",
-                    "desc": "主力スキル発動時から&Param3&秒間、味方の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。",
+                    "desc": "主力スキル発動時、&Param3&秒間、味方の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -14495,7 +12052,7 @@
                     "id": 514228,
                     "name": "暗・迷幻",
                     "briefDesc": "支援スキルのダメージを与えた時、一定確率でその敵をスタンさせ、味方の&Param1&が上昇するようになる。",
-                    "desc": "コゼットの支援スキルのダメージを与えた時、30%の確率で3秒間、その敵をスタンさせるようになる。さらに、&Param3&秒間、味方の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。この効果は0.5秒ごとに1回まで発動する。",
+                    "desc": "コゼットの支援スキルのダメージを与えた時、30%の確率でその敵を3秒間スタンさせ、さらに&Param3&秒間、味方の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。この効果は0.5秒ごとに1回まで発動する。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -14595,538 +12152,6 @@
             ]
         }
     },
-    "143": {
-        "id": 143,
-        "name": "？？？",
-        "element": "風",
-        "class": "アタッカー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "歓喜の着火装置",
-            "赤翼の着火装置",
-            "激情の着火装置",
-            "頭髪乾燥機",
-            "頭髪乾燥機・改",
-            "頭髪乾燥機・改（真）",
-            "納涼かき氷機",
-            "ふわ雪かき氷機",
-            "爆盛りかき氷機"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 514301,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        4,
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%",
-                        "攻撃",
-                        "100%",
-                        4,
-                        6
-                    ],
-                    "icon": "14301_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514302,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%",
-                        "攻撃",
-                        "100%",
-                        4,
-                        6
-                    ],
-                    "icon": "14301_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514303,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "200%"
-                    ],
-                    "icon": "14301_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514304,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "200%"
-                    ],
-                    "icon": "14301_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 514305,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_02",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514306,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514307,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃速度"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃速度",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        5,
-                        1
-                    ],
-                    "icon": "14301_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514308,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        1,
-                        4
-                    ],
-                    "icon": "14301_Potential_03",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514309,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "主力スキルダメージ",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        5,
-                        8,
-                        1
-                    ],
-                    "icon": "14301_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514311,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "風属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "風属性ダメージ",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        6
-                    ],
-                    "icon": "Common_Potential_3",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514313,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "防御"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "防御",
-                        "4000%/5400%/6700%/8100%/9400%/10800%/12100%/13400%/14800%",
-                        6
-                    ],
-                    "icon": "Common_Potential_3",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514310,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514312,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "Common_Potential_9",
-                    "rarity": "rare"
-                }
-            ],
-            "common": [
-                {
-                    "id": 514341,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514342,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        15
-                    ],
-                    "icon": "14301_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514343,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 514321,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%"
-                    ],
-                    "icon": "14301_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514322,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%"
-                    ],
-                    "icon": "14301_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514323,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%"
-                    ],
-                    "icon": "14301_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514324,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "14301_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 514325,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%"
-                    ],
-                    "icon": "14301_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514326,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "風属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "風属性ダメージ",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        4,
-                        10
-                    ],
-                    "icon": "14301_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514327,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "風属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "風属性ダメージ",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        10
-                    ],
-                    "icon": "Common_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514328,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        9
-                    ],
-                    "icon": "14301_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514330,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        "40%/80%/120%/160%/200%/240%/280%/320%/360%"
-                    ],
-                    "icon": "14301_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514331,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "Common_Potential_Wind_1",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514332,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "16.28%/17.91%/19.54%/21.17%/22.8%/24.43%/26.06%/27.69%/29.32%/30.95%/32.58%/34.21%/35.84%"
-                    ],
-                    "icon": "Common_Potential_Wind_1",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514329,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "ダメージボーナス"
-                    ],
-                    "params": [
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%"
-                    ],
-                    "icon": "14301_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514333,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "風属性ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "風属性ダメージ",
-                        "20%/40%/60%/80%/100%/120%/140%/160%/180%",
-                        3
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
     "144": {
         "id": 144,
         "name": "チトセ",
@@ -15164,7 +12189,7 @@
                     "id": 514401,
                     "name": "蛟龍の型",
                     "briefDesc": "主力スキル発動後、通常攻撃は騰蛇を生成するようになる。さらに、中断耐性が上昇する。",
-                    "desc": "主力スキル発動後、通常攻撃は騰蛇を生成し、範囲内に攻撃力の<color=#0abec5>&Param1&</color>の水属性の通常攻撃ダメージを与えるようになる。生成した騰蛇は##水属性の印#1018#を発動させることができる。発動させると、&Param9&秒間、中断耐性が上昇する。",
+                    "desc": "主力スキル発動後、&Param9&秒間、通常攻撃は騰蛇を生成し、範囲内に攻撃力の<color=#0abec5>&Param1&</color>の水属性の通常攻撃ダメージを与えるようになると同時に、中断耐性が上昇する。生成した騰蛇は##水属性の印#1018#を発動させることができる。",
                     "damageType": [
                         "通常攻撃"
                     ],
@@ -15188,7 +12213,7 @@
                     "id": 514402,
                     "name": "水影の型",
                     "briefDesc": "主力スキル発動後、通常攻撃は鏡影を生成するようになる。さらに、中断耐性が上昇する。",
-                    "desc": "主力スキル発動後、通常攻撃はチトセの攻撃力の<color=#0abec5>60%</color>を持つ鏡影を生成するようになる。この鏡影は通常攻撃を発動する。さらに、&Param1&秒間、中断耐性が上昇する。",
+                    "desc": "主力スキル発動後、&Param1&秒間、通常攻撃時にチトセの攻撃力の<color=#0abec5>60%</color>を持つ鏡影を生成し、鏡影が通常攻撃を行うようになる。この間、中断耐性が上昇する。",
                     "damageType": [],
                     "effectType": [],
                     "addAttrType": [],
@@ -15669,385 +12694,6 @@
                         "水属性ダメージ",
                         "5%/8%/11%/14%/17%/20%/23%/26%/29%"
                     ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
-    "145": {
-        "id": 145,
-        "name": "？？？",
-        "element": "闇",
-        "class": "アタッカー",
-        "attackType": "Ranged",
-        "loveGift": [
-            "金メッキのボウル",
-            "飛花の茶器",
-            "玄霊の急須",
-            "頭髪乾燥機",
-            "頭髪乾燥機・改",
-            "頭髪乾燥機・改（真）",
-            "納涼かき氷機",
-            "ふわ雪かき氷機",
-            "爆盛りかき氷機"
-        ],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 514501,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514502,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514503,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514504,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 514505,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_01",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514506,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514507,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_9",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514508,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_04",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514509,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_Dark_1",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514511,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_Dark_1",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514513,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_3",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514510,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514512,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_13",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 514541,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514542,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514543,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 514521,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514522,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514523,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 514524,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 514525,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514526,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514527,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514528,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_5",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 514530,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514531,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "Common_Potential_Dark_1",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514532,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514529,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
-                    "icon": "11801_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 514533,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [],
                     "icon": "Common_Potential_15",
                     "rarity": "rare"
                 }
@@ -16689,7 +13335,7 @@
                     "id": 514904,
                     "name": "痛みの連鎖",
                     "briefDesc": "グレイが、鉄の牢獄に繋がれている敵に通常攻撃のダメージを与えた時、繋がれている他のすべての敵もダメージを受けるようになる。",
-                    "desc": "グレイが、鉄の牢獄に繋がれている敵に通常攻撃のダメージを与えた時、繋がれている他のすべて敵は、攻撃力の<color=#0abec5>&Param1&</color>の地属性のスキルダメージを受けるようになる。この効果は1秒ごとに1回まで発動し、##地属性の印#1020#を発動させることができる。",
+                    "desc": "グレイが、鉄の牢獄に繋がれている敵に通常攻撃のダメージを与えた時、繋がれている他のすべての敵は、攻撃力の<color=#0abec5>&Param1&</color>の地属性のスキルダメージを受けるようになる。この効果は1秒ごとに1回まで発動し、##地属性の印#1020#を発動させることができる。",
                     "damageType": [
                         "主力スキル"
                     ],
@@ -19062,69 +15708,108 @@
     },
     "158": {
         "id": 158,
-        "name": "？？？",
+        "name": "ラール（聖夜）",
         "element": "火",
         "class": "バランサー",
         "attackType": "Melee",
-        "loveGift": [],
-        "date": [],
+        "loveGift": [
+            "頭髪乾燥機",
+            "頭髪乾燥機・改",
+            "頭髪乾燥機・改（真）",
+            "明日の新星光",
+            "未来の超新星",
+            "絢爛の超新星光",
+            "納涼かき氷機",
+            "ふわ雪かき氷機",
+            "爆盛りかき氷機"
+        ],
+        "date": [
+            {
+                "id": 158301,
+                "name": "記念写真",
+                "clue": "マーケットでなにかが見つかるかもしれない……",
+                "secondChoice": "あのあたりはまだ見てないな。"
+            },
+            {
+                "id": 158302,
+                "name": "魚はどこへ？",
+                "clue": "港でなにかが見つかるかもしれない……",
+                "secondChoice": "いまから夜釣りでもする？"
+            }
+        ],
         "potential": {
             "mainCore": [
                 {
                     "id": 515801,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
+                    "name": "ドールマスター",
+                    "briefDesc": "クルミ大佐と巻き毛将軍の連携作戦が強化される。\u000bゼンマイ女王の射撃が強化される。",
+                    "desc": "ラール（聖夜）のおもちゃたちを強化する。\u000bクルミ大佐の連携作戦は、範囲内に攻撃力の<color=#0abec5>&Param1&</color>の火属性の従者ダメージを与える。\u000b巻き毛将軍の連携作戦は、範囲内に攻撃力の<color=#0abec5>&Param2&x6</color>の火属性の従者ダメージを与える。\u000bゼンマイ女王の射撃は、範囲内に攻撃力の<color=#0abec5>&Param4&</color>の火属性の従者ダメージを与える。",
+                    "damageType": [
+                        null
+                    ],
                     "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "OnceAdditionalAttributeValue,NoLevel,15801011,Value1,10KHdPct"
+                        "246%/283%/320%/430%/465%/499%/568%/598%/627%/686%/736%/785%/834%",
+                        "100%/115%/130%/175%/189%/203%/231%/243%/255%/278%/298%/318%/338%",
+                        "85%/97%/110%/148%/160%/172%/195%/205%/216%/236%/253%/270%/287%",
+                        "90%/103%/117%/157%/170%/182%/208%/218%/229%/251%/269%/287%/305%"
                     ],
                     "icon": "15801_Potential_01",
                     "rarity": "core"
                 },
                 {
                     "id": 515802,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
+                    "name": "女王のお出まし",
+                    "briefDesc": "主力スキル「&Param1&」または「&Param2&」発動時、おもちゃ：ゼンマイ女王を召喚すると同時に、クルミ大佐または巻き毛将軍は士気を獲得する。",
+                    "desc": "主力スキル「&Param1&」または「&Param2&」発動時、<color=#0abec5>&Param3&</color>秒間、おもちゃ：ゼンマイ女王を召喚すると同時に、クルミ大佐または巻き毛将軍は士気を<color=#0abec5>2</color>獲得する。\u000bゼンマイ女王は敵を射撃し、攻撃力の<color=#0abec5>&Param4&</color>の火属性の従者ダメージを与える。\u000bゼンマイ女王の射撃が命中するたびに、クルミ大佐と巻き毛将軍の連携作戦を発動させることができる。\u000b&Param5&秒ごとに、ゼンマイ女王を1回召喚できる。",
+                    "damageType": [
+                        null
+                    ],
                     "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "HitDamage,DamageNum,158102001",
-                        "HitDamage,DamageNum,158102002"
+                        "ウィップコマンド",
+                        "キャンディ乱射",
+                        12,
+                        "85%/97%/110%/148%/160%/172%/195%/205%/216%/236%/253%/270%/287%",
+                        18
                     ],
                     "icon": "15801_Potential_02",
                     "rarity": "core"
                 },
                 {
                     "id": 515803,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "name": "鞭の贈り物",
+                    "briefDesc": "主力スキル「&Param1&」が多段攻撃になる。",
+                    "desc": "主力スキル「&Param1&」が多段攻撃となり、範囲内に攻撃力の<color=#0abec5>&Param2&x5</color>の火属性のスキルダメージを与える。",
                     "damageType": [
                         "主力スキル"
                     ],
                     "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "24.4%/28%/146%/198%/214%/230%/262%/274%/288%/349%/374%/399%/424%"
+                        "ウィップコマンド",
+                        "92%/106%/120%/161%/174%/187%/212%/224%/235%/257%/275%/293%/312%"
                     ],
                     "icon": "15801_Potential_03",
                     "rarity": "core"
                 },
                 {
                     "id": 515804,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
+                    "name": "ギフトマーク",
+                    "briefDesc": "クルミ大佐または巻き毛将軍がダメージを与えた時、敵にギフトマークを付与する。\u000bラール（聖夜）のスキルがギフトマークが付与された敵にダメージを与えた時、追加で範囲内にダメージを与える。",
+                    "desc": "クルミ大佐または巻き毛将軍がダメージを与えた時、<color=#0abec5>&Param2&</color>秒間、敵にギフトマークを付与する。\u000b主力スキル「&Param3&」または「&Param4&」がギフトマークが付与された敵にダメージを与えた時、範囲内に攻撃力の<color=#0abec5>&Param1&</color>の火属性のスキルダメージを与える。",
+                    "damageType": [
+                        "主力スキル"
+                    ],
                     "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "OnceAdditionalAttributeValue,NoLevel,15804012,Value1,10KHdPct"
+                        "197%/227%/257%/345%/373%/401%/456%/479%/503%/551%/590%/629%/669%",
+                        10,
+                        "ウィップコマンド",
+                        "キャンディ乱射"
                     ],
                     "icon": "15801_Potential_04",
                     "rarity": "core"
@@ -19133,257 +15818,321 @@
             "mainNormal": [
                 {
                     "id": 515805,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15805002,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15801_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515806,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "31%/50%/68%/87%/106%/124%/143%/162%/180%"
-                    ],
-                    "icon": "15801_Potential_02",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515807,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15807001,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15801_Potential_01",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515808,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/1%/1.4%/1.8%/2.2%/2.6%/3%/3.4%/3.8%"
-                    ],
-                    "icon": "15801_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515809,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "HitDamage,DamageNum,158509001",
-                        "Effect,LevelUp,15809002,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15801_Potential_03",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515811,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        null
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "28%/36%/45%/53%/61%/70%/78%/86%/95%",
-                        "Effect,LevelUp,15811001,EffectTypeParam1,HdPct",
-                        "BuffValue,NoLevel,15811011,Time,10K",
-                        "BuffValue,NoLevel,15811011,LaminatedNum,Fixed"
-                    ],
-                    "icon": "Common_Potential_11",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515813,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "ScriptParameter,LevelUp,15813002,CommonData,10K"
-                    ],
-                    "icon": "Common_Potential_4",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515810,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Shield,LevelUp,15810001,ReferenceScale,10KHdPct"
-                    ],
-                    "icon": "15801_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515812,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/20%/27%/34%/41%/49%/56%/63%/71%",
-                        -1,
-                        1
-                    ],
-                    "icon": "Common_Potential_13",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 515841,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "必殺技ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/6%/8%/10%/12%/15%/17%/19%/21%",
-                        10,
-                        1,
-                        "必殺技ダメージ"
-                    ],
-                    "icon": "15801_Potential_42",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515842,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "HitDamage,DamageNum,158442001"
-                    ],
-                    "icon": "15801_Potential_42",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515843,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "HitDamage,DamageNum,158443001"
-                    ],
-                    "icon": "15801_Potential_43",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 515821,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "EffectValue,NoLevel,15821011,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15801_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515822,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "スキル被ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "EffectValue,NoLevel,15822012,EffectTypeParam1,HdPct",
-                        "100%"
-                    ],
-                    "icon": "15801_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515823,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "name": "パーリィドール",
+                    "briefDesc": "クルミ大佐と巻き毛将軍が##火属性の印#1016#が付与された敵にダメージを与えた時、一定確率で士気を獲得し、自身の&Param2&が増加する。",
+                    "desc": "クルミ大佐と巻き毛将軍が##火属性の印#1016#が付与された敵にダメージを与えた時、&Param1&の確率で士気を1獲得し、&Param4&秒間、自身の&Param2&が<color=#ec6d21>&Param3&</color>増加する。",
                     "damageType": [],
                     "effectType": [
                         "従者ダメージ"
                     ],
                     "addAttrType": [],
                     "params": [
-                        "100%",
-                        "HitDamage,DamageNum,158523002",
-                        "HitDamage,DamageNum,158523003",
-                        "HitDamage,DamageNum,158523004"
+                        "30%",
+                        "従者ダメージ",
+                        "14%/23%/31%/40%/48%/57%/65%/74%/82%",
+                        8,
+                        1
                     ],
-                    "icon": "15801_Potential_23",
-                    "rarity": "core"
+                    "icon": "15801_Potential_01",
+                    "rarity": "common"
                 },
                 {
-                    "id": 515824,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "id": 515806,
+                    "name": "将軍の秘策",
+                    "briefDesc": "巻き毛将軍は自身の周囲の敵にダメージを与え続けるようになる。",
+                    "desc": "巻き毛将軍は1秒ごとに、自身の周囲の敵に攻撃力の<color=#ec6d21>&Param1&</color>の火属性の従者ダメージを与えるようになる。",
                     "damageType": [
                         null
                     ],
                     "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "171%/195%/219%/297%/321%/345%/393%/411%/432%/474%/507%/540%/81.3%"
+                        "90%/145%/199%/253%/307%/361%/416%/470%/524%"
+                    ],
+                    "icon": "15801_Potential_06",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 515807,
+                    "name": "クリスマスエール",
+                    "briefDesc": "フィールド上に存在するおもちゃ1体につき、ラール（聖夜）のすべての従者の&Param1&が増加する。",
+                    "desc": "フィールド上に存在するおもちゃ1体につき、ラール（聖夜）のすべての従者の&Param1&が<color=#ec6d21>&Param2&</color>増加する。この効果は&Param3&回まで重複できる。",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [
+                        "火属性ダメージ"
+                    ],
+                    "params": [
+                        "火属性ダメージ",
+                        "13%/21%/28%/36%/44%/51%/59%/67%/74%",
+                        3
+                    ],
+                    "icon": "15801_Potential_02",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515808,
+                    "name": "ごほうびウィップ",
+                    "briefDesc": "主力スキル「&Param1&」または「&Param2&」が会心発生時、ラール（聖夜）の&Param3&が上昇する。",
+                    "desc": "主力スキル「&Param1&」または「&Param2&」が会心発生時、&Param5&秒間、ラール（聖夜）の&Param3&が<color=#ec6d21>&Param4&</color>上昇する。この効果は&Param6&回まで重複できる。",
+                    "damageType": [],
+                    "effectType": [
+                        "攻撃"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "ウィップコマンド",
+                        "キャンディ乱射",
+                        "攻撃",
+                        "1.9%/3%/4.1%/5.2%/6.3%/7.4%/8.5%/9.6%/10.7%",
+                        3,
+                        9
+                    ],
+                    "icon": "15801_Potential_03",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515809,
+                    "name": "バーニングウィップ",
+                    "briefDesc": "主力スキル「&Param1&」の攻撃範囲が拡大する。\u000b「&Param1&」と「&Param2&」が与える&Param3&が増加する。",
+                    "desc": "主力スキル「&Param1&」の攻撃範囲が20%拡大する。\u000b「&Param1&」と「&Param2&」が与える&Param3&が<color=#ec6d21>&Param4&</color>増加する。",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [
+                        "火属性ダメージ"
+                    ],
+                    "params": [
+                        "ウィップコマンド",
+                        "キャンディ乱射",
+                        "火属性ダメージ",
+                        "33%/52%/72%/91%/111%/130%/150%/169%/189%"
+                    ],
+                    "icon": "15801_Potential_03",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 515811,
+                    "name": "ソリの行進曲",
+                    "briefDesc": "ラール（聖夜）がダメージを与えた時、敵に射撃を行うソリ砲台を1つ召喚する。\u000bソリ砲台のダメージが会心発生時、ラール（聖夜）とフィールド上に存在するおもちゃの&Param5&が上昇する。",
+                    "desc": "&Param3&秒ごとにラール（聖夜）がダメージを与えた時、敵に射撃を行うソリ砲台を1つ召喚し、攻撃力の<color=#ec6d21>&Param2&</color>の火属性の従者ダメージを与える。その後の爆発で、範囲内に攻撃力の<color=#ec6d21>&Param4&</color>の火属性の従者ダメージを与える。\u000bソリ砲台のダメージが会心発生時、&Param7&秒間、ラール（聖夜）とフィールド上に存在するすべてのおもちゃの&Param5&が<color=#ec6d21>&Param6&</color>増加する。",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [
+                        "火属性ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "100%",
+                        "129%/206%/283%/361%/438%/515%/592%/670%/747%",
+                        8,
+                        "91%/146%/201%/255%/310%/365%/420%/474%/529%",
+                        "火属性ダメージ",
+                        "13%/20%/28%/35%/43%/50%/58%/65%/73%",
+                        8
+                    ],
+                    "icon": "15801_Potential_11",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 515813,
+                    "name": "クリスマスのワルツ",
+                    "briefDesc": "ラール（聖夜）の回避の発動可能回数が増加し、&Param2&が上昇する。\u000b一定時間ごとに、ラール（聖夜）が直接ダメージを受けた時、そのダメージを無効化する。",
+                    "desc": "ラール（聖夜）の回避の発動可能回数が1回増加し、&Param2&が<color=#ec6d21>&Param3&</color>上昇する。\u000bラール（聖夜）が直接ダメージを受けた時、そのダメージを無効化する。この効果は<color=#ec6d21>&Param1&</color>秒ごとに1回発動する。",
+                    "damageType": [],
+                    "effectType": [
+                        "防御"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        30,
+                        "防御",
+                        "39/52/65/78/91/105/118/131/144"
+                    ],
+                    "icon": "Common_Potential_21",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515810,
+                    "name": "きらめきクリスマス",
+                    "briefDesc": "ラール（聖夜）の通常攻撃で会心発生時、自身の&Param1&が上昇する。",
+                    "desc": "ラール（聖夜）の通常攻撃で会心発生時、&Param3&秒間、自身の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。この効果は&Param4&回まで重複できる。",
+                    "damageType": [],
+                    "effectType": [
+                        "攻撃"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "攻撃",
+                        "4%/6%/8%/11%/13%/15%/18%/20%/22%",
+                        8,
+                        4
+                    ],
+                    "icon": "15801_Potential_04",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515812,
+                    "name": "おもちゃの本気",
+                    "briefDesc": "ラール（聖夜）がラール人形に変身している間、射撃と「&Param1&」は##火属性の印#1016#を発動させることができる。\u000bラール（聖夜）の&Param3&が上昇する。",
+                    "desc": "ラール（聖夜）がラール人形に変身している間、射撃と「&Param1&」は##火属性の印#1016#を発動させることができる。\u000bラール（聖夜）の&Param3&が<color=#ec6d21>&Param4&</color>上昇する。",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [
+                        "攻撃"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "キャンディ乱射",
+                        "40%/52%/64%/76%/88%/100%/112%/124%/136%",
+                        "攻撃",
+                        "20%/32%/44%/56%/68%/80%/92%/104%/116%"
+                    ],
+                    "icon": "Common_Potential_Fire_1",
+                    "rarity": "common"
+                }
+            ],
+            "common": [
+                {
+                    "id": 515841,
+                    "name": "お仕置きキャンディ",
+                    "briefDesc": "ラール（聖夜）がラール人形に変身している間、「&Param1&」を発動した時、自身の&Param2&が増加する。",
+                    "desc": "ラール（聖夜）がラール人形に変身している間、「&Param1&」を発動した時、&Param4&秒間、自身の&Param2&が<color=#ec6d21>&Param3&</color>増加する。",
+                    "damageType": [],
+                    "effectType": [
+                        "必殺技ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "キャンディ乱射",
+                        "必殺技ダメージ",
+                        "61%/98%/134%/171%/207%/244%/256%/268%/281%",
+                        10
+                    ],
+                    "icon": "15801_Potential_41",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515842,
+                    "name": "クリスマスの守護者",
+                    "briefDesc": "ラール（聖夜）がラール人形に変身している間、「&Param1&」でダメージを与えた時、自身の&Param2&が増加する。",
+                    "desc": "ラール（聖夜）がラール人形に変身している間、「&Param1&」でダメージを与えた時、&Param4&秒間、自身の&Param2&が<color=#ec6d21>&Param3&</color>増加する。\u000bこの効果は&Param5&回まで重複でき、次の「&Param1&」発動時にリセットされる。",
+                    "damageType": [],
+                    "effectType": [
+                        "必殺技ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "キャンディ乱射",
+                        "必殺技ダメージ",
+                        "10%/13%/17%/20%/23%/27%/29%/31%/33%",
+                        10,
+                        10
+                    ],
+                    "icon": "15801_Potential_41",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515843,
+                    "name": "おもちゃの軍団",
+                    "briefDesc": "ラール（聖夜）がラール人形に変身している間、チーム内の火属性巡遊者の&Param1&が時間経過とともに上昇する。",
+                    "desc": "ラール（聖夜）がラール人形に変身している間、1秒ごとに、チーム内の火属性巡遊者の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。この効果は&Param4&回まで重複でき、変身終了時にリセットされる。",
+                    "damageType": [],
+                    "effectType": [
+                        "攻撃"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "攻撃",
+                        "9%/14%/19%/24%/30%/35%/36%/38%/40%",
+                        -1,
+                        10
+                    ],
+                    "icon": "15801_Potential_41",
+                    "rarity": "common"
+                }
+            ],
+            "supportCore": [
+                {
+                    "id": 515821,
+                    "name": "追い打ちプレゼント",
+                    "briefDesc": "プレゼント砲弾が爆発した後、範囲内の敵にダメージを与え続けるようになる。",
+                    "desc": "プレゼント砲弾が爆発した後、2秒間、0.3秒ごとに範囲内の敵に攻撃力の<color=#0abec5>&Param1&</color>の火属性のスキルダメージを与える。",
+                    "damageType": [
+                        "主力スキル"
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "37%/42%/48%/64%/69%/75%/85%/89%/94%/103%/106%/110%/114%"
+                    ],
+                    "icon": "15801_Potential_21",
+                    "rarity": "core"
+                },
+                {
+                    "id": 515822,
+                    "name": "サプライズプレゼント",
+                    "briefDesc": "プレゼント砲弾の与えるスキルダメージが増加し、攻撃範囲が拡大する。\u000bチーム内の全ての巡遊者が火属性の場合、プレゼント砲弾がダメージを与えた時、その敵が受ける火属性スキルダメージが増加する。",
+                    "desc": "プレゼント砲弾の攻撃範囲が<color=#0abec5>50%</color>拡大し、与えるスキルダメージが<color=#0abec5>&Param5&</color>増加する。\u000bチーム内の全ての巡遊者が火属性の場合、プレゼント砲弾がダメージを与えた時、&Param3&秒間、その敵が受けるスキルダメージが<color=#0abec5>&Param2&</color>増加する。この効果は<color=#0abec5>&Param4&</color>回まで重複できる。",
+                    "damageType": [],
+                    "effectType": [
+                        "スキル被ダメージ"
+                    ],
+                    "addAttrType": [
+                        "主力スキルダメージ"
+                    ],
+                    "params": [
+                        "スキル被ダメージ",
+                        "1.3%",
+                        7,
+                        20,
+                        "13%"
+                    ],
+                    "icon": "15801_Potential_22",
+                    "rarity": "core"
+                },
+                {
+                    "id": 515823,
+                    "name": "合体進化",
+                    "briefDesc": "クルミ大佐を合体させて巻き毛将軍にする。\u000bチーム内の全ての巡遊者が火属性の場合、巻き毛将軍の&Param3&は時間経過とともに増加する。",
+                    "desc": "フィールド上にクルミ大佐が4体存在する時、1体の巻き毛将軍に合体し、敵に攻撃力の<color=#0abec5>&Param1&</color>の火属性の従者ダメージを与える。\u000b巻き毛将軍は<color=#0abec5>10</color>秒間持続し、同時に1体までしか存在できない。\u000bチーム内の全ての巡遊者が火属性の場合、1秒ごとに巻き毛将軍の&Param3&が<color=#0abec5>&Param4&</color>増加し、この効果は<color=#0abec5>&Param5&</color>回まで重複できる。",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [
+                        "従者ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "53%/61%/69%/92%/100%/107%/122%/128%/135%/147%/153%/158%/163%",
+                        11.5,
+                        "従者ダメージ",
+                        "4.5%",
+                        15,
+                        15
+                    ],
+                    "icon": "15801_Potential_23",
+                    "rarity": "core"
+                },
+                {
+                    "id": 515824,
+                    "name": "切り札ドール",
+                    "briefDesc": "クルミ大佐と巻き毛将軍は特殊攻撃を習得し、自動的に敵を攻撃する。\u000b巻き毛将軍の特殊攻撃は、自身の&Param5&を上昇させる。",
+                    "desc": "クルミ大佐と巻き毛将軍は特殊攻撃を習得し、<color=#0abec5>4</color>秒ごとに自動で発動する。\u000bクルミ大佐：地面を強く叩き、範囲内に攻撃力の<color=#0abec5>&Param1&</color>の火属性の従者ダメージを与える。\u000b巻き毛将軍：両手の刀を振るい、範囲内に攻撃力の<color=#0abec5>&Param2&x6</color>の火属性の従者ダメージを与え、<color=#0abec5>&Param4&</color>秒間、自身の&Param5&が<color=#0abec5>&Param3&</color>上昇する。",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [
+                        "従者会心率"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "19.6%/22.6%/25.5%/34.3%/37.1%/39.8%/45.3%/47.7%/50.1%/54.8%/56.7%/58.7%/60.7%",
+                        "43%/49%/55%/75%/81%/87%/98%/104%/109%/119%/123%/127%/132%",
+                        "50%",
+                        6,
+                        "従者会心率"
                     ],
                     "icon": "15801_Potential_24",
                     "rarity": "core"
@@ -19392,321 +16141,110 @@
             "supportNormal": [
                 {
                     "id": 515825,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "name": "ダブルプレゼント",
+                    "briefDesc": "支援スキル「&Param1&」の与える&Param2&と射撃回数が増加する。",
+                    "desc": "ラール（聖夜）の支援スキル「&Param1&」の与える&Param2&が<color=#ec6d21>&Param3&</color>増加し、追加でプレゼント砲弾を2回発射する。",
                     "damageType": [],
                     "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15825001,EffectTypeParam1,HdPct"
+                    "addAttrType": [
+                        "主力スキルダメージ"
                     ],
-                    "icon": "15801_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515826,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
                     "params": [
-                        "HitDamage,DamageNum,158526001",
-                        "HitDamage,DamageNum,158526002"
+                        "プレゼントキャノン",
+                        "主力スキルダメージ",
+                        "29%/47%/65%/82%/100%/117%/135%/153%/170%"
                     ],
-                    "icon": "15801_Potential_21",
+                    "icon": "15801_Potential_25",
                     "rarity": "rare"
                 },
                 {
-                    "id": 515827,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "id": 515826,
+                    "name": "ギフトチャンス",
+                    "briefDesc": "プレゼント砲弾がダメージを与えた時、ラール（聖夜）の&Param1&が増加する。",
+                    "desc": "プレゼント砲弾がダメージを与えた時、&Param3&秒間、ラール（聖夜）の&Param1&が<color=#ec6d21>&Param2&</color>増加する。この効果は&Param4&回まで重複できる。",
                     "damageType": [],
-                    "effectType": [],
+                    "effectType": [
+                        "攻撃",
+                        "従者ダメージ"
+                    ],
                     "addAttrType": [],
                     "params": [
-                        "Effect,LevelUp,15827002,EffectTypeParam1,HdPct",
-                        "BuffValue,NoLevel,15827012,LaminatedNum,Fixed"
+                        "攻撃",
+                        "9%/15%/21%/26%/32%/37%/40%/43%/46%",
+                        5,
+                        6,
+                        "従者ダメージ",
+                        "1.7%"
+                    ],
+                    "icon": "15801_Potential_22",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515827,
+                    "name": "プレゼントファイア",
+                    "briefDesc": "##火属性の印#1016#が付与された敵に対して、プレゼント砲弾が与える&Param2&が増加する。",
+                    "desc": "##火属性の印#1016#が付与された敵に対して、プレゼント砲弾が与える&Param2&が<color=#ec6d21>&Param1&</color>増加する。",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [
+                        "火属性ダメージ"
+                    ],
+                    "params": [
+                        "6%/9%/11%/13%/15%/17%/19%/21%/23%",
+                        "火属性ダメージ"
                     ],
                     "icon": "15801_Potential_22",
                     "rarity": "common"
                 },
                 {
                     "id": 515828,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "光属性ダメージ"
+                    "name": "追撃ドール",
+                    "briefDesc": "クルミ大佐と巻き毛将軍は、周囲の敵に従者ダメージを与え続けるようになる。",
+                    "desc": "クルミ大佐は1秒ごとに、周囲の敵に攻撃力の<color=#ec6d21>&Param1&</color>の火属性の従者ダメージを与える。\u000b巻き毛将軍は0.5秒ごとに、周囲の敵に攻撃力の<color=#ec6d21>&Param2&</color>の火属性の従者ダメージを与える。",
+                    "damageType": [
+                        null
                     ],
+                    "effectType": [],
                     "addAttrType": [],
                     "params": [
-                        "100%/200%/200%/200%/200%/200%/200%/200%/200%",
-                        1
+                        "2.1%/3.3%/4.5%/5.8%/7%/8.3%/9.5%/10.7%/12%",
+                        "10.6%/17%/23.4%/29.7%/36.1%/42.5%/48.8%/55.2%/61.6%"
                     ],
-                    "icon": "15801_Potential_23",
+                    "icon": "15801_Potential_28",
                     "rarity": "common"
                 },
                 {
                     "id": 515830,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "name": "くるみ割りチャンス",
+                    "briefDesc": "クルミ大佐と巻き毛将軍の&Param1&が上昇する。それぞれがダメージを与えた時、自身の&Param3&が増加する。会心発生時、チーム内の火属性巡遊者の&Param7&が上昇する。",
+                    "desc": "クルミ大佐と巻き毛将軍の&Param1&が&Param2&上昇する。\u000bそれぞれがダメージを与えた時、&Param5&秒間、自身の&Param3&が<color=#ec6d21>&Param4&</color>増加する。この効果は&Param6&回まで重複できる。\u000b会心発生時、&Param9&秒間、チーム内の火属性巡遊者の&Param7&が<color=#ec6d21>&Param8&</color>上昇する。この効果は&Param10&回まで重複できる。",
                     "damageType": [],
-                    "effectType": [],
+                    "effectType": [
+                        "攻撃速度",
+                        "従者ダメージ",
+                        "攻撃"
+                    ],
                     "addAttrType": [],
                     "params": [
-                        "OnceAdditionalAttribute,LevelUp,15830001,Value1,10KHdPct"
+                        "攻撃速度",
+                        "35%",
+                        "従者ダメージ",
+                        "6%/9.6%/13.2%/16.8%/20.4%/24%/27.6%/31.2%/34.8%",
+                        10,
+                        10,
+                        "攻撃",
+                        "1%/1.6%/2.2%/2.8%/3.4%/4%/4.3%/4.6%/4.9%",
+                        10,
+                        10
                     ],
                     "icon": "15801_Potential_23",
                     "rarity": "common"
                 },
                 {
                     "id": 515831,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/200%/200%/200%/200%/200%/200%/200%/200%",
-                        "攻撃"
-                    ],
-                    "icon": "Common_Potential_14",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515832,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/14%/20%/25%/31%/36%/41%/47%/52%",
-                        -1,
-                        1,
-                        "攻撃"
-                    ],
-                    "icon": "Common_Potential_7",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515829,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "従者ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/200%/200%/200%/200%/200%/200%/200%/200%",
-                        2
-                    ],
-                    "icon": "15801_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515833,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "100%/77%/106%/134%/163%/192%/221%/250%/278%"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                }
-            ]
-        }
-    },
-    "159": {
-        "id": 159,
-        "name": "？？？",
-        "element": "地",
-        "class": "バランサー",
-        "attackType": "Ranged",
-        "loveGift": [],
-        "date": [],
-        "potential": {
-            "mainCore": [
-                {
-                    "id": 515901,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "EffectValue,NoLevel,15901011,EffectTypeFirstSubtype,Enum,EAT",
-                        "EffectValue,NoLevel,15901011,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15901_Potential_01",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515902,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_02",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515903,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "EffectValue,NoLevel,15903011,EffectTypeFirstSubtype,Enum,EAT",
-                        "EffectValue,NoLevel,15903011,EffectTypeParam1,HdPct"
-                    ],
-                    "icon": "15901_Potential_03",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515904,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_04",
-                    "rarity": "core"
-                }
-            ],
-            "mainNormal": [
-                {
-                    "id": 515905,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15905001,EffectTypeFirstSubtype,Enum,EAT",
-                        "Effect,LevelUp,15905001,EffectTypeParam1,HdPct",
-                        "BuffValue,NoLevel,15905011,Time,10K",
-                        "BuffValue,NoLevel,15905011,LaminatedNum,Fixed"
-                    ],
-                    "icon": "15901_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515906,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "Effect,LevelUp,15906001,EffectTypeFirstSubtype,Enum,EAT",
-                        "Effect,LevelUp,15906001,EffectTypeParam1,HdPct",
-                        "主力スキルダメージ",
-                        "100%"
-                    ],
-                    "icon": "15901_Potential_02",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515907,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "主力スキルダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "主力スキルダメージ",
-                        "100%"
-                    ],
-                    "icon": "15901_Potential_01",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515908,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "通常攻撃ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "通常攻撃ダメージ",
-                        "100%",
-                        "OnceAdditionalAttribute,LevelUp,15908001,AttributeType1,Enum,EAT",
-                        "OnceAdditionalAttribute,LevelUp,15908001,Value1,10KHdPct"
-                    ],
-                    "icon": "15901_Potential_03",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515909,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "地属性被ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "地属性被ダメージ",
-                        "15%/23%/32%/41%/49%/58%/67%/75%/84%",
-                        5,
-                        6
-                    ],
-                    "icon": "15901_Potential_04",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515911,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "name": "クリスマスの奇跡",
+                    "briefDesc": "ラール（聖夜）が出場するたびに、火属性の主力巡遊者の&Param1&が上昇する。",
+                    "desc": "ラール（聖夜）が出場するたびに、&Param3&秒間、火属性の主力巡遊者の&Param1&が<color=#ec6d21>&Param2&</color>上昇する。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -19714,321 +16252,17 @@
                     "addAttrType": [],
                     "params": [
                         "攻撃",
-                        "100%",
-                        8
-                    ],
-                    "icon": "Common_Potential_2",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515913,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "100%"
-                    ],
-                    "icon": "Common_Potential_15",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515910,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "",
-                        "OnceAdditionalAttribute,LevelUp,15910001,Value1,10KHdPct"
-                    ],
-                    "icon": "15901_Potential_04",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515912,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "",
-                        "OnceAdditionalAttribute,LevelUp,15912001,Value1,10KHdPct"
-                    ],
-                    "icon": "Common_Potential_10",
-                    "rarity": "common"
-                }
-            ],
-            "common": [
-                {
-                    "id": 515941,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15941001,EffectTypeFirstSubtype,Enum,EAT",
-                        "Effect,LevelUp,15941001,EffectTypeParam1,HdPct",
-                        "HitDamage,DamageNum,159400002,10K"
-                    ],
-                    "icon": "15901_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515942,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15942001,EffectTypeFirstSubtype,Enum,EAT",
-                        "Effect,LevelUp,15942001,EffectTypeParam1,HdPct",
-                        "OnceAdditionalAttribute,LevelUp,15942001,Value1,10KHdPct",
-                        "BuffValue,NoLevel,15942011,Time,10K"
-                    ],
-                    "icon": "15901_Potential_41",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515943,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "",
-                        "OnceAdditionalAttribute,LevelUp,15943001,Value1,10KHdPct",
-                        "BuffValue,NoLevel,15943011,Time,10K"
-                    ],
-                    "icon": "15901_Potential_41",
-                    "rarity": "common"
-                }
-            ],
-            "supportCore": [
-                {
-                    "id": 515921,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "OnceAdditionalAttributeValue,NoLevel,15921011,AttributeType1,Enum,EAT",
-                        "OnceAdditionalAttributeValue,NoLevel,15921011,Value1,10KHdPct",
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_21",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515922,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "主力スキルダメージ",
-                        "100%",
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_22",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515923,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_23",
-                    "rarity": "core"
-                },
-                {
-                    "id": 515924,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "OnceAdditionalAttributeValue,NoLevel,15924011,AttributeType1,Enum,EAT",
-                        "OnceAdditionalAttributeValue,NoLevel,15924011,Value1,10KHdPct"
-                    ],
-                    "icon": "15901_Potential_24",
-                    "rarity": "core"
-                }
-            ],
-            "supportNormal": [
-                {
-                    "id": 515925,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "Effect,LevelUp,15925001,EffectTypeFirstSubtype,Enum,EAT",
-                        "Effect,LevelUp,15925001,EffectTypeParam1,HdPct",
-                        "BuffValue,NoLevel,15925011,Time,10K"
-                    ],
-                    "icon": "15901_Potential_22",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515926,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "OnceAdditionalAttribute,LevelUp,15926001,AttributeType1,Enum,EAT",
-                        "OnceAdditionalAttribute,LevelUp,15926001,Value1,10KHdPct"
-                    ],
-                    "icon": "15901_Potential_21",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515927,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "200%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_21",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515928,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [
-                        "主力スキルダメージ"
-                    ],
-                    "params": [
-                        "",
-                        "100%"
-                    ],
-                    "icon": "15901_Potential_23",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515930,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [
-                        "主力スキル"
-                    ],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "105%/120%/136%/183%/198%/213%/242%/255%/267%/292%/313%/334%/355%"
-                    ],
-                    "icon": "15901_Potential_24",
-                    "rarity": "rare"
-                },
-                {
-                    "id": 515931,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "攻撃"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "攻撃",
-                        "100%",
-                        "BuffValue,NoLevel,15931011,Time,10K",
-                        "BuffValue,NoLevel,15931011,LaminatedNum,Fixed"
-                    ],
-                    "icon": "Common_Potential_Earth_1",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515932,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [
-                        "印ダメージ"
-                    ],
-                    "addAttrType": [],
-                    "params": [
-                        "印ダメージ",
-                        "100%",
-                        "BuffValue,NoLevel,15932011,Time,10K"
+                        "45%/72%/99%/126%/152%/179%/193%/206%/220%",
+                        10
                     ],
                     "icon": "Common_Potential_11",
                     "rarity": "common"
                 },
                 {
-                    "id": 515929,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
-                    "damageType": [],
-                    "effectType": [],
-                    "addAttrType": [],
-                    "params": [
-                        "OnceAdditionalAttribute,LevelUp,15929001,AttributeType1,Enum,EAT",
-                        "OnceAdditionalAttribute,LevelUp,15929001,Value1,10KHdPct",
-                        "OnceAdditionalAttribute,LevelUp,15929002,Value1,10KHdPct"
-                    ],
-                    "icon": "15901_Potential_24",
-                    "rarity": "common"
-                },
-                {
-                    "id": 515933,
-                    "name": "？？？",
-                    "briefDesc": "？？？",
-                    "desc": "？？？",
+                    "id": 515832,
+                    "name": "キャンディラッシュ",
+                    "briefDesc": "ラール（聖夜）がラール人形に変身している間、自身の&Param1&が上昇し、射撃と「キャンディ乱射」で##火属性の印：聖炎#2013#を付与できるようになる。",
+                    "desc": "ラール（聖夜）がラール人形に変身している間、自身の&Param1&が<color=#ec6d21>&Param2&</color>上昇し、射撃と「&Param3&」で##火属性の印：聖炎#2013#を付与できるようになる。",
                     "damageType": [],
                     "effectType": [
                         "攻撃"
@@ -20036,7 +16270,44 @@
                     "addAttrType": [],
                     "params": [
                         "攻撃",
-                        "100%"
+                        "67%/107%/147%/187%/227%/267%/277%/287%/297%",
+                        "キャンディ乱射"
+                    ],
+                    "icon": "Common_Potential_Fire_1",
+                    "rarity": "common"
+                },
+                {
+                    "id": 515829,
+                    "name": "姫への忠義",
+                    "briefDesc": "クルミ大佐と巻き毛将軍の持続時間と&Param1&が増加する。",
+                    "desc": "クルミ大佐と巻き毛将軍の持続時間が<color=#ec6d21>50%</color>延長され、&Param1&が<color=#ec6d21>&Param2&</color>増加する。",
+                    "damageType": [],
+                    "effectType": [
+                        "会心ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "会心ダメージ",
+                        "32%/52%/71%/90%/109%/129%/148%/167%/187%",
+                        1
+                    ],
+                    "icon": "15801_Potential_23",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 515833,
+                    "name": "キャンドルパーティー",
+                    "briefDesc": "チーム内の全ての巡遊者が火属性の場合、プレゼント砲弾がダメージを与えた時、敵の&Param1&が増加する。",
+                    "desc": "チーム内の全ての巡遊者が火属性の場合、プレゼント砲弾がダメージを与えた時、&Param3&秒間、敵の&Param1&が<color=#ec6d21>&Param2&</color>増加する。",
+                    "damageType": [],
+                    "effectType": [
+                        "火属性被ダメージ"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "火属性被ダメージ",
+                        "15%/24%/33%/42%/51%/60%/63%/66%/69%",
+                        12
                     ],
                     "icon": "Common_Potential_15",
                     "rarity": "rare"
