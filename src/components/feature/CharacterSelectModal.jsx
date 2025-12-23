@@ -123,8 +123,8 @@ const CharacterSelectModal = ({ isOpen, onClose, onSelect }) => {
                                             <CharacterIcon char={char} size="lg" />
                                         </div>
                                         <div className="relative z-10 min-w-0">
-                                            <div className="flex items-center gap-2 mb-1">
-                                                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors truncate text-xl">{char.name}</span>
+                                            <div className="flex flex-col items-start gap-1 mb-1">
+                                                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors truncate text-xl w-full">{char.name}</span>
                                                 <RankStars rank={char.rank} size={14} />
                                             </div>
                                             <div className="flex items-center gap-2 text-xs">
