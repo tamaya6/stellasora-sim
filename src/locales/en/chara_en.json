@@ -1679,6 +1679,551 @@
             ]
         }
     },
+    "110": {
+        "id": 110,
+        "name": "Firenze",
+        "element": "Umbra",
+        "class": "Vanguard",
+        "attackType": "Melee",
+        "loveGift": [
+            "Love Candle",
+            "Blazing Wings",
+            "Fiery Honeypot",
+            "Portable Blower",
+            "Exquisite Blower",
+            "Deluxe Blower",
+            "Gilded Ceramic Bowl",
+            "Blossom Porcelain Cup",
+            "Mystic Potion Kettle"
+        ],
+        "date": [
+            {
+                "id": 110301,
+                "name": "School Days",
+                "clue": "Visit the Academy to unlock",
+                "secondChoice": "Getting hungry. Gonna go to the cafeteria."
+            },
+            {
+                "id": 110302,
+                "name": "The Bait",
+                "clue": "Visit the Port to unlock",
+                "secondChoice": "How about doing some night fishing?"
+            }
+        ],
+        "potential": {
+            "mainCore": [
+                {
+                    "id": 511001,
+                    "name": "Step Kicking",
+                    "briefDesc": "The Main Skill deals additional damage.",
+                    "desc": "When casting Elegant Parade (Main Skill), Firenze deals an additional <color=#0abec5>&Param1& x3</color> of ATK as AoE Umbra Skill DMG.",
+                    "damageType": [
+                        "Main Skill"
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "55%/63%/71%/95%/103%/111%/126%/133%/139%/152%/163%/174%/185%"
+                    ],
+                    "icon": "11001_Potential_01",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511002,
+                    "name": "Nimble Step",
+                    "briefDesc": "When Firenze's Main Skill deals DMG for a certain number of times, she creates a domain that deals continuous AoE DMG and boosts her &Param3&.",
+                    "desc": "After Firenze's Elegant Parade (Main Skill) deals DMG <color=#0abec5>6</color> times, it creates a domain for &Param1&s, dealing <color=#0abec5>&Param2&</color> of ATK as AoE Umbra Skill DMG every 0.5s and increases Firenze's &Param3& by <color=#0abec5>&Param4&</color>. The domain's DMG can trigger ##Umbra Mark#1019#.",
+                    "damageType": [
+                        "Main Skill"
+                    ],
+                    "effectType": [
+                        "Main Skill DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        7,
+                        "67%/77%/87%/118%/127%/137%/155%/164%/172%/188%/201%/215%/228%",
+                        "Main Skill DMG",
+                        "5%"
+                    ],
+                    "icon": "11001_Potential_02",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511003,
+                    "name": "Phantom Waltz",
+                    "briefDesc": "Firenze automatically summons ##Shadow Clones#4002#. When casting the Main Skill, increases the number of ##Shadow Clones#4002# summoned.",
+                    "desc": "Firenze generates <color=#0abec5>1</color> ##Shadow Clone#4002# every <color=#0abec5>5</color>s.\u000bWhen casting Elegant Parade (Main Skill), increases the number of ##Shadow Clones#4002# summoned by <color=#0abec5>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        1
+                    ],
+                    "icon": "11001_Potential_03",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511004,
+                    "name": "Shadow Step",
+                    "briefDesc": "Upon vanishing, Firenze's ##Shadow Clones#4002# will explode, dealing AoE DMG. The max limit of ##Shadow Clones#4002# increases for every other Umbra Trekker in the squad.",
+                    "desc": "Upon vanishing, Firenze's ##Shadow Clones#4002# will explode, dealing <color=#0abec5>&Param1&</color> of ATK as AoE Umbra Minion DMG.\u000bThe max limit of ##Shadow Clones#4002# increases by <color=#0abec5>&Param2&</color> for every other Umbra Trekker in the squad.",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "117%/135%/152%/205%/221%/238%/271%/285%/299%/327%/350%/374%/397%",
+                        1
+                    ],
+                    "icon": "11001_Potential_04",
+                    "rarity": "core"
+                }
+            ],
+            "mainNormal": [
+                {
+                    "id": 511005,
+                    "name": "High Risk",
+                    "briefDesc": "When Firenze deals Skill DMG, there is a chance to deal additional DMG.",
+                    "desc": "When Firenze deals Skill DMG, there is a &Param2& chance to deal an additional <color=#ec6d21>&Param1&</color> of ATK as Umbra Skill DMG. The chance is increased to &Param3& if the target is inflicted with ##Umbra Burn#2028#. This effect can only be triggered &Param4& times every second.",
+                    "damageType": [
+                        "Main Skill"
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "64%/103%/141%/180%/218%/256%/295%/333%/372%",
+                        "40%",
+                        "80%",
+                        2
+                    ],
+                    "icon": "11001_Potential_01",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 511006,
+                    "name": "Dark Pirouette",
+                    "briefDesc": "When Firenze triggers an ##Umbra Mark#1019#, increases &Param1&.",
+                    "desc": "When Firenze triggers an ##Umbra Mark#1019#, increases &Param1& by <color=#ec6d21>&Param2&</color> for &Param3&s.",
+                    "damageType": [],
+                    "effectType": [
+                        "ATK"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "ATK",
+                        "15%/24%/33%/42%/51%/60%/69%/78%/87%",
+                        3
+                    ],
+                    "icon": "11001_Potential_01",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511007,
+                    "name": "Flash Break",
+                    "briefDesc": "When Firenze deals DMG with an Auto Attack, increases her &Param1&. The effect ends if the Main Skill is cast.",
+                    "desc": "When Firenze deals DMG with an Auto Attack, increases her &Param1& by <color=#ec6d21>&Param2&</color> for &Param3&s, stacking up to <color=#ec6d21>&Param4&</color> times. The effect ends if Elegant Parade (Main Skill) is cast.",
+                    "damageType": [],
+                    "effectType": [
+                        "Main Skill DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Main Skill DMG",
+                        "4%/6%/9%/11%/13%/15%/18%/20%/22%",
+                        5,
+                        3
+                    ],
+                    "icon": "11001_Potential_02",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511009,
+                    "name": "Extended Shift",
+                    "briefDesc": "Firenze's ##Shadow Clone#4002# lasts longer on the battlefield. Also increases &Param2&.",
+                    "desc": "Firenze's ##Shadow Clone#4002# lasts <color=#ec6d21>&Param1&</color>s longer on the battlefield. Also increases &Param2& by <color=#ec6d21>&Param3&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "1/1/1/2/2/3/3/3/4",
+                        "Minion DMG",
+                        "19%/31%/43%/54%/66%/77%/89%/101%/112%"
+                    ],
+                    "icon": "11001_Potential_03",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 511010,
+                    "name": "Accurate Coincidence",
+                    "briefDesc": "After Firenze casts the Main Skill, her next Auto Attack starts with the 4th strike. Also increases ##Shadow Clone#4002#'s &Param1&.",
+                    "desc": "After Firenze casts Elegant Parade (Main Skill), her next Auto Attack directly casts the last strike.\u000bAlso increases ##Shadow Clone#4002#'s &Param1& by <color=#ec6d21>&Param2&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Minion DMG",
+                        "13%/20%/28%/35%/43%/50%/58%/65%/73%"
+                    ],
+                    "icon": "11001_Potential_03",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511011,
+                    "name": "Hunting Command",
+                    "briefDesc": "Each Umbra Trekker in the squad increases Firenze's &Param1&.",
+                    "desc": "For each Umbra Trekker in the squad, increases Firenze's &Param1& by <color=#ec6d21>&Param2&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Umbra DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Umbra DMG",
+                        "7%/11%/15%/19%/23%/27%/31%/35%/39%"
+                    ],
+                    "icon": "11001_Potential_04",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 511013,
+                    "name": "Announcement Time",
+                    "briefDesc": "Firenze can dodge one more time. Increases her &Param3& when dodging.",
+                    "desc": "Firenze can dodge one more time.\u000bWhen dodging, increases Firenze's &Param3& by <color=#ec6d21>&Param1&</color> for &Param2&s.",
+                    "damageType": [],
+                    "effectType": [
+                        "ATK"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "4%/6%/9%/11%/13%/15%/18%/20%/22%",
+                        6,
+                        "ATK"
+                    ],
+                    "icon": "11001_Potential_04",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511008,
+                    "name": "Gloomy Veil",
+                    "briefDesc": "Increases ##Shadow Clone#4002#'s max limit and &Param2&.",
+                    "desc": "Increases ##Shadow Clone#4002#'s max limit by &Param1& and &Param2& by <color=#ec6d21>&Param3&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Umbra DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        1,
+                        "Umbra DMG",
+                        "14%/22%/31%/39%/47%/55%/64%/72%/80%"
+                    ],
+                    "icon": "11001_Potential_03",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511012,
+                    "name": "Clone Trick",
+                    "briefDesc": "Firenze can dodge through barriers. Increases ##Shadow Clone#4002#'s DMG.",
+                    "desc": "Firenze can dodge through barriers.\u000bIncreases ##Shadow Clone#4002#'s &Param1& by <color=#ec6d21>&Param2&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Minion DMG",
+                        "8%/13%/17%/22%/27%/31%/36%/41%/46%"
+                    ],
+                    "icon": "11001_Potential_04",
+                    "rarity": "common"
+                }
+            ],
+            "common": [
+                {
+                    "id": 511041,
+                    "name": "Instant Liquidation",
+                    "briefDesc": "When Firenze casts her Ultimate, each ##Shadow Clone#4002# on the battlefield increases her Ultimate DMG.",
+                    "desc": "Firenze absorbs all ##Shadow Clones#4002# when casting Personal Tuition (Ultimate). Each ##Shadow Clone#4002# absorbed increases Ultimate DMG by <color=#ec6d21>&Param1&</color>, up to &Param2& stacks.",
+                    "damageType": [],
+                    "effectType": [
+                        "Ultimate DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "35%/55%/76%/97%/117%/138%/159%/179%/200%",
+                        5,
+                        "Ultimate DMG"
+                    ],
+                    "icon": "11001_Potential_41",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511042,
+                    "name": "Instant Peak",
+                    "briefDesc": "When Firenze deals DMG, increases &Param1&.",
+                    "desc": "When Firenze deals DMG, increases &Param1& by <color=#ec6d21>&Param2&</color> for &Param3&s.",
+                    "damageType": [],
+                    "effectType": [
+                        "Ultimate Crit Rate"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Ultimate Crit Rate",
+                        "5%/7%/8%/10%/11%/13%/15%/16%/20%",
+                        5
+                    ],
+                    "icon": "11001_Potential_41",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511043,
+                    "name": "Place Your Bets",
+                    "briefDesc": "When Firenze triggers an ##Umbra Mark#1019#, increases &Param1&.",
+                    "desc": "When Firenze triggers an ##Umbra Mark#1019#, increases &Param1& by <color=#ec6d21>&Param2&</color> for &Param3&s, up to &Param4& stacks. The effect ends if Personal Tuition (Ultimate) is cast.",
+                    "damageType": [],
+                    "effectType": [
+                        "Ultimate DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "Ultimate DMG",
+                        "17%/28%/38%/49%/59%/69%/80%/90%/101%",
+                        20,
+                        10
+                    ],
+                    "icon": "11001_Potential_41",
+                    "rarity": "common"
+                }
+            ],
+            "supportCore": [
+                {
+                    "id": 511021,
+                    "name": "Shadow Nail",
+                    "briefDesc": "The cane stays in the ground for a period of time, dealing DMG over time.",
+                    "desc": "The cane stays in the ground for 6s, dealing <color=#0abec5>&Param1&</color> of ATK as AoE Umbra Skill DMG per second.",
+                    "damageType": [
+                        "Main Skill"
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "35%/40%/45%/61%/65%/70%/80%/84%/88%/96%/103%/110%/117%"
+                    ],
+                    "icon": "11001_Potential_21",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511022,
+                    "name": "Shadow Flicker",
+                    "briefDesc": "When the cane disappears, triggers an explosion, dealing AoE DMG.",
+                    "desc": "When the cane disappears, triggers an explosion, dealing <color=#0abec5>&Param1&</color> of ATK as AoE Umbra Skill DMG.",
+                    "damageType": [
+                        "Main Skill"
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "108%/124%/141%/189%/204%/220%/250%/263%/276%/302%/323%/345%/367%"
+                    ],
+                    "icon": "11001_Potential_22",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511023,
+                    "name": "Twin Shadow",
+                    "briefDesc": "Increases the max limit and the number summoned of ##Shadow Clones#4002# by Support Skills.",
+                    "desc": "Reign of Night (Support Skill) summons <color=#0abec5>2</color> more ##Shadow Clones#4002#, with the max limit increased by <color=#0abec5>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        2
+                    ],
+                    "icon": "11001_Potential_23",
+                    "rarity": "core"
+                },
+                {
+                    "id": 511024,
+                    "name": "Shadownight Descendant",
+                    "briefDesc": "The ##Shadow Clones#4002# summoned by the Support Skill will last longer on the battlefield.",
+                    "desc": "The ##Shadow Clones#4002# summoned by Reign of Night (Support Skill) will last <color=#0abec5>5</color>s longer on the battlefield.",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [],
+                    "icon": "11001_Potential_24",
+                    "rarity": "core"
+                }
+            ],
+            "supportNormal": [
+                {
+                    "id": 511025,
+                    "name": "Drinking Party",
+                    "briefDesc": "When cane DMG triggers an ##Umbra Mark#1019#, reduces Support Skill Cooldown. Also increases the cane's DMG.",
+                    "desc": "When cane DMG triggers an ##Umbra Mark#1019#, reduces Reign of Night (Support Skill)'s Cooldown by &Param3&s. This effect can only be triggered &Param4& times per cast.\u000bAlso increases DMG dealt by the cane by <color=#ec6d21>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [
+                        "Main Skill DMG"
+                    ],
+                    "params": [
+                        "10%/16%/22%/29%/35%/41%/47%/53%/59%",
+                        "Main Skill DMG",
+                        1,
+                        4
+                    ],
+                    "icon": "11001_Potential_21",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 511026,
+                    "name": "Typical Case",
+                    "briefDesc": "Increases the cane's Umbra DMG to targets inflicted with ##Dark Burn#2028#.",
+                    "desc": "Increases the cane's Umbra DMG to targets inflicted with ##Dark Burn#2028# by <color=#ec6d21>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [],
+                    "addAttrType": [
+                        "Umbra DMG"
+                    ],
+                    "params": [
+                        "10%/16%/22%/29%/35%/41%/47%/53%/59%",
+                        "Umbra DMG"
+                    ],
+                    "icon": "11001_Potential_21",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511027,
+                    "name": "Joyous Whip",
+                    "briefDesc": "When the cane deals DMG, increases Firenze's &Param3&.",
+                    "desc": "When the cane deals DMG, increases Firenze's &Param3& by <color=#ec6d21>&Param1&</color> for &Param2&s, up to &Param4& stacks.",
+                    "damageType": [],
+                    "effectType": [
+                        "ATK"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "3%/4%/6%/8%/9%/11%/12%/14%/16%",
+                        10,
+                        "ATK",
+                        3
+                    ],
+                    "icon": "11001_Potential_21",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511028,
+                    "name": "Step Sync",
+                    "briefDesc": "Increases ##Shadow Clone#4002#'s &Param3&. Reduces the intervals between their sprint attacks.",
+                    "desc": "Increases ##Shadow Clone#4002#'s &Param3& by <color=#ec6d21>&Param2&</color>. Reduces the intervals between their sprint attacks by <color=#ec6d21>&Param1&%</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "10/10/20/20/20/30/30/30/40",
+                        "5%/9%/12%/15%/18%/21%/25%/28%/31%",
+                        "Minion DMG"
+                    ],
+                    "icon": "11001_Potential_23",
+                    "rarity": "rare"
+                },
+                {
+                    "id": 511030,
+                    "name": "Flexible Operation",
+                    "briefDesc": "When a ##Shadow Clone#4002# deals DMG, increases all ##Shadow Clones#4002#' &Param3& on the battlefield.",
+                    "desc": "When a ##Shadow Clone#4002# deals damage, increases all present ##Shadow Clones#4002#' &Param3& by <color=#ec6d21>&Param1&</color>, up to &Param4& stacks.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "2.9%/4.6%/6.3%/8%/9.7%/11.4%/13.1%/14.8%/16.5%",
+                        6,
+                        "Minion DMG",
+                        6
+                    ],
+                    "icon": "11001_Potential_23",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511031,
+                    "name": "Shadow Waltz",
+                    "briefDesc": "Increases ##Shadow Clone#4002#'s DMG.",
+                    "desc": "Increases ##Shadow Clone#4002#'s &Param2& by <color=#ec6d21>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Minion DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "18%/28%/39%/49%/60%/70%/81%/91%/102%",
+                        "Minion DMG"
+                    ],
+                    "icon": "11001_Potential_24",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511032,
+                    "name": "Prime Stance",
+                    "briefDesc": "Increases Firenze's &Param2&.",
+                    "desc": "Increases Firenze's &Param2& by <color=#ec6d21>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "ATK"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "16%/26%/36%/46%/56%/65%/75%/85%/95%",
+                        "ATK"
+                    ],
+                    "icon": "11001_Potential_24",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511029,
+                    "name": "Dark Resurgence",
+                    "briefDesc": "Upon vanishing, Firenze's ##Shadow Clones#4002# will explode, dealing AoE DMG.",
+                    "desc": "Upon vanishing, ##Shadow Clones#4002# will explode, dealing <color=#ec6d21>&Param1&</color> of ATK as AoE Umbra Minion DMG.",
+                    "damageType": [
+                        null
+                    ],
+                    "effectType": [],
+                    "addAttrType": [],
+                    "params": [
+                        "35%/55%/76%/97%/118%/138%/159%/180%/201%"
+                    ],
+                    "icon": "11001_Potential_23",
+                    "rarity": "common"
+                },
+                {
+                    "id": 511033,
+                    "name": "Special Care",
+                    "briefDesc": "Increases all Umbra Trekkers' &Param2&.",
+                    "desc": "Increases all Umbra Trekkers' &Param2& by <color=#ec6d21>&Param1&</color>.",
+                    "damageType": [],
+                    "effectType": [
+                        "Umbra DMG"
+                    ],
+                    "addAttrType": [],
+                    "params": [
+                        "11%/17%/23%/29%/36%/42%/48%/55%/61%",
+                        "Umbra DMG"
+                    ],
+                    "icon": "11001_Potential_24",
+                    "rarity": "rare"
+                }
+            ]
+        }
+    },
     "111": {
         "id": 111,
         "name": "Iris",
@@ -1895,7 +2440,7 @@
                     "desc": "While Iris's Main Skill is active, grants Super Armor and increases her ATK by <color=#ec6d21>&Param1&</color>.",
                     "damageType": [],
                     "effectType": [
-                        "Main Skill DMG"
+                        "ATK"
                     ],
                     "addAttrType": [],
                     "params": [
@@ -9365,13 +9910,13 @@
         "date": [
             {
                 "id": 133301,
-                "name": "Ever-Turning Waterwheel",
+                "name": "False Alarm",
                 "clue": "Visit the Market to unlock",
                 "secondChoice": "What's that? Looks suspicious."
             },
             {
                 "id": 133302,
-                "name": "Manager for a Day",
+                "name": "Ever-Turning Waterwheel",
                 "clue": "Visit the Port to unlock",
                 "secondChoice": "Take a small boat out for some coastal sightseeing."
             }
@@ -10035,7 +10580,7 @@
                 {
                     "id": 513405,
                     "name": "Pyro Mark",
-                    "briefDesc": "Fiery Punches and Magma Burst deals increased &Param2& and can trigger ##Ignis Mark1016#.",
+                    "briefDesc": "Fiery Punches and Magma Burst deals increased &Param2& and can trigger ##Ignis Mark#1016#.",
                     "desc": "Increases the &Param2& dealt by Fiery Punches and Magma Burst by <color=#ec6d21>&Param1&, and allows them to trigger ##Ignis Mark#1016#.",
                     "damageType": [],
                     "effectType": [],
@@ -13547,7 +14092,7 @@
                         "Ultimate DMG"
                     ],
                     "addAttrType": [
-                        "Ultimate DMG Taken"
+                        "Ultimate DMG"
                     ],
                     "params": [
                         "Ultimate DMG",
